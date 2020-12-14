@@ -1,0 +1,60 @@
+{
+    "icon": "fa-openshift",
+    "title": "Getting Started with OpenShift Pipelines",
+    "description": "",
+    "pathwayTitle": "OpenShift",
+    "difficulty": "Beginner",
+    "time": "30 minutes",
+    "backend": {
+        "imageid": "openshift-4-5"
+    },
+    "environment": {
+        "showdashboard": true,
+        "dashboards": [{"name": "Console", "href": "https://console-openshift-console-[[HOST_SUBDOMAIN]]-443-[[KATACODA_HOST]].environments.katacoda.com"}],
+        "uilayout": "terminal-iframe",
+        "hideintro": false,
+        "hidefinish": false
+    },
+    "details": {
+        "steps": [{
+            "title": "Step 1 - Install the Pipelines Operator",
+            "text": "01install-op.md"
+        }, {
+            "title": "Step 2 - Create a New Project",
+            "text": "02new-project.md"
+        }, {
+            "title": "Step 3 - Create Sample Task",
+            "text": "03create-task.md"
+        }, {
+            "title": "Step 4 - Task Resource Definitions",
+            "text": "04task-resource-def.md"
+        }, {
+            "title": "Step 5 - Create Pipeline",
+            "text": "05create-pipeline.md"
+        }, {
+            "title": "Step 6 - Trigger a Pipeline",
+            "text": "06trigger-pipeline.md"
+        }, {
+            "title": "Step 7 - Verify Deployment",
+            "text": "07verify-deployment.md"
+        }],
+        "intro": {
+            "courseData": "env-init.sh",
+            "code": "set-env.sh",
+            "text": "intro.md"
+        },
+        "finish": {
+            "text": "finish.md"
+        },
+        "assets": {
+            "client": [
+                { "file": "operator/subscription.yaml", "target": "~/operator" },
+                { "file": "tasks/apply_manifest_task.yaml", "target": "~/tasks" },
+                { "file": "tasks/update_deployment_task.yaml", "target": "~/tasks" },
+                { "file": "pipeline/pipeline.yaml", "target": "~/pipeline" },
+                { "file": "resources/persistent_volume_claim.yaml", "target": "~/resources" },
+                { "file": "tasks/hello.yaml", "target": "~/tasks" }
+            ]
+        }
+    }
+}
