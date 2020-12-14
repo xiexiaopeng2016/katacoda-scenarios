@@ -1,16 +1,16 @@
-## Goal
+## 目标
 
 学习如何使用web控制台和 `oc` 命令行工具登录到OpenShift。
 
-## Concepts
+## 概述
 
-* OpenShift user authentication and authorization basics
-* OpenShift Web Console
-* OpenShift `oc` tool
-* OpenShift Projects and collaboration
+* OpenShift用户身份验证和授权基础知识
+* OpenShift Web控制台
+* OpenShift `oc` 工具
+* OpenShift 项目和协作
 
-## Use case
+## 使用案例
 
-You must log in to do anything on an OpenShift cluster. To collaborate on an OpenShift Project, you can authorize other users to see or modify resources in your Projects.
+您必须登录才能在OpenShift集群上执行任何操作。要在OpenShift项目上协作，您可以授权其他用户查看或修改您项目中的资源。
 
-This OpenShift cluster will self-destruct in one hour.
+这个OpenShift集群将在一小时内自毁。
