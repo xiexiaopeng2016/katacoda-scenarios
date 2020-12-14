@@ -3,8 +3,8 @@
     "title": "登录到一个OpenShift集群",
     "description": "",
     "pathwayTitle": "OpenShift",
-    "difficulty": "beginner",
-    "time": "5-10 minutes",
+    "difficulty": "入门",
+    "time": "5-10 分钟",
     "backend": {
         "imageid": "openshift-4-4"
     },

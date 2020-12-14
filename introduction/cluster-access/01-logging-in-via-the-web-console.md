@@ -1,16 +1,16 @@
-The easiest way to access and interact with OpenShift is through the web console. The URL for the web console will be dictated by what was specified as the public URL for the OpenShift cluster when it was set up. Once the web console is accessed, how you then login will depend on the configured identity provider.
+访问OpenShift并与之交互的最简单方法是通过web控制台。web控制台的URL将由OpenShift集群在设置时指定的公共URL指定。一旦访问了web控制台，您随后的登录方式将取决于配置的标识提供者。
 
-For this course the public URL for the web console is:
+在本课程中，web控制台的公共URL为:
 
 ``https://console-openshift-console-[[HOST_SUBDOMAIN]]-443-[[KATACODA_HOST]].environments.katacoda.com``{{copy}}
 
-To view the web console at the same time as these instructions, you can also select the _Console_ tab to the right of the tab for the embedded _Terminal_.
+要在查看这些指令的同时查看web控制台，您还可以在嵌入的 _Terminal_ 选项卡右边选择 _Console_ 选项卡。
 
-In the case of the OpenShift cluster managing user authentication, the web console login page will prompt you for your _Username_ and _Password_.
+在OpenShift集群管理用户身份验证的情况下，web控制台登录页面将提示你输入 _Username_ 和 _Password_ 。
 
 ![Web Console Login](../../assets/introduction/cluster-access-44/01-web-console-login.png)
 
-In the case of an external authentication service being used as the identity provider, it will be necessary to login first to the external service. As an example, if you were accessing [OpenShift Online](https://www.openshift.com/get-started/) you would see:
+在使用一个外部身份验证服务作为身份提供者的情况下，首先需要登录到外部服务。例如, 如果你正在访问 [OpenShift Online](https://www.openshift.com/get-started/) 您会看到:
 
 ![External Login](../../assets/introduction/cluster-access-44/01-external-identity-provider.png)
 
