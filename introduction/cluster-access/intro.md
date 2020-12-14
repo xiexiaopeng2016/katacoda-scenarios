@@ -1,6 +1,6 @@
 ## Goal
 
-Learn how to log in to OpenShift with the web console and with the `oc` command line tool.
+学习如何使用web控制台和 `oc` 命令行工具登录到OpenShift。
 
 ## Concepts
 
