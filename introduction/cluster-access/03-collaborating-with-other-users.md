@@ -1,58 +1,57 @@
-Working alone can be lots of fun, but as your application grows you may want to get others to help. This is no problem with OpenShift as it is built to be multi tenant. This means it can support many different users, each working on their own applications. To support collaboration on the same project, you can also grant other users access to any of your projects. Access can be granted at varying levels depending on what they need to be able to do in your project.
+独自工作可能会很有趣，但随着你的应用程序的发展，你可能希望得到其他人的帮助。这对于OpenShift来说没有问题，因为它是构建为多租户的。这意味着它可以支持许多不同的用户，每个用户都在自己的应用程序上工作。为了支持同一项目上的协作，您还可以授予其他用户对您的任何项目的访问权。根据用户需要在项目中执行的操作，可以在不同的级别授予访问权。
 
-To test out how users can collaborate, we need another user.
+为了测试用户之间如何协作，我们需要另一个用户。
 
-Login from the command line as the user ``user1`` by running:
+通过运行以下命令以用户 ``user1`` 从命令行登录:
 
 ``oc login --username user1 --password user1``{{execute}}
 
-This is the first time this user has logged in, so if you run:
+这是这个用户第一次登录，所以如果你运行:
 
 ``oc get projects``{{execute}}
 
-you should see that the user has access to no projects.
+您应该会看到，用户没有访问任何项目的权限。
 
-To grant this user access to your project, go to the list of projects in the web console and select on the drop down menu to the right of the project name and select on _Edit Project_.
+要授予此用户对项目的访问权，请在web控制台中找到项目列表，并在项目名称右侧的下拉菜单中选择 _编辑项目_ 。
 
 ![Edit Project Details](../../assets/introduction/cluster-access-44/03-edit-project-option.png)
 
-When the project details are displayed, select on the _Role Bindings_ tab.
+当项目详细信息显示出来时，选择 _角色绑定_ 选项卡。
 
 ![Project Role Bindings](../../assets/introduction/cluster-access-44/03-project-role-bindings.png)
 
-You will see that only the ``developer`` user is a member of the project at this point, with the user having `admin` access.
+此时，您将看到只有 ``developer` 用户是项目的成员，该用户具有 `admin` 访问权限。
 
-Click on _Create Binding_ to grant an additional user access to the project.
+单击 _创建绑定_ 授予一个额外用户对项目的访问权。
 
 ![Create Role Binding](../../assets/introduction/cluster-access-44/03-create-role-binding.png)
 
-For the name of the role binding use ``user1-edit``{{copy}}.
+用于角色绑定使用的名称 ``user1-edit``{{copy}} 。
 
-Ensure that the ``myproject`` namespace is selected, and with the role name as ``edit``.
+确保选择了 ``myproject`` 名称空间，并且角色名为 ``edit``。
 
-Finally enter ``user1``{{copy}} as the subject name.
+最后输入 ``user1``{{copy}} 作为主题名称。
 
-Click on _Create_.
+单击 _创建_ 。
 
-The user ``user1`` is now a member of the project. Back in the _Terminal_ run again the command:
+用户 ``user1`` 现在是项目的成员了。回到 _Terminal_ ，再次运行命令:
 
 ``oc get projects``{{execute}}
 
-This should show that ``user1`` now has access to the project created by the ``developer`` user.
+这就说明 ``user1`` 现在可以访问 ``developer`` 用户创建的项目。
 
-In this case you gave ``user1`` the role type ``edit`` in the project. This allows the user to perform most tasks within the project, with the exception of tasks related to administration of the project. The user therefore cannot make changes to project membership or delete the project.
+在本例中，您在项目中为 ``user1`` 提供了角色类型 ``edit``。这允许用户执行项目中的大多数任务，除了与项目管理相关的任务之外。因此，用户不能更改项目成员关系或删除项目。
 
-Other roles you might instead assign to a collaborator are ``view``, which means they can look at everything in the project, but not change anything, or ``admin``, which gives them equal rights as the owner of the project, including editing project membership or deleting the project.
+您可能会分配给一个协作者的替代角色是 ``view``，这意味着他们可以查看项目中的所有内容，但不能更改任何内容; 或者 ``admin``，这赋予他们作为项目所有者的同等权利，包括编辑项目成员关系或删除项目。
 
-Making changes to project membership can also be done from the command line using ``oc``.
+对项目成员关系的更改也可以通过命令行使用 ``oc`` 来完成。
 
-As ``user1`` has no projects at this point, create one by running:
+由于 ``user1`` 此时还没有项目，通过运行以下命令创建一个:
 
 ``oc new-project mysecrets``{{execute}}
 
-Then add the ability for ``developer`` to also view that project by running:
+然后为 ``developer`` 添加查看这个项目能力，通过运行:
 
 ``oc adm policy add-role-to-user view developer -n mysecrets``{{execute}}
 
-Return to the main page in the web console where the list of projects is shown for ``developer`` and you should
-see ``mysecrets`` listed.
+返回到web控制台的主页，项目列表为 ``developer`` 显示出来，你应该看到 ``mysecrets`` 已经列出。
