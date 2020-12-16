@@ -1,35 +1,35 @@
-When using the ``oc`` command line tool, you can only interact with one OpenShift cluster at a time. It is not possible to open a separate shell on the same computer, as the same local user, and work on a different OpenShift cluster at the same time. This is because state about the current login session is stored in the home directory of the local user running the ``oc`` command.
+当使用 ``oc`` 命令行工具时，您一次只能与一个OpenShift集群交互。在同一台计算机上，作为同一本地用户打开单独的shell，同时在不同的OpenShift集群上工作，这是不可能的。这是因为当前登录会话的状态存储在运行 ``oc`` 命令的本地用户的主目录中。
 
-If you do need to work against multiple OpenShift clusters, or even as different users on the same OpenShift cluster, you will need to remember to switch between them.
+如果您确实需要在多个OpenShift集群上工作，或者甚至在同一个OpenShift集群上作为不同的用户，那么您需要记住在它们之间进行切换。
 
-In this course you originally logged in from the command line using ``oc login`` as the ``developer`` user. You then subsequently logged in as the ``user1`` user.
+在本课程中，您最初从命令行使用 ``oc login`` 以 ``developer`` 用户登录。随后您以 ``user1`` 用户的身份登录。
 
-At this point you are still logged in and have an active session token for both users, but are currently operating as the ``user1`` user.
+此时，您仍然处于登录状态，并拥有两个用户的活动会话令牌，但当前的操作是作为 ``user1`` 用户。
 
-To switch back to the ``developer`` user run:
+要切换回 ``developer`` 用户运行:
 
 ``oc login --username developer``{{execute}}
 
-Because you had already provided a password for the ``developer`` user, you will not be prompted to supply it again. The only time you would be prompted again to provide the password, or supply a new session token, when switching users, is if the active session had expired.
+因为您已经为 ``developer`` 用户提供了密码，所以不会提示您再次提供密码。在切换用户时，只有在活动会话过期时，才会再次提示您提供密码或提供新的会话令牌。
 
-You can validate that you are now the ``developer`` user by running:
+你可以通过运行以下命令来验证你现在是 ``developer`` 用户:
 
 ``oc whoami``{{execute}}
 
-If you are working against multiple OpenShift clusters, to switch between them, you again use ``oc login``, but supply just the URL for the OpenShift cluster. For example, if you had an account with the OpenShift Online free starter tier, and had been assigned to the ``us-east-1`` cluster, you could run:
+如果你在多个OpenShift集群上工作，要在它们之间切换，你再次使用 ``oc login`` ，但只提供OpenShift集群的URL。例如，如果你有一个OpenShift Online免费启动层的帐户，并被分配到 ``us-east-1`` 集群，你可以运行:
 
 ``oc login https://api.starter-us-east-1.openshift.com``
 
-When switching which OpenShift cluster is used, if you do not explicitly say which user to use, it will use whatever was the last user you were logged in as with that cluster. You can still provide ``--username`` if required.
+在切换使用哪个OpenShift集群时，如果您没有明确说明要使用哪个用户，那么它将使用您最后一次登录的用户，就像在那个集群中一样。如果需要，您仍然可以提供 ``--username`` 。
 
-Switching, without needing to supply the password or register with a token is possible as details for each are saved away separately in what is called a context. You can see what the current context is by running:
+切换，不需要提供密码或使用令牌注册是可能的，因为每个令牌的详细信息分别保存在所谓的上下文中。你可以通过运行以下命令来查看当前上下文:
 
 ``oc whoami --show-context``{{execute}}
 
-You can get a list of all OpenShift clusters you have ever logged into by running:
+你可以通过运行以下命令得到你曾经登录过的所有OpenShift集群的列表:
 
 ``oc config get-clusters``{{execute}}
 
-You can get a list of all contexts which have ever been created, indicating what users on those clusters you have logged in as, and which projects you have worked on, by running:
+通过运行以下命令，你可以得到所有已经创建的上下文列表，显示你以哪些用户登录过集群，以及你曾经操作过哪些项目:
 
 ``oc config get-contexts``{{execute}}

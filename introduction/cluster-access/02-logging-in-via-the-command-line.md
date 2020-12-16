@@ -64,4 +64,4 @@ You must obtain an API token by visiting
 
  ![Request Access Token](../../assets/introduction/cluster-access-44/02-login-access-token.png)
 
-无论您通过哪种机制从命令行使用 ``oc login` 登录，登录都会定期过期，您需要再次登录。有效期通常为24小时。
+无论您通过哪种机制从命令行使用 ``oc login`` 登录，登录都会定期过期，您需要再次登录。有效期通常为24小时。

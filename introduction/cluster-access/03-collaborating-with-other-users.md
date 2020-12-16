@@ -20,7 +20,7 @@
 
 ![Project Role Bindings](../../assets/introduction/cluster-access-44/03-project-role-bindings.png)
 
-此时，您将看到只有 ``developer` 用户是项目的成员，该用户具有 `admin` 访问权限。
+此时，您将看到只有 ``developer`` 用户是项目的成员，该用户具有 `admin` 访问权限。
 
 单击 _创建绑定_ 授予一个额外用户对项目的访问权。
 
