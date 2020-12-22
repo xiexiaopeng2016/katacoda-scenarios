@@ -1,10 +1,10 @@
-The ``oc edit`` command would be used to change an existing resource object, it cannot be used to create a new object. To create a new object you need to use the ``oc create`` command.
+ ``oc edit`` 命令将被用来改变一个现有的资源对象，它不能被用来创建一个新的对象。要创建一个新对象，您需要使用 ``oc create`` 命令。
 
-The ``oc create`` command provides a generic way of creating any resource object from a JSON or YAML definition, as well as a simpler option driven method for a subset of resource object types.
+ ``oc create`` 命令提供了一种从JSON或YAML定义创建任何资源对象的通用方法，以及针对资源对象类型子集的一种更简单的选项驱动方法。
 
-If for example you wanted to create a secure route for the application with your own host name, you would create a ``parksmap-fqdn.json`` file containing the definition of the route:
+例如，如果你想用你自己的主机名为应用程序创建一个安全路由，你可以创建一个包含路由定义的 ``parksmap-fqdn.json`` 文件:
 
-``cat > parksmap-fqdn.json << !
+ ``cat > parksmap-fqdn.json << !
 {
     "kind": "Route",
     "apiVersion": "v1",
@@ -32,15 +32,15 @@ If for example you wanted to create a secure route for the application with your
 }
 !``{{execute}}
 
-To create the route from the ``parksmap-fqdn.json`` file you would run the command:
+要从 ``parksmap-fqdn.json`` 文件创建路由，你可以运行以下命令:
 
-``oc create -f parksmap-fqdn.json``{{execute}}.
+ ``oc create -f parksmap-fqdn.json``{{execute}}。
 
-The definition for this route had a unique value for ``route.metadata.name``, which wasn't previously in use. If you now run:
+这个路由的定义对 ``route.metadata.name`` 有一个唯一的值，它以前没有使用过。如果你现在运行:
 
-``oc get routes``{{execute}}
+ ``oc get routes``{{execute}}
 
-you should see two routes listed.
+您应该会看到列出了两条路由。
 
 ```
 NAME            HOST/PORT                                                            PATH   SERVICES   PORT       TERMINATION   WILDCARD
@@ -48,10 +48,10 @@ parksmap        parksmap-myproject.2886795273-80-frugo03.environments.katacoda.c
 parksmap-fqdn   www.example.com                                                             parksmap   8080-tcp   edge/Allow    None
 ```
 
-In the case of a route, ``oc create`` provides a sub command specifically for creating a route. You could therefore also have run ``oc create route`` using the command:
+在路由的情况下， ``oc create`` 提供了一个子命令，专门用于创建路由。因此，你也可以运行 ``oc create route`` 使用命令:
 
-``oc create route edge parksmap-fqdn --service parksmap --insecure-policy Allow --hostname www.example.com``
+ ``oc create route edge parksmap-fqdn --service parksmap --insecure-policy Allow --hostname www.example.com`` 
 
-To see the list of resource object types that ``oc create`` has more specific support for, run:
+要查看 ``oc create`` 具有更具体支持的资源对象类型列表，请运行:
 
-``oc create --help``{{execute}}
+ ``oc create --help``{{execute}}

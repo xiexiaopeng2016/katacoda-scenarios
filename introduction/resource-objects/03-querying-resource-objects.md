@@ -1,10 +1,10 @@
-To get a more detailed description of a specific resource object, you can use the ``oc describe`` command.
+要获得特定资源对象的更详细描述，可以使用 ``oc describe`` 命令。
 
-Run:
+运行:
 
-``oc describe route/parksmap``{{execute}}
+ ``oc describe route/parksmap``{{execute}}
 
-and it should yield something similar to:
+它应该产生类似的结果:
 
 ```
 Name:                   parksmap
@@ -24,29 +24,29 @@ Weight:         100 (100%)
 Endpoints:      10.128.0.220:8080
 ```
 
-Whenever passing a specific resource object as argument to an ``oc`` command, there are two conventions which can be used. The first is to use a single string of the form ``type/name``. The second is to pass the ``type`` and ``name`` as separate consecutive arguments. The command:
+当将特定的资源对象作为参数传递给 ``oc`` 命令时，可以使用两种约定。第一种方法是使用 ``type/name`` 形式的单个字符串。第二种方法是将 ``type`` 和 ``name`` 作为独立的连续参数传递。命令:
 
-``oc describe route parksmap``{{execute}}
+ ``oc describe route parksmap``{{execute}}
 
-is therefore equivalent.
+是等价的。
 
-The output produced by ``oc describe`` is intended to be a human readable format. To get the raw object details as JSON or YAML, you can use the ``oc get`` command, listing the name of the resource and the output format.
+ ``oc describe`` 产生的输出是一种人类可读的格式。要以JSON或YAML的形式获取原始对象的详细信息，可以使用 ``oc get`` 命令，列出资源的名称和输出格式。
 
-For JSON output, you can use:
+对于JSON输出，你可以使用:
 
-``oc get route/parksmap -o json``{{execute}}.
+ ``oc get route/parksmap -o json``{{execute}}。
 
-For YAML output, you can use:
+对于YAML输出，您可以使用:
 
-``oc get route/parksmap -o yaml``{{execute}}.
+ ``oc get route/parksmap -o yaml``{{execute}}。
 
-To see a description of the purpose of specific fields in the raw object, you can use the ``oc explain`` command, providing it with a path selector for the field.
+要查看原始对象中特定字段用途的描述，可以使用 ``oc explain`` 命令，为字段提供路径选择器。
 
-To see the description of the ``host`` field of the ``spec`` object, you can run:
+要查看 ``spec`` 对象的 ``host`` 字段的描述，你可以运行:
 
-``oc explain route.spec.host``{{execute}}
+ ``oc explain route.spec.host``{{execute}}
 
-This will output:
+这将输出:
 
 ```
 KIND:     Route

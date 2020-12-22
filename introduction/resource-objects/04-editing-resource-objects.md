@@ -1,19 +1,19 @@
-To make changes to an existing resource object you can use the ``oc edit`` command.
+要更改现有的资源对象，可以使用 ``oc edit`` 命令。
 
-To edit the details of the ``route`` object for the sample application you can run:
+编辑 ``route`` 对象的细节为示例应用程序，你可以运行:
 
-``oc edit route/parksmap``{{execute}}
+ ``oc edit route/parksmap``{{execute}}
 
-This will start up an editor from which you can edit the definition of the resource object.
+这将启动一个编辑器，您可以在其中编辑资源对象的定义。
 
-The ``vi`` editor will be used with this environment. If you are not familiar with ``vi``, you can enter ``:q`` to exit provided no changes have been made.
+ ``vi`` 编辑器将用于此环境。如果你不熟悉 ``vi`` ，你可以输入 ``:q`` 退出，前提是没有修改。
 
-By default, when editing a definition, it will be provided as YAML. To edit the definition as JSON add the ``-o json`` option.
+默认情况下，在编辑定义时，它将作为YAML提供。要将定义编辑为JSON，添加 ``-o json`` 选项。
 
-``oc edit route/parksmap -o json``{{execute}}
+ ``oc edit route/parksmap -o json``{{execute}}
 
-Once you are done with any edits, save the changes and quit the editor. The changes will be automatically uploaded and used to replace the original definition.
+完成任何编辑后，保存更改并退出编辑器。更改将被自动上传并用于替换原始定义。
 
-As OpenShift works on a declarative configuration model, the platform will then run any steps needed to bring the state of the cluster into agreement with the required state as defined by the resource object.
+当OpenShift在声明性配置模型上工作时，平台将运行将集群状态与资源对象定义的所需状态保持一致所需的任何步骤。
 
-Do be aware that not all fields of a resource object are able to be changed. Some fields may be immutable. Others may represent the current state of the corresponding resource and any change will be overridden again with the current state.
+请注意，并非资源对象的所有字段都可以更改。有些字段可能是不可变的。其他可能表示相应资源的当前状态，任何更改都将被当前状态再次覆盖。

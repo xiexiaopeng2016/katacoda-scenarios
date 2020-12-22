@@ -1,6 +1,6 @@
 {
     "icon": "fa-openshift",
-    "title": "Using the CLI to Manage Resource Objects",
+    "title": "使用CLI来管理资源对象",
     "description": "",
     "pathwayTitle": "OpenShift",
     "difficulty": "beginner",
@@ -10,35 +10,49 @@
     },
     "environment": {
         "showdashboard": true,
-        "dashboards": [{"name": "Console", "href": "https://console-openshift-console-[[HOST_SUBDOMAIN]]-443-[[KATACODA_HOST]].environments.katacoda.com"}],
+        "dashboards": [
+            {
+                "name": "Console",
+                "href": "https://console-openshift-console-[[HOST_SUBDOMAIN]]-443-[[KATACODA_HOST]].environments.katacoda.com"
+            }
+        ],
         "uilayout": "terminal-iframe"
     },
     "details": {
-        "steps": [{
-            "title": "Topic 1 - Deploying an Application",
-            "text": "01-deploying-an-application.md"
-        }, {
-            "title": "Topic 2 - Resource Object Types",
-            "text": "02-resource-object-types.md"
-        }, {
-            "title": "Topic 3 - Querying Resource Objects",
-            "text": "03-querying-resource-objects.md"
-        }, {
-            "title": "Topic 4 - Editing Resource Objects",
-            "text": "04-editing-resource-objects.md"
-        }, {
-            "title": "Topic 5 - Creating Resource Objects",
-            "text": "05-creating-resource-objects.md"
-        }, {
-            "title": "Topic 6 - Replacing Resource Objects",
-            "text": "06-replacing-resource-objects.md"
-        }, {
-            "title": "Topic 7 - Labelling Resource Objects",
-            "text": "07-labelling-resource-objects.md"
-        }, {
-            "title": "Topic 8 - Deleting Resource Objects",
-            "text": "08-deleting-resource-objects.md"
-        }],
+        "steps": [
+            {
+                "title": "主题1 - 部署应用程序",
+                "text": "01-deploying-an-application.md"
+            },
+            {
+                "title": "主题2 - 资源对象类型",
+                "text": "02-resource-object-types.md"
+            },
+            {
+                "title": "主题3 - 查询资源对象",
+                "text": "03-querying-resource-objects.md"
+            },
+            {
+                "title": "主题4 - 编辑资源对象",
+                "text": "04-editing-resource-objects.md"
+            },
+            {
+                "title": "主题5 - 创建资源对象",
+                "text": "05-creating-resource-objects.md"
+            },
+            {
+                "title": "主题6 - 替换资源对象",
+                "text": "06-replacing-resource-objects.md"
+            },
+            {
+                "title": "主题7 - 标记资源对象",
+                "text": "07-labelling-resource-objects.md"
+            },
+            {
+                "title": "主题8 - 删除资源对象",
+                "text": "08-deleting-resource-objects.md"
+            }
+        ],
         "intro": {
             "text": "intro.md"
         },

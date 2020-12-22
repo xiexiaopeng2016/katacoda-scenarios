@@ -1,16 +1,16 @@
-## Goal
+## 目标
 
-Learn how to enumerate, describe, and update application resource objects on OpenShift.
+了解如何枚举、描述和更新OpenShift上的应用程序资源对象。
 
-## Concepts
+## 概念
 
-* OpenShift Projects and Applications
-* Applications on OpenShift as Builds and Deployments
-* Application resources like Services, Persistent Volumes, and configuration
-* OpenShift `oc` command line tool
+* OpenShift项目和应用程序
+* OpenShift上的应用程序作为构建和部署
+* 应用程序资源，如服务、持久卷和配置
+* OpenShift ``oc`` 命令行工具
 
-## Use case
+## 用例
 
-You can find, query, and change the OpenShift resources that make up an application.
+您可以查找、查询和更改组成应用程序的OpenShift资源。
 
-This OpenShift cluster will self-destruct in one hour.
+这个OpenShift集群将在一小时内自毁。

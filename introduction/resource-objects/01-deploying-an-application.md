@@ -1,21 +1,21 @@
-Before you can start this course you need to deploy a sample application to work with.
+在开始本课程之前，您需要部署一个要使用的示例应用程序。
 
-The first step is to ensure you are logged in as the ``developer`` user.
+第一步是确保您以 ``developer`` 用户的身份登录。
 
 ``oc login --username developer --password developer``{{execute}}
 
-Next create a new project to add the application to, by running:
+接下来，创建一个新项目来添加应用程序，运行:
 
 ``oc new-project myproject``{{execute}}
 
-This should automatically switch you to the new project, so you are ready to deploy the application.
+这将自动切换到新项目，这样您就可以部署应用程序了。
 
-The application you are going to deploy is the ParksMap web application used in the _Getting Started with OpenShift for Developers_ Katacoda course.
+您将要部署的应用程序是在OpenShift开发人员入门Katacoda课程中使用的ParksMap web应用程序。
 
 ``oc new-app openshiftroadshow/parksmap-katacoda:1.2.0 --name parksmap``{{execute}}
 
-By default when using ``oc new-app`` from the command line to deploy an application, the application will not be exposed to the public. As our final step you therefore need to expose the service so that people can access it.
+默认情况下，当从命令行使用 ``oc new-app`` 来部署应用程序时，该应用程序不会公开给公众。因此，作为我们的最后一步，您需要公开服务，以便人们能够访问它。
 
 ``oc expose svc/parksmap``{{execute}}
 
-You are now ready to start investigating the resource objects which were created.
+现在可以开始调查已创建的资源对象了。

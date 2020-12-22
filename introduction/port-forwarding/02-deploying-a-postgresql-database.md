@@ -1,6 +1,6 @@
 要创建一个数据库，然后你可以连接，运行命令:
 
-`oc new-app postgresql-ephemeral --name database --param DATABASE_SERVICE_NAME=database --param POSTGRESQL_DATABASE=sampledb --param POSTGRESQL_USER=username --param POSTGRESQL_PASSWORD=password`{{execute}}
+``oc new-app postgresql-ephemeral --name database --param DATABASE_SERVICE_NAME=database --param POSTGRESQL_DATABASE=sampledb --param POSTGRESQL_USER=username --param POSTGRESQL_PASSWORD=password``{{execute}}
 
 这将启动一个PostgreSQL数据库实例。
 

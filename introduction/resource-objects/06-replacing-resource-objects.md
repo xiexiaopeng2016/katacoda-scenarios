@@ -1,8 +1,8 @@
-The ``oc create`` command allows you to create a new resource object from a JSON or YAML definition contained in a file. To change an existing resource object using ``oc edit`` was an interactive process. To be able to change an existing resource from a JSON or YAML definition contained in a file, you can use the ``oc replace`` command.
+ ``oc create`` 命令允许您从一个文件中包含的JSON或YAML定义创建一个新的资源对象。使用 ``oc edit`` 更改现有资源对象是一个交互过程。要想从包含在文件中的JSON或YAML定义中更改现有资源，可以使用 ``oc replace`` 命令。
 
-To disallow an insecure route you create a modified definition of the route object:
+为了禁止不安全的路由，你需要创建一个经过修改的路由对象定义:
 
-``cat > parksmap-fqdn.json << !
+ ``cat > parksmap-fqdn.json << !
 {
     "kind": "Route",
     "apiVersion": "v1",
@@ -30,18 +30,18 @@ To disallow an insecure route you create a modified definition of the route obje
 }
 !``{{execute}}
 
-and then run:
+然后运行:
 
-``oc replace -f parksmap-fqdn.json``{{execute}}
+ ``oc replace -f parksmap-fqdn.json``{{execute}}
 
-In order for ``oc replace`` to target the correct resource object, the ``metadata.name`` value of the JSON or YAML definition must be the same as that to be changed.
+为了让 ``oc replace`` 瞄准正确的资源对象，JSON或YAML定义的 ``metadata.name`` 值必须与要更改的值相同。
 
-To script the updating of a value in an existing resource object using ``oc replace``, it is necessary to fetch the definition of the existing resource object using ``oc get``. The definition can then be edited and ``oc replace`` used to update the existing resource object.
+要使用 ``oc replace`` 编写现有资源对象中值更新的脚本，需要使用 ``oc get`` 获取现有资源对象的定义。然后可以编辑定义， ``oc replace`` 用于更新现有资源对象。
 
-To edit the definition will require a way of editing the JSON or YAML definition on the fly. The alternative to this process is to use the ``oc patch`` command, which will edit a value in place for you based on a supplied specification.
+要编辑定义，需要动态编辑JSON或YAML定义的方法。这个过程的替代方法是使用 ``oc patch`` 命令，该命令将根据提供的规范为您编辑适当的值。
 
-The ``route.spec.tls.insecureEdgeTerminationPolicy`` value could for example be switched back to allowing an insecure route by running:
+例如， ``route.spec.tls.insecureEdgeTerminationPolicy`` 值可以切换回允许一个不安全的路由，运行:
 
-``oc patch route/parksmap-fqdn --patch '{"spec":{"tls": {"insecureEdgeTerminationPolicy": "Allow"}}}'``{{execute}}
+ ``oc patch route/parksmap-fqdn --patch '{"spec":{"tls": {"insecureEdgeTerminationPolicy": "Allow"}}}'``{{execute}}
 
-For both cases, the resource object to be updated must already exist or the command will fail. If you do not know whether the resource object will already exist, and want it updated if it does, but created if it does not, instead of using ``oc replace``, you can use ``oc apply``.
+对于这两种情况，要更新的资源对象必须已经存在，否则命令将失败。如果您不知道资源对象是否已经存在，并且希望更新它，如果不更新就创建它，那么您可以使用 ``oc replace`` 代替 ``oc apply`` ，而不是a1577b。

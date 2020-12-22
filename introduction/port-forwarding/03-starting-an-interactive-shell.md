@@ -11,9 +11,9 @@ database-1-9xv8n   1/1       Running   0          1m
 
 为了使引用pod的名称更容易，通过运行以下命令在一个环境变量中捕获pod的名称:
 
-`POD=`oc get pods --selector name=database -o custom-columns=NAME:.metadata.name --no-headers`; echo $POD`{{execute}}
+``POD=`oc get pods --selector name=database -o custom-columns=NAME:.metadata.name --no-headers`; echo $POD``{{execute}}
 
-要在运行数据库的同一个容器中创建交互式shell，可以使用`oc rsh`命令，为它提供pod的名称。
+要在运行数据库的同一个容器中创建交互式shell，可以使用``oc rsh``命令，为它提供pod的名称。
 
 `oc rsh $POD`{{execute}}
 
@@ -21,7 +21,7 @@ database-1-9xv8n   1/1       Running   0          1m
 
 您可以通过运行以下命令看到您在运行数据库的容器中:
 
-`ps x`{{execute}}
+``ps x``{{execute}}
 
 这将显示输出类似于:
 

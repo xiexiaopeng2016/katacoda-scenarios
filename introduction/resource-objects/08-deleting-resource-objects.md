@@ -1,23 +1,23 @@
-If you need to delete an entire application, or just a single resource, you can use the ``oc delete`` command. Specific resource objects can be deleted by their names, or by matching on a subset of resource objects using labels.
+如果需要删除整个应用程序或单个资源，可以使用 ``oc delete`` 命令。可以通过名称删除特定的资源对象，或者通过使用标签匹配资源对象的子集来删除它们。
 
-To delete a single resource object by name supply the name:
+要按名称删除单个资源对象，请提供名称:
 
-``oc delete route/parksmap-fqdn``{{execute}}
+ ``oc delete route/parksmap-fqdn``{{execute}}
 
-To delete all resources objects of a specific type using labels, supply the resource object type name and the selector.
+若要使用标签删除特定类型的所有资源对象，请提供资源对象类型名称和选择器。
 
-``oc delete route --selector app=parksmap``{{execute}}
+ ``oc delete route --selector app=parksmap``{{execute}}
 
-When using a label selector, you can list more than one resource object type name by separating them with a comma.
+在使用标签选择器时，可以通过用逗号分隔资源对象类型名来列出多个资源对象类型名。
 
-``oc delete svc,route --selector app=parksmap``{{execute}}
+ ``oc delete svc,route --selector app=parksmap``{{execute}}
 
-The short cut of ``all`` can also be used to match all key resource objects types that are directly associated with the build and deployment of an application.
+ ``all`` 的捷径还可以用于匹配与应用程序的构建和部署直接相关的所有关键资源对象类型。
 
-``oc delete all --selector app=parksmap``{{execute}}
+ ``oc delete all --selector app=parksmap``{{execute}}
 
-It is recommended that before deleting any resource objects, you use ``oc get`` with the same parameters to confirm what would be deleted. This is especially important with a final variant of the ``oc delete all`` command. That is, where no selector is provided.
+建议在删除任何资源对象之前，使用具有相同参数的 ``oc get`` 来确认要删除的内容。对于 ``oc delete all`` 命令的最后一个变体来说，这一点尤其重要。也就是说，没有提供选择器。
 
-In this case, all matched resource objects in the project would be deleted. Because the danger is there of accidentally deleting all your work, it is necessary to also supply the ``--all`` option to confirm that you do really wish to delete all resources objects from the project.
+在这种情况下，将删除项目中所有匹配的资源对象。因为存在意外删除所有工作的危险，所以还需要提供 ``--all`` 选项，以确认您确实希望从项目中删除所有资源对象。
 
-``oc delete all --all``{{execute}}
+ ``oc delete all --all``{{execute}}
