@@ -1,6 +1,6 @@
 {
     "icon": "fa-openshift",
-    "title": "从源部署应用程序",
+    "title": "从源代码部署应用程序",
     "description": "",
     "pathwayTitle": "OpenShift",
     "difficulty": "beginner",

@@ -1,16 +1,16 @@
-## Goal
+## 目标
 
-Learn how to use [Prometheus](https://github.com/prometheus/prometheus) on OpenShift to collect metrics from an application and then visualize the results with [Grafana](https://github.com/grafana/grafana).
+学习如何在OpenShift上使用[普罗米修斯](https://github.com/prometheus/prometheus) 来收集应用程序的指标，然后与[Grafana](https://github.com/grafana/grafana) 一起可视化结果。
 
-## Concepts
+## 概念
 
-* Prometheus, exporters, and application metrics
-* Grafana charts and graphs
-* OpenShift Web Console
-* `oc` OpenShift command line tool
+* 普罗米修斯，出口商和应用度量
+* 格拉夫纳图表和图表
+* OpenShift Web控制台
+* `oc`OpenShift命令行工具
 
-## Use case
+## 用例
 
-You can analyze application metrics to spot problems, monitor performance, audit resource use, and improve your understanding of your application's behavior in order to improve it.
+您可以分析应用程序度量以发现问题、监视性能、审计资源使用，并改进您对应用程序行为的理解，以便改进它。
 
-This OpenShift cluster will self-destruct in one hour.
+这个OpenShift集群将在一小时内自毁。
