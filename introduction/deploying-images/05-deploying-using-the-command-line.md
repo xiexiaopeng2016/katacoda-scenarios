@@ -1,16 +1,16 @@
-You now have a clean project again, so lets deploy the same existing container image, but this time using the ``oc`` command line program.
+现在您又有了一个干净的项目，所以让我们部署相同的现有容器镜像，但这一次使用`oc`命令行程序。
 
-The name of the image you used previously was:
+你之前使用的镜像的名称是:
 
 ```
 openshiftkatacoda/blog-django-py
 ```
 
-If you have been given the name of an image to deploy and want to verify that it is valid from the command line, you can use the ``oc new-app --search`` command. For this image run:
+如果已经提供了要部署的镜像的名称，并希望从命令行验证它是否有效，可以使用`oc new-app --search`命令。对于这个镜像运行:
 
-``oc new-app --search openshiftkatacoda/blog-django-py``{{execute}}
+`oc new-app --search openshiftkatacoda/blog-django-py`{{execute}}
 
-This should display output similar to:
+这应该显示输出类似于:
 
 ```
 Docker images (oc new-app --docker-image=<docker-image> [--code=<source>])
@@ -20,13 +20,13 @@ openshiftkatacoda/blog-django-py
   Tags:     latest
 ```
 
-It confirms that the image is found on the Docker Hub Registry.
+它确认在Docker Hub注册中心上可以找到镜像。
 
-To deploy the image, you can run the command:
+要部署镜像，可以运行以下命令:
 
-``oc new-app openshiftkatacoda/blog-django-py``{{execute}}
+`oc new-app openshiftkatacoda/blog-django-py`{{execute}}
 
-This will display out similar to:
+这将显示类似于:
 
 ```
 --> Found container image 927f823 (4 months old) from Docker Hub for "openshiftkatacoda/blog-django-py"
@@ -52,14 +52,14 @@ This will display out similar to:
     Run 'oc status' to view your app.
 ```
 
-OpenShift will assign a default name based on the name of the image, in this case ``blog-django-py``. You can specify a different name to be given to the application, and the resources created, by supplying the ``--name`` option along with the name you wish to use as an argument.
+OpenShift将基于镜像的名称分配一个默认名称，在本例中为`blog-django-py`。通过提供`--name`选项和希望用作参数的名称，可以指定要给应用程序的不同名称和创建的资源。
 
-Unlike how it is possible when deploying an existing container image from the web console, the application is not exposed outside of the OpenShift cluster by default. To expose the application created so it is available outside of the OpenShift cluster, you can run the command:
+与从web控制台部署现有容器镜像不同，应用程序在默认情况下不会暴露在OpenShift集群之外。要公开创建的应用程序，使其在OpenShift集群之外可用，您可以运行以下命令:
 
-``oc expose service/blog-django-py``{{execute}}
+`oc expose service/blog-django-py`{{execute}}
 
-Switch to the OpenShift web console by selecting on _Console_ to verify that the application has been deployed. Select on the URL shortcut icon displayed for the application on the _Topology_ view for the project to visit the application.
+通过在_控制台_上选择切换到OpenShift web控制台，以验证应用程序已经部署。在项目的拓扑视图上为应用程序显示的URL快捷方式图标上选择以访问应用程序。
 
-Alternatively, to view the hostname assigned to the route created from the command line, you can run the command:
+或者，要查看分配给从命令行创建的路由的主机名，你可以运行以下命令:
 
-``oc get route/blog-django-py``{{execute}}
+`oc get route/blog-django-py`{{execute}}

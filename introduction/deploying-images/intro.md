@@ -1,16 +1,16 @@
-## Goal
+## 目标
 
-Learn how to deploy an application on OpenShift with the web console and with the `oc` command line tool.
+了解如何使用web控制台和`oc`命令行工具在OpenShift上部署应用程序。
 
-## Concepts
+## 概述
 
-* Deploying existing container images on an OpenShift cluster
-* OpenShift Web Console’s Topology view
-* OpenShift Projects and Applications
-* OpenShift `oc` tool’s `new-app` subcommand
+* 在OpenShift集群上部署现有的容器镜像
+* OpenShift Web控制台的拓扑视图
+* OpenShift项目和应用程序
+* OpenShift`oc`工具的`new-app`子命令
 
-## Use case
+## 用例
 
-You can deploy a container image on an OpenShift cluster to make the application easier to manage, scale, connect and monitor.
+您可以在OpenShift集群上部署容器镜像，使应用程序更易于管理、缩放、连接和监视。
 
-This OpenShift cluster will self-destruct in one hour.
+这个OpenShift集群将在一小时内自毁。

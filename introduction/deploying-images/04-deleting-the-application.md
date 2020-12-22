@@ -1,12 +1,12 @@
-Instead of deploying the existing container image from the web console, you can use the command line. Before we do that, lets delete the application we have already deployed.
+您可以使用命令行，而不是从web控制台部署现有的容器映像。在此之前，先删除我们已经部署的应用程序。
 
-To do this from the web console you could visit each resource type created and delete them one at a time. The simpler way to delete an application is from the command line using the ``oc`` program.
+为此，您可以从web控制台访问创建的每个资源类型，并一次删除它们一个。删除应用程序的更简单方法是从命令行使用`oc`程序。
 
-To see a list of all the resources that have been created in the project so far, you can run the command:
+要查看到目前为止已经在项目中创建的所有资源的列表，你可以运行命令:
 
-``oc get all -o name``{{execute}}
+`oc get all -o name`{{execute}}
 
-This will display output similar to:
+这将显示输出类似于:
 
 ```
 pod/blog-django-py-1-cbp96
@@ -18,13 +18,13 @@ imagestream.image.openshift.io/blog-django-py
 route.route.openshift.io/blog-django-py
 ```
 
-You have only created one application, so you would know that all the resources listed will relate to it. When you have multiple applications deployed, you need to identify those which are specific to the application you may want to delete. You can do this by applying a command to a subset of resources using a label selector.
+您只创建了一个应用程序，因此您应该知道列出的所有资源都与它相关。当您部署了多个应用程序时，您需要识别那些特定于您希望删除的应用程序的应用程序。通过使用标签选择器将命令应用到资源子集，可以做到这一点。
 
-To determine what labels may have been added to the resources, select one and display the details on it. To look at the _Route_ which was created, you can run the command:
+要确定可能向资源添加了哪些标签，请选择一个并在其上显示详细信息。要查看已创建的路由，你可以运行命令:
 
-``oc describe route/blog-django-py``{{execute}}
+`oc describe route/blog-django-py`{{execute}}
 
-This should display output similar to:
+这应该显示输出类似于:
 
 ```
 Name:                   blog-django-py
@@ -48,24 +48,24 @@ Weight:         100 (100%)
 Endpoints:      10.128.0.205:8080
 ```
 
-In this case when deploying the existing container image via the OpenShift web console, OpenShift has applied automatically to all resources the label ``app=blog-django-py``. You can confirm this by running the command:
+在本例中，当通过OpenShift web控制台部署现有容器映像时，OpenShift已自动应用到标签`app=blog-django-py`的所有资源。你可以通过运行命令来确认这一点:
 
-``oc get all --selector app=blog-django-py -o name``{{execute}}
+`oc get all --selector app=blog-django-py -o name`{{execute}}
 
-This should display the same list of resources as when ``oc get all -o name`` was run. To double check that this is doing what is being described, run instead:
+这应该显示与运行`oc get all -o name`时相同的资源列表。为了再次检查这是什么正在被描述，运行改为:
 
-``oc get all --selector app=blog -o name``{{execute}}
+`oc get all --selector app=blog -o name`{{execute}}
 
-In this case, because there are no resources with the label ``app=blog``, the result will be empty.
+在本例中，因为没有标签为`app=blog`的资源，结果将为空。
 
-Having a way of selecting just the resources for the one application, you can now schedule them for deletion by running the command:
+有了选择一个应用程序的资源的方法，你现在可以通过运行命令来调度删除它们:
 
-``oc delete all --selector app=blog-django-py``{{execute}}
+`oc delete all --selector app=blog-django-py`{{execute}}
 
-To confirm that the resources have been deleted, run again the command:
+要确认资源已被删除，再次运行命令:
 
-``oc get all -o name``{{execute}}
+`oc get all -o name`{{execute}}
 
-If you do still see any resources listed, keep running this command until it shows they have all been deleted. You can find that resources may not be deleted immediately as you only scheduled them for deletion and how quickly they can be deleted will depend on how quickly the application can be shutdown.
+如果您仍然看到列出的任何资源，请继续运行该命令，直到显示它们都已删除为止。您会发现，资源可能不会立即被删除，因为您只安排了删除它们的计划，而它们被删除的速度将取决于应用程序关闭的速度。
 
-Although label selectors can be used to qualify what resources are to be queried, or deleted, do be aware that it may not always be the ``app`` label that you need to use. When an application is created from a template, the labels applied and their names are dictated by the template. As a result, a template may use a different labelling convention. Always use ``oc describe`` to verify what labels have been applied and use ``oc get all --selector`` to verify what resources are matched before deleting any resources.
+尽管可以使用标签选择器来限定要查询或删除的资源，但一定要注意，您可能并不总是需要使用`app`标签。当从模板创建应用程序时，应用的标签及其名称由模板指定。因此，模板可以使用不同的标签约定。在删除任何资源之前，总是使用`oc describe`来验证应用了哪些标签，使用`oc get all --selector`来验证匹配了哪些资源。

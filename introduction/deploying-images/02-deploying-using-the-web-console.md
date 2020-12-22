@@ -1,27 +1,27 @@
-On the _Topology_ view, select _Container Image_. This should present the option of deploying an image by performing a search for the image on an image registry.
+在拓扑视图上，选择容器镜像。这应该提供通过在镜像注册表上搜索镜像来部署镜像的选项。
 
-For this example, the application image we are going to deploy is being hosted on the Docker Hub Registry.
+对于本例，我们将要部署的应用程序镜像托管在Docker Hub仓库上。
 
-In the _Image name from external registry_ field enter:
+在 _外部仓库_ 字段的镜像名称中输入:
 
-``openshiftkatacoda/blog-django-py``{{copy}}
+`openshiftkatacoda/blog-django-py`{{copy}}
 
-Press tab or click outside of the text field. This should trigger a query validate the image.
+按tab键或单击文本字段外。这将触发一个查询验证镜像。
 
 ![Image Search](../../assets/introduction/deploying-images-44/02-image-search.png)
 
-From the name of the image, the _Application Name_ and deployment _Name_ fields will be automatically populated.
+根据镜像的名称，将自动填充 _应用程序名称_ 和部署名称字段。
 
-The deployment name is used in OpenShift to identify the resources created when the application is deployed. This will include the internal _Service_ name used by other applications in the same project to communicate with it, as well as being used as part of the default hostname for the application when exposed externally to the cluster via a _Route_.
+OpenShift中使用部署名称来标识在部署应用程序时创建的资源。这将包括同一项目中其他应用程序用于与其通信的内部 _服务_ 名，以及在通过路由向集群外部公开时作为应用程序的默认主机名的一部分使用。
 
-The _Application Name_ field is used to group multiple deployments together under the same name as part of one overall application.
+_应用程序名称_ 字段用于将多个部署以相同的名称组合在一起，作为整个应用程序的一部分。
 
-In this example leave both fields as their default values. For your own application you would consider changing these to something more appropriate.
+在本例中，将这两个字段保留为它们的默认值。对于您自己的应用程序，您可以考虑将这些更改为更合适的内容。
 
-At the bottom of this page you will see that the checkbox for creating a route to the application is selected. This indicates that the application will be automatically given a public URL for accessing it. If you did not want the deployment to be accessible outside of the cluster, or it was not a web service, you would de-select the option.
+在此页的底部，您将看到选中了用于创建应用程序路由的复选框。这表示将自动为应用程序提供一个公共URL来访问它。如果您不希望部署在集群之外被访问，或者它不是一个web服务，那么您将取消选择该选项。
 
-When you are ready, at the bottom of the page click on _Create_. This will return you to the _Topology_ view, but this time you will see a representation of the deployment, rather than the options for deploying an application.
+准备好之后，在页面底部单击 _创建_ 。这将返回到拓扑视图，但这次您将看到部署的表示，而不是部署应用程序的选项。
 
 ![Topology View](../../assets/introduction/deploying-images-44/02-topology-view.png)
 
-You may see the color of the ring in the visualization change from white, to light blue and then blue. This represents the phases of deployment as the container for the application starts up.
+你可以看到环的颜色从白色，到浅蓝色，然后是蓝色。这表示应用程序的容器启动时的部署阶段。

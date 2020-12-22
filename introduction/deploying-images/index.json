@@ -1,6 +1,6 @@
 {
     "icon": "fa-openshift",
-    "title": "Deploying Applications From Images",
+    "title": "从镜像部署应用程序",
     "description": "",
     "pathwayTitle": "OpenShift",
     "difficulty": "beginner",
@@ -15,19 +15,19 @@
     },
     "details": {
         "steps": [{
-            "title": "Topic 1 - Creating an Initial Project",
+            "title": "主题1 - 创建初始项目",
             "text": "01-creating-an-initial-project.md"
         }, {
-            "title": "Topic 2 - Deploying Using the Web Console",
+            "title": "主题2 - 使用Web控制台进行部署",
             "text": "02-deploying-using-the-web-console.md"
         }, {
-            "title": "Topic 3 - Exploring the Topology View",
+            "title": "主题3 - 探索拓扑视图",
             "text": "03-exploring-the-topology-view.md"
         }, {
-            "title": "Topic 4 - Deleting the Application",
+            "title": "主题4 - 删除应用程序",
             "text": "04-deleting-the-application.md"
         }, {
-            "title": "Topic 5 - Deploying Using the Command Line",
+            "title": "主题5 - 使用命令行进行部署",
             "text": "05-deploying-using-the-command-line.md"
         }],
         "intro": {
