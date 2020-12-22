@@ -1,19 +1,19 @@
-In this course you learned about how to log into an OpenShift cluster, as well as how you can add other users as collaborators to your project.
+在本课程中，您学习了如何登录到OpenShift集群，以及如何将其他用户作为合作者添加到您的项目中。
 
-## Continue Learning
+## 继续学习
 
-You can continue learning more about OpenShift and how to develop applications on the platform by completing other tutorials at [https://learn.openshift.com](https://learn.openshift.com?ref=learn-cluster-access).
+您可以在[https://learn.openshift.com](https://learn.openshift.com?ref=learn-cluster-access) 上完成其他教程，继续学习关于OpenShift的更多知识，以及如何在平台上开发应用程序。
 
-For developer-related resources about OpenShift, visit [https://developers.redhat.com/products/openshift/getting-started](https://developers.redhat.com/products/openshift/getting-started?ref=learn-cluster-access).
+有关OpenShift的开发人员相关资源，请访问[https://developers.redhat.com/products/openshift/getting-started](https://developers.redhat.com/products/openshift/getting-started?ref=learn-cluster-access) 。
 
-### Run OpenShift Locally with CodeReady Containers
+### 使用CodeReady容器本地运行OpenShift
 
-CodeReady Containers allows you to run a minimal, pre-configured OpenShift 4 cluster on your local machine. The project supports Windows 10, macOS, and Linux.  To find out more or download CodeReady Containers, visit [https://developers.redhat.com/products/codeready-containers/overview](https://developers.redhat.com/products/codeready-containers/overview?ref=learn-cluster-access)
+CodeReady容器允许您在本地机器上运行最小的、预配置的OpenShift 4集群。该项目支持Windows 10、macOS和Linux。要了解更多信息或下载CodeReady容器，请访问[https://developers.redhat.com/products/codeready-containers/overview](https://developers.redhat.com/products/codeready-containers/overview?ref=learn-cluster-access) 
 
-### Compare Hosted, Managed, or On Premises OpenShift
+### 比较本地主机、托管和Premises OpenShift
 
-Learn more about the different OpenShift platform variants here: [https://www.openshift.com/try](https://www.openshift.com/try?ref=learn-cluster-access)
+在这里了解更多关于OpenShift平台变体的信息:[https://www.openshift.com/try](https://www.openshift.com/try?ref=learn-cluster-access) 
 
-### Browse the Documentation
+### 浏览文档
 
-If you want to learn about particular OpenShift concepts in more depth, visit the documentation: [https://docs.openshift.com/container-platform/latest](https://docs.openshift.com/container-platform/latest?ref=learn-cluster-access)
+如果你想更深入地了解OpenShift的概念，请访问文档:[https://docs.openshift.com/container-platform/latest](https://docs.openshift.com/container-platform/latest?ref=learn-cluster-access) 

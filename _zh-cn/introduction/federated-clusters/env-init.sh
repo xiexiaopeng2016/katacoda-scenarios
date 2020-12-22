@@ -1,1 +1,0 @@
-echo "Env init"
