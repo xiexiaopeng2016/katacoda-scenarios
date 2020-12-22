@@ -1,36 +1,36 @@
-Currently, we have two OpenShift clusters, one of them (`cluster1`) is running the KubeFed Control Plane. Now it is time to register each cluster using the `kubefedctl` tool which has already been installed on the environment for your convenience.
+目前，我们有两个OpenShift集群，其中一个( ``cluster1`` )运行KubeFed控制面板。现在是使用 ``kubefedctl`` 工具注册每个集群的时候了，为了您的方便，该工具已经安装在环境中。
 
-`kubefedctl` resides in the [upstream repo]( https://github.com/kubernetes-sigs/kubefed/) and can be downloaded from the [releases section](https://github.com/kubernetes-sigs/kubefed/releases/).
+ ``kubefedctl`` 驻留在 [上游回购](https://github.com/kubernetes-sigs/kubefed/) ，可以从发布部分下载。
 
-Before registering both clusters we are going to check that no clusters are registered yet.
+在注册两个集群之前，我们要检查是否还没有注册集群。
 
 ``oc --context=cluster1 get kubefedclusters -n test-namespace``{{execute HOST1}}
 
-The 'No resources found' message means there are no clusters registered yet, so it is time to register both clusters.
+没有找到资源message表示还没有注册集群，因此是时候注册两个集群了。
 
-*NOTE:* Cluster names (cluster1 and cluster2) in the commands below are a reference to the contexts configured in the oc client. This has been already configured for you, otherwise you would need to make sure that the client contexts have been properly configured with the right access levels and context names. See [here](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) for more information on contexts.
+ _注意:_ 下面命令中的集群名称(cluster1和cluster2)是对在oc客户机中配置的上下文的引用。这已经为您配置好了，否则您将需要确保客户端上下文已经正确地配置了正确的访问级别和上下文名称。有关上下文的更多信息，请参阅这里。
 
-To register the clusters the `kubefedctl` tool is used as:
+为了注册集群，使用 ``kubefedctl`` 工具如下:
 
-``kubefedctl join <CLUSTER_NAME> --host-cluster-context <HOST_CLUSTER_CONTEXT> --v=2``
+ ``kubefedctl join <CLUSTER_NAME> --host-cluster-context <HOST_CLUSTER_CONTEXT> --v=2`` 
 
-The --cluster-context option for `kubefedctl join` can be used to override the reference to the client context configuration. When the option is not present, like in the commands below, `kubefedctl` uses the cluster name to identify the client context.
+ ``kubefedctl join`` 的——cluster-context选项可用于覆盖对客户端上下文配置的引用。如果不提供该选项(如下面的命令中所示)， ``kubefedctl`` 将使用集群名称来标识客户机上下文。
 
-The --kubefed-namespace option for `kubefedctl join` can be used to override the reference to the namespace where the KubeFed Control Plane is running, it defaults to `federation-namespace`.
+ ``kubefedctl join`` 的——KubeFed -namespace选项可以用来覆盖对运行KubeFed控制平面的名称空间的引用，它默认为 ``federation-namespace`` 。
 
 ``kubefedctl join cluster1 --host-cluster-context cluster1 --v=2 --kubefed-namespace=test-namespace``{{execute HOST1}}
 
-Now it is time to register `cluster2`.
+现在该注册 ``cluster2`` 了。
 
 ``kubefedctl join cluster2 --host-cluster-context cluster1 --v=2 --kubefed-namespace=test-namespace``{{execute HOST1}}
 
-The above command will register `cluster2` and will be treated as `Member Cluster`.
+上面的命令将注册为 ``cluster2`` ，并将被视为 ``Member Cluster`` 。
 
-Now we can verify both clusters have been registered:
+现在，我们可以验证两个集群都已注册:
 
 ``oc --context=cluster1 get kubefedclusters -n test-namespace``{{execute HOST1}}
 
-If everything went okay, you should see both clusters registered and reporting a healthy status by the API (it can take some time):
+如果一切正常，您应该看到两个集群都已注册，并通过API报告健康状态(这可能需要一些时间):
 
 ```
 NAME       READY     AGE

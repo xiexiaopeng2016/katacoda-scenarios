@@ -1,10 +1,10 @@
-## Federated Deployment
+## 联合部署
 
-This object instructs the KubeFed Control Plane to federate a deployment named `test-deployment`. 
+这个对象指示KubeFed控制面板联合一个名为 ``test-deployment`` 的部署。
 
-The placement policy within the object instructs the KubeFed Control Plane to place our `test-deployment` on both `cluster1` and `cluster2`. 
+对象中的放置策略指示KubeFed控制面板将我们的 ``test-deployment`` 放置在 ``cluster1`` 和 ``cluster2`` 上。
 
-The overrides policy within the object instructs the KubeFed Control Plane to override the number of replicas for our `test-deployment` from the default of 3 (defined in the FederatedDeployment template) to 5 on `cluster2`.
+对象中的overrides策略指示KubeFed控制面板覆盖 ``test-deployment`` 的副本数量，从默认的3(在FederatedDeployment模板中定义)覆盖到 ``cluster2`` 上的5。
 
 ```yaml
 apiVersion: types.federation.k8s.io/v1alpha1

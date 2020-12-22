@@ -1,17 +1,17 @@
-At this point we have the KubeFed Control Plane up and running with both clusters registered.
+此时，KubeFed控制面板已经启动并运行，两个集群都已注册。
 
-Now we are going to deploy a federated application. This application is a nginx web server serving a welcome page. Despite its simplicity, it will help us to understand how federation works.
+现在我们将部署联合应用程序。这个应用程序是一个nginx web服务器，提供一个欢迎页面。尽管它很简单，但它将帮助我们理解联邦是如何工作的。
 
-Before creating the application objects, we need to enable the types we want to federate, in this case:
+在创建应用程序对象之前，我们需要启用我们想要联合的类型，在这种情况下:
 
-* `namespaces`
-* `secrets`
-* `serviceaccounts`
-* `services`
-* `configmaps`
-* `deployments.apps`
+* ``namespaces``
+* ``secrets``
+* ``serviceaccounts``
+* ``services``
+* ``configmaps``
+* ``deployments.apps``
 
-Enabling `namespaces` is required so the KubeFed controller will propagate namespaces across the federated clusters.
+启用 ``namespaces`` 是必需的，因此KubeFed控制器将跨联邦集群传播名称空间。
 
 ```
 for type in namespaces secrets serviceaccounts services configmaps deployments.apps

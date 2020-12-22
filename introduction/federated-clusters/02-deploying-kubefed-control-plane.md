@@ -1,55 +1,56 @@
-The scenario is composed of two OpenShift clusters:
+该场景由两个OpenShift集群组成:
 
-* `cluster1`, acting as Host Cluster (Terminal Host 1 Tab)
+*  ``cluster1`` 充当主机集群(Terminal Host 1选项卡)
 
-* `cluster2`, acting as Member Cluster (Terminal Host 2 Tab)
+*  ``cluster2`` 作为成员集群(Terminal Host 2选项卡)
 
-You will have access to two terminals, however most of the work will be done on the `cluster1` terminal.
+你可以访问两个终端，但是大部分工作将在 ``cluster1`` 终端上完成。
 
-An `admin` user with `cluster-admin` privileges has been created in each cluster for your convenience.
+为了方便您，已经在每个集群中创建了具有 ``cluster-admin`` 特权的 ``admin`` 用户。
 
-*NOTE:* The current KubeFed Control Plane deployment requires cluster-admin privileges. This requirement could be addressed in upcoming releases, so specific roles will be available for the KubeFed Control Plane.
+ _注意:_ 当前KubeFed控制平面部署需要集群管理权限。这个需求可以在接下来的版本中解决，因此KubeFed控制飞机的特定角色将可用。
 
-You should be already logged as admin. In order to verify it:
+您应该已经以admin的身份登录。为了验证它:
 
-**Cluster 1**
+ **集群1** 
 
 ``oc whoami``{{execute HOST1}}
 
-**Cluster 2**
+ **集群2** 
 
 ``oc whoami``{{execute HOST2}}
 
-Next step is cloning the Git repository hosting the code used in this course. From the `cluster1` _Terminal_, run the following command:
+下一步是克隆托管本课程中使用的代码的Git存储库。从 ``cluster1``  _终端_ ，运行以下命令:
 
 ``git clone https://github.com/openshift/federation-dev.git``{{execute HOST1}}
 
-Once the repository has been cloned, change directory into the new directory:
+一旦克隆了存储库，将目录更改为新的目录:
 
 ``cd federation-dev``{{execute HOST1}}
 
-Checkout the Katacoda branch:
+签出Katacoda分支:
 
 ``git checkout katacoda``{{execute HOST1}}
 
-You might want to review some configurations already present on the environment:
+您可能需要检查环境中已经存在的一些配置:
 
-* Contexts created: You should see cluster1 and cluster2 contexts already present on the configuration, these contexts will be used during the course.
+* 上下文创建:您应该会看到配置中已经出现了cluster1和cluster2上下文，这些上下文将在课程中使用。
 
-  **Cluster 1**  
+ **集群1** 
 
-  ``oc config get-contexts``{{execute HOST1}}
+``oc config get-contexts``{{execute HOST1}}
 
-  **Cluster 2**
+ **集群2** 
 
-  ``oc config get-contexts``{{execute HOST2}}
+``oc config get-contexts``{{execute HOST2}}
 
-* Kubefedctl tool already downloaded: You should see the version output for the Kubefedctl tool.
 
-  **Cluster 1**
+* Kubefedctl工具已下载:您应该会看到Kubefedctl工具的版本输出。
 
-  ``kubefedctl version``{{execute HOST1}}
+ **集群1** 
 
-  **Cluster 2**
+``kubefedctl version``{{execute HOST1}}
 
-  ``kubefedctl version``{{execute HOST2}}
+ **集群2** 
+
+``kubefedctl version``{{execute HOST2}}

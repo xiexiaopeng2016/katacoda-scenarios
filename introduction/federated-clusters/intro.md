@@ -1,15 +1,15 @@
-## Goal
+## 目标
 
-Learn how to deploy services in multiple clusters in different data centers, regions, or clouds with [Kubernetes KubeFed](https://github.com/kubernetes-sigs/kubefed).
+了解如何使用 [Kubernetes KubeFed](https://github.com/kubernetes-sigs/kubefed) 在不同的数据中心、区域或云中的多个集群中部署服务。
 
-## Concepts
+## 概念
 
-* Deploying container images on multiple clusters
-* KubeFed Kubernetes cluster federation API
-* OpenShift Projects and Applications
+* 在多个集群上部署容器映像
+* KubeFed Kubernetes集群联盟API
+* OpenShift项目和应用程序
 
-## Use case
+## 用例
 
-You can deploy an application and distribute its components on multiple, federated clusters.
+您可以部署应用程序并将其组件分发到多个联合集群上。
 
-These OpenShift clusters will self-destruct in one hour.
+这些OpenShift集群会在一小时内自毁。

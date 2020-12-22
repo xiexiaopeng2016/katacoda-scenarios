@@ -1,6 +1,6 @@
 {
     "icon": "fa-openshift",
-    "title": "Getting Started With Kubefed",
+    "title": "Kubefed入门",
     "description": "Learn how to federate multiple OpenShift Clusters",
     "pathwayTitle": "OpenShift",
     "difficulty": "intermediate",
@@ -17,25 +17,32 @@
         "hidefinish": false
     },
     "details": {
-        "steps": [{
-            "title": "Step 1 - Introducing Kubefed",
-            "text": "01-introducing-kubefed.md"
-        }, {
-            "title": "Step 2 - Deploying Kubefed Control Plane",
-            "text": "02-deploying-kubefed-control-plane.md"
-        }, {
-            "title": "Step 3 - Registering Clusters",
-            "text": "03-registering-clusters.md"
-        }, {
-            "title": "Step 4 - Deploying a Federated APP",
-            "text": "04-deploying-a-federated-app.md"
-        }, {
-            "title": "Step 5 - Kubefed Objects",
-            "text": "05-kubefed-objects.md"
-        }, {
-            "title": "Step 6 - Modifying Application's Placement",
-            "text": "06-modifying-application-placement.md"
-        }],
+        "steps": [
+            {
+                "title": "第一步-介绍Kubefed",
+                "text": "01-introducing-kubefed.md"
+            },
+            {
+                "title": "步骤2 - 部署Kubefed控制飞机",
+                "text": "02-deploying-kubefed-control-plane.md"
+            },
+            {
+                "title": "步骤3—注册集群",
+                "text": "03-registering-clusters.md"
+            },
+            {
+                "title": "步骤4 - 部署联邦应用程序",
+                "text": "04-deploying-a-federated-app.md"
+            },
+            {
+                "title": "步骤5 - Kubefed对象",
+                "text": "05-kubefed-objects.md"
+            },
+            {
+                "title": "步骤6 - 修改申请的位置",
+                "text": "06-modifying-application-placement.md"
+            }
+        ],
         "intro": {
             "courseData": "env-init.sh",
             "code": "set-env.sh",

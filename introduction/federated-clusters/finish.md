@@ -1,28 +1,28 @@
-Congratulations!  You just finished learning the basics on OpenShift Container Platform Federation. Feels good doesn't it?
+恭喜你!您刚刚学习了OpenShift容器平台联合的基础知识。感觉很好，不是吗?
 
-If you are curious enough, see [the official repo](https://github.com/kubernetes-sigs/kubefed) where you can find 
-the most updated information about federation.
+如果你足够好奇，看看 [官方回购](https://github.com/kubernetes-sigs/kubefed) ，你可以找到
+关于联盟的最新信息。
 
-We also have the [federation-dev repository](https://github.com/openshift/federation-dev) with demos, labs and examples of the use of KubeFed.
+我们还有联邦开发库，里面有演示、实验室和KubeFed用法的例子。
 
-## What's next?
+## 接下来?
 
-At this point you are probably itching to keep working with OpenShift as you have had a glimpse of the power this can bring to your own applications.  We are currently working on more advanced tutorials that will be hosted here but in the meantime, you can certainly run your own version of OpenShift or use a hosted model.  You are welcome to use one of the following options:
+此时，您可能渴望继续使用OpenShift，因为您已经看到了OpenShift可以为您自己的应用程序带来的强大功能。我们目前正在开发更多的高级教程，这些教程将在这里提供，但同时，您当然可以运行自己版本的OpenShift或使用托管模型。欢迎您使用以下任何一种选择:
 
 ### Minishift
 
-Minishift is a complete OpenShift environment which you can run on your local machine.  The project supports Windows, OS X, and the Linux operating system.  To find more about minishift, visit http://www.openshift.org/vm
+Minishift是一个完整的OpenShift环境，您可以在本地机器上运行它。该项目支持Windows, OS X，和Linux操作系统。想了解更多关于minishift的信息，请访问 <http://www.openshift.org/vm> 
 
-### *oc cluster up*
+###  _oc集群上_ 
 
-*oc cluster up* is a command provided by the `oc` client tool.  It configures and runs an openshift environment inside of the native docker system for your operating system.  It supports Windows, OS X, and the Linux operating systems.  For more information, visit https://docs.okd.io/latest/getting_started/administrators.html
+ _oc集群上_ 是 ``oc`` 客户机工具提供的命令。它在您的操作系统的本机docker系统内配置并运行openshift环境。它支持Windows、OS X和Linux操作系统。欲了解更多信息，请访问 <https://docs.okd.io/latest/getting_started/administrators.html> 
 
-If you decide to try out *oc cluster up*, and you should, I would also suggest that you take a look at a wrapper script that was created to make life a little bit easier for you called *oc cluster wrapper*.  This wrapper provides functionality such as the ability to have different profiles, persistent volume management and other great features.  You can find more information at the official git repository at https://github.com/openshift-evangelists/oc-cluster-wrapper
+如果您决定尝试oc集群，并且您应该这样做，那么我还建议您查看一个名为 _oc集群包装_ 器的包装器脚本，该脚本是为简化您的工作而创建的。这个包装器提供了一些功能，比如拥有不同的概要文件、持久的卷管理和其他出色的特性。您可以在官方的git存储库 <https://github.com/openshift-evangelists/oc-cluster-wrapper> 找到更多信息
 
-### OpenShift Online
+### OpenShift在线
 
-The OpenShift team provides a hosted environment which includes a free starter plan which you can use to develop and test applications for OpenShift. You can find details for OpenShift Online and sign up at https://www.openshift.com/pricing/index.html
+OpenShift团队提供了一个托管环境，其中包括一个免费的启动计划，您可以使用该计划为OpenShift开发和测试应用程序。你可以在网上找到OpenShift的详细信息，并在 <https://www.openshift.com/pricing/index.html> 上注册
 
-### OpenShift Dedicated
+### OpenShift专用
 
-You can also let Red Hat host an OpenShift instance for you on a public cloud.  This is an ideal scenario for larger teams that do not want to deal with the operational aspects of running a full environment.  To find out more, visit https://www.openshift.com/dedicated/
+你也可以让Red Hat在公共云上为你托管一个OpenShift实例。对于不想处理运行整个环境的操作方面的大型团队来说，这是一个理想的场景。欲了解更多信息，请访问 <https://www.openshift.com/dedicated/> 
