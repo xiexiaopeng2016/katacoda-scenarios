@@ -23,7 +23,7 @@ You don't have any projects. You can try to create a new project, by running
 
 要创建一个名为 `myproject` 的新项目，运行以下命令:
 
-`oc new-project myproject` {{execute HOST1}}
+`oc new-project myproject`{{execute HOST1}}
 
 你应该看到类似的输出:
 
