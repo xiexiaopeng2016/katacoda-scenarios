@@ -1,18 +1,16 @@
-## Goal
+## 目标
 
-Learn how to deploy an application from its source code using a [Source-to-Image][s2i] build on OpenShift.
+了解如何使用OpenShift上的源代码到映像构建从源代码部署应用程序。
 
-## Concepts
+## 概念
 
-* Linux containers and building container images
+* Linux容器和构建容器映像
 * OpenShift Source-to-Image (S2I)
-* OpenShift Projects and Applications
-* OpenShift `oc` command line tool
+* OpenShift项目和应用程序
+* OpenShift`oc`命令行工具
 
-## Use case
+## 用例
 
-You can have OpenShift build an application from source to deploy it, so you don't have to construct a container by hand with every change. OpenShift can then build and deploy new versions automatically when notified of souce code changes.
+你可以让OpenShift从源代码构建一个应用程序来部署它，这样你就不必在每次更改时手工构造一个容器。然后，OpenShift可以在通知源代码更改时自动构建和部署新版本。
 
-This OpenShift cluster will self-destruct in one hour.
-
-[s2i]: https://docs.openshift.com/container-platform/4.4/builds/understanding-image-builds.html#build-strategy-s2i_understanding-image-builds
+这个OpenShift集群将在一小时内自毁。

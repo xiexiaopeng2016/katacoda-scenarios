@@ -1,6 +1,6 @@
 {
     "icon": "fa-openshift",
-    "title": "Deploying Applications From Source",
+    "title": "从源部署应用程序",
     "description": "",
     "pathwayTitle": "OpenShift",
     "difficulty": "beginner",
@@ -15,25 +15,25 @@
     },
     "details": {
         "steps": [{
-            "title": "Topic 1 - Creating an Initial Project",
+            "title": "主题1 - 创建初始项目",
             "text": "01-creating-an-initial-project.md"
         }, {
-            "title": "Topic 2 - Deploying Using the Web Console",
+            "title": "主题2 - 使用Web控制台进行部署",
             "text": "02-deploying-using-the-web-console.md"
         }, {
-            "title": "Topic 3 - Viewing the Builder Logs",
+            "title": "主题3 - 查看构建日志",
             "text": "03-viewing-the-builder-logs.md"
         }, {
-            "title": "Topic 4 - Accessing the Application",
+            "title": "主题4 - 访问应用程序",
             "text": "04-accessing-the-application.md"
         }, {
-            "title": "Topic 5 - Deleting the Application",
+            "title": "主题5 - 删除应用程序",
             "text": "05-deleting-the-application.md"
         }, {
-            "title": "Topic 6 - Deploying Using the Command Line",
+            "title": "主题6 - 使用命令行部署",
             "text": "06-deploying-using-the-command-line.md"
         }, {
-            "title": "Topic 7 - Triggering a New Build",
+            "title": "主题7 - 触发一个新的构建",
             "text": "07-triggering-a-new-build.md"
         }],
         "intro": {

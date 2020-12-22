@@ -1,22 +1,22 @@
-The source code for an application isn't going to be static, so a way to trigger a new build after making any changes is required.
+应用程序的源代码不会是静态的，因此需要一种在做出任何更改后触发新构建的方法。
 
-To do this from the command line using ``oc``, run the command:
+使用`oc`从命令行执行以下命令:
 
-``oc start-build blog-django-py``{{execute}}
+`oc start-build blog-django-py`{{execute}}
 
-This should display:
+这应该显示:
 
 ```
 build.build.openshift.io/blog-django-py-2 started
 ```
 
-A new build could also have been triggered from the web console by finding the build configuration for the application under the _Builds_ menu, selecting the kebab menu on the right side of the entry, and clicking on _Start Build_.
+通过在build菜单下找到应用程序的_构建_配置，选择条目右侧的kebab菜单，并单击Start build，也可以从web控制台中触发新的构建。
 
-As before you can use ``oc logs`` to monitor the log output as the build runs. You can also monitor the progress of any builds in a project by running the command:
+和以前一样，您可以在构建运行时使用`oc logs`监视日志输出。你也可以通过运行命令来监视项目中的任何构建的进度:
 
-``oc get builds --watch``{{execute}}
+`oc get builds --watch`{{execute}}
 
-As the build progresses, this should display output similar to:
+随着构建的进行，这应该显示类似于:
 
 ```
 NAME                TYPE      FROM          STATUS     STARTED         DURATION
@@ -25,13 +25,13 @@ blog-django-py-2    Source    Git@fcdc38c   Running    3 seconds ago   3s
 blog-django-py-2    Source    Git@fcdc38c   Complete   About a minute ago   1m9s
 ```
 
-To exit the command type _CTRL-C_ in the terminal window.
+要退出命令，请在终端窗口中键入 _CTRL-C_ 。
 
-To display information about the build configuration for the application you can run:
+要显示你可以运行的应用程序的构建配置信息:
 
-``oc describe bc/blog-django-py``{{execute}}
+`oc describe bc/blog-django-py`{{execute}}
 
-This will display output similar to:
+这将显示输出类似于:
 
 ```
 Name:           blog-django-py
@@ -64,19 +64,19 @@ blog-django-py-1        complete        1m31s           2019-11-05 05:13:21 +000
 Events: <none>
 ```
 
-You can see details of the Git repository being used as the source for any build.
+您可以看到Git存储库的详细信息被用作任何构建的源代码。
 
-You will also see listed webhook URLs that can be configured into a Git hosting service to trigger a new build automatically when changes are committed and pushed up to a Git repository. As you are using a Git repository on GitHub that you don't own this can not be done for this exercise, but if you had forked the Git repository into your own account, or this was your own application, it could have been configured.
+您还将看到列出的webhook url，这些url可以配置到Git托管服务中，以便在提交更改并将更改推到Git存储库时自动触发新的构建。因为你在GitHub上使用的是你不拥有的Git存储库，所以在这个练习中不能这样做，但是如果你已经把Git存储库分叉到你自己的账户中，或者这是你自己的应用程序，它可能已经被配置好了。
 
-The typical workflow followed when developing an application, is to work on your application source code on your own local machine. When you are happy with changes and they are ready to be made live, commit the changes and push them up to the hosted Git repository linked to the build configuration. If a webhook has been configured, a new build and deployment would be triggered automatically, otherwise you can trigger a new build manually.
+开发应用程序时遵循的典型工作流是在您自己的本地机器上处理应用程序源代码。当您对更改感到满意，并且这些更改准备就绪时，提交更改并将其推送到链接到构建配置的托管Git存储库中。如果已经配置了webhook，新的构建和部署将自动触发，否则您可以手动触发新的构建。
 
-In the case of where you are rapidly iterating on changes to test ideas and don't want to have to commit every change and push it back up to the hosted Git repository, you can use what is called a binary input build.
+在这种情况下，您正在快速迭代更改以测试想法，并且不想必须提交每个更改并将其推回托管的Git存储库，您可以使用所谓的二进制输入构建。
 
-To demonstrate this, clone the Git repository for the application by running:
+为了演示这一点，运行以下命令克隆应用程序的Git仓库:
 
-``git clone https://github.com/openshift-katacoda/blog-django-py``{{execute}}
+`git clone https://github.com/openshift-katacoda/blog-django-py`{{execute}}
 
-This will create a sub directory ``blog-django-py`` containing the source code for the application:
+这将创建一个包含应用程序源代码的子目录`blog-django-py`:
 
 ```
 Cloning into 'blog-django-py'...
@@ -88,67 +88,66 @@ Receiving objects: 100% (412/412), 68.49 KiB | 556.00 KiB/s, done.
 Resolving deltas: 100% (200/200), done.
 ```
 
-Change into the sub directory.
+切换到子目录。
 
-``cd blog-django-py``{{execute}}
+`cd blog-django-py`{{execute}}
 
-To show how a build can be triggered from the local copy of the application source code, without needing to commit changes back to the Git repository, first run the command:
+为了展示如何从应用程序源代码的本地副本触发构建，而不需要将更改提交回Git存储库，首先运行以下命令:
 
-``echo 'BLOG_BANNER_COLOR=blue' >> .s2i/environment``{{execute}}
+`echo 'BLOG_BANNER_COLOR=blue' >> .s2i/environment`{{execute}}
 
-This command will update an environment variable setting file used by S2I to determine what environment variables are baked into the application image created.
+该命令将更新S2I使用的环境变量设置文件，以确定将哪些环境变量烘焙到创建的应用程序映像中。
 
-Start a new build by running the command:
+通过运行命令开始一个新的构建:
 
-``oc start-build blog-django-py --from-dir=. --wait``{{execute}}
+`oc start-build blog-django-py --from-dir=. --wait`{{execute}}
 
-This is similar to what you ran before, with the exception that the option ``--from-dir=.`` is also passed to the command, indicating that source code should be uploaded from the directory on the host where you are running the command, rather than it being pulled down from the hosted Git repository.
+这类似于你跑之前,除了选择`--from-dir=.`也传递给命令,显示源代码应该上传的目录在主机运行的命令,而不是被推倒的托管Git存储库。
 
-The output from running the command should start with:
+运行该命令的输出应该以以下内容开始:
 
 ```
 Uploading directory "." as binary input for the build ...
 ```
 
-indicating that the source code is being uploaded.
+指示正在上载源代码。
 
-The ``--wait`` option is also supplied to indicate that the command should only return when the build has completed. This option can be useful if integrating it into a script and you need to ensure the build has completed before running a subsequent command.
+还提供了`--wait`选项，以指示命令只应在构建完成时返回。如果将其集成到脚本中，并且需要在运行后续命令之前确保构建已经完成，则此选项可能非常有用。
 
-While the build command is running and the application is being deployed, switch to the web console to monitor progress. You can find the details for the current build by selecting _Builds_ from the left hand side menu, selecting on the build configuration for ``blog-django-py``, selecting the _Builds_ tab and then clicking on ``blog-django-py-3``.
+在运行构建命令并部署应用程序时，切换到web控制台以监视进度。您可以通过从左侧菜单中选择build，选择`blog-django-py`的build配置，选择build选项卡，然后单击`blog-django-py-3`来找到当前_构建_ 的详细信息。
 
-Once the build and deployment is finished, if you visit the web application once more, you will see that the banner colour has been changed to blue.
+构建和部署完成后，如果再次访问web应用程序，您将看到横幅颜色已更改为蓝色。
 
 ![Blog Web Site](../../assets/introduction/deploying-python-44/07-blog-web-site-blue.png)
 
-When you use the ``--from-dir=.`` option with ``oc start-build``, the contents from the current working directory will only be used for that one build. If you wanted to run further builds with source code from your local directory, you would need to supply ``--from-dir=.`` each time.
+当您将`--from-dir=.`选项与`oc start-build`一起使用时，当前工作目录中的内容将仅用于该构建。如果您希望使用本地目录中的源代码运行进一步的构建，则每次都需要提供`--from-dir=.`。
 
-To return back to using the source code from the hosted Git repository, run:
+要返回到使用宿主Git存储库的源代码，可以运行:
 
+`oc start-build blog-django-py`{{execute}}
 
-``oc start-build blog-django-py``{{execute}}
-
-This should output:
+这应该输出:
 
 ```
 build.build.openshift.io/blog-django-py-4 started
 ```
 
-If for some reason a build was wrongly started, or you realised it would fail anyway, you can cancel the build by running ``oc cancel-build`` and supplying the name of the build.
+如果由于某种原因错误地启动了一个构建，或者您意识到它无论如何都会失败，那么您可以通过运行`oc cancel-build`并提供构建的名称来取消构建。
 
-``oc cancel-build blog-django-py-4``{{execute}}
+`oc cancel-build blog-django-py-4`{{execute}}
 
-This should show the build has been cancelled.
+这应该显示构建已被取消。
 
 ```
 build.build.openshift.io/blog-django-py-4 marked for cancellation, waiting to be cancelled
 build.build.openshift.io/blog-django-py-4 cancelled
 ```
 
-You can confirm this by also looking at the list of all builds run.
+您也可以通过查看所有运行的构建列表来确认这一点。
 
-``oc get builds``{{execute}}
+`oc get builds`{{execute}}
 
-This should display output similar to:
+这应该显示输出类似于:
 
 ```
 NAME               TYPE     FROM             STATUS                       STARTED          DURATION
@@ -158,4 +157,4 @@ blog-django-py-3   Source   Binary@35b89e2   Complete                     3 minu
 blog-django-py-4   Source   Git@35b89e2      Cancelled (CancelledBuild)   31 seconds ago   23s
 ```
 
-Note that starting a build using source code from a local directory on your own machine can only be done from the command line. There is no way to trigger such a build from the web console.
+注意，从您自己机器上的本地目录使用源代码开始构建只能从命令行完成。没有办法从web控制台触发这样的构建。

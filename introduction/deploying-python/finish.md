@@ -1,21 +1,21 @@
-In this course you learned about deploying an application from source code using a Source-to-Image (S2I) builder. You first deployed the application from the web console, following that up with using the command line. You also learnt about using binary input source builds to run builds using source code from a local directory on your own computer.
+在本课程中，您学习了使用源代码到映像(S2I)构建器从源代码部署应用程序。首先从web控制台部署应用程序，然后使用命令行部署。您还了解了如何使用二进制输入源代码构建来运行构建，这些构建来自您自己计算机上的本地目录。
 
-The web application you deployed was implemented using the Python programming language. OpenShift provides S2I builders for a number of different programming languages/frameworks in addition to Python. These include Java, NodeJS, Perl, PHP and Ruby.
+您部署的web应用程序是使用Python编程语言实现的。除了Python之外，OpenShift还为许多不同的编程语言/框架提供S2I构建器。其中包括Java、NodeJS、Perl、PHP和Ruby。
 
-## Continue Learning
+## 继续学习
 
-You can continue learning more about OpenShift and how to develop applications on the platform by completing other tutorials at [https://learn.openshift.com](https://learn.openshift.com?ref=learn-deploying-python).
+您可以在[https://learn.openshift.com](https://learn.openshift.com?ref=learn-deploying-python) 上完成其他教程，继续学习关于OpenShift的更多知识，以及如何在平台上开发应用程序。
 
-For developer-related resources about OpenShift, visit [https://developers.redhat.com/products/openshift/getting-started](https://developers.redhat.com/products/openshift/getting-started?ref=learn-deploying-python).
+有关OpenShift的开发人员相关资源，请访问[https://developers.redhat.com/products/openshift/getting-started](https://developers.redhat.com/products/openshift/getting-started?ref=learn-deploying-python) 。
 
-### Run OpenShift Locally with CodeReady Containers
+### 使用CodeReady容器本地运行OpenShift
 
-CodeReady Containers allows you to run a minimal, pre-configured OpenShift 4 cluster on your local machine. The project supports Windows 10, macOS, and Linux.  To find out more or download CodeReady Containers, visit [https://developers.redhat.com/products/codeready-containers/overview](https://developers.redhat.com/products/codeready-containers/overview?ref=learn-deploying-python)
+CodeReady容器允许您在本地机器上运行最小的、预配置的OpenShift 4集群。该项目支持Windows 10、macOS和Linux。要了解更多信息或下载CodeReady容器，请访问[https://developers.redhat.com/products/codeready-containers/overview](https://developers.redhat.com/products/codeready-containers/overview?ref=learn-deploying-python) 
 
-### Compare Hosted, Managed, or On Premises OpenShift
+### 比较主机、托管和Premises OpenShift
 
-Learn more about the different OpenShift platform variants here: [https://www.openshift.com/try](https://www.openshift.com/try?ref=learn-deploying-python)
+在这里了解更多关于OpenShift平台变体的信息:[https://www.openshift.com/try](https://www.openshift.com/try?ref=learn-deploying-python) 
 
-### Browse the Documentation
+### 浏览文档
 
-If you want to learn about particular OpenShift concepts in more depth, visit the documentation: [https://docs.openshift.com/container-platform/latest](https://docs.openshift.com/container-platform/latest?ref=learn-deploying-python)
+如果你想更深入地了解OpenShift的概念，请访问文档:[https://docs.openshift.com/container-platform/latest](https://docs.openshift.com/container-platform/latest?ref=learn-deploying-python) 

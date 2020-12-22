@@ -1,41 +1,41 @@
-From the options presented for deploying an application, select _From Catalog_. This will land you on the _Developer Catalog_.
+从为部署应用程序提供的选项中，选择“从Catalog”。这将使您进入_开发人员目录_。
 
 ![Developer Catalog](../../assets/introduction/deploying-python-44/02-developer-catalog.png)
 
-In this course you are going to deploy a web application which is implemented using the Python programming language.
+在本课程中，你将部署一个使用Python编程语言实现的web应用程序。
 
-If no items are displayed when you view the _Developer Catalog_, uncheck _Operator Backed_ in the _Type_ filters on the left hand side. Click on _Languages_ on the left hand side and then select _Python_. Any options for deploying applications which are related to Python will be displayed.
+如果在查看_开发人员目录_时没有显示任何项，则取消左侧_类型_筛选器中支持的选中操作符。单击左边的_语言_ ，然后选择_Python_ 。任何与Python相关的应用程序部署选项都将显示出来。
 
 ![Available Python Versions](../../assets/introduction/deploying-python-44/02-deploy-python-source.png)
 
-Click on the _Python_ tile for the generic Python Source-to-Image (S2I) builder. This will bring up a dialog with the details of the builder image. Click on _Create Application_ in the dialog.
+单击_Python_ tile获得通用的Python源代码到映像(S2I)构建器。这将弹出一个对话框，显示构建器映像的详细信息。在对话框中单击_创建应用程序_ 。
 
 ![Create Python Application #1](../../assets/introduction/deploying-python-44/02-create-python-application-1.png)
 
-Under the _Git_ settings, in the _Git Repo URL_ enter:
+在_Git_ 设置下，在_Git存储库URL_ 中输入:
 
 `https://github.com/openshift-katacoda/blog-django-py`{{copy}}
 
-Scroll down to the _General_ settings and click on the _Application Name_ field.
+向下滚动到常规设置，然后单击_应用程序名称_ 字段。
 
 ![Create Python Application #2](../../assets/introduction/deploying-python-44/02-create-python-application-2.png)
 
-When you click on the _Application Name_ field, the settings in this section should be pre-populated with values based on the Git repository name. Leave the settings with their default values.
+当单击_应用程序名称_字段时，此部分中的设置应该根据Git存储库名称预填充值。保持设置的默认值不变。
 
-When you are ready, at the bottom of the page click on _Create_. This will create resources to manage the build and deployment of the application. You will then be redirected to the topology overview for the project.
+准备好之后，在页面底部单击_创建_ 。这将创建资源来管理应用程序的构建和部署。然后您将被重定向到项目的拓扑概述。
 
 ![Application Topology View](../../assets/introduction/deploying-python-44/02-application-topology-view.png)
 
-The topology overview provides a visual representation of the application you have deployed.
+拓扑概述提供了已部署应用程序的可视化表示。
 
-The Git icon shown to the lower right of the ring can be clicked on to take you to the hosted Git repository from which the source code for the application was built.
+可以单击环右下方显示的Git图标，将您带到托管的Git存储库，应用程序的源代码就是从该存储库构建的。
 
-The icon shown to the lower left represents the build of the application. The icon will change from showing an hour glass, indicating the build is starting, to a sync icon indicating the build is in progress, and finally to a tick or cross depending on whether the build was successful or failed. Clicking on this icon will take you to the details of the current build.
+左下角显示的图标表示应用程序的构建。该图标将从显示一个小时玻璃杯(表示构建正在开始)变为一个同步图标(表示构建正在进行)，最后变成一个勾号或十字号，具体取决于构建是成功还是失败。单击此图标将带您到当前构建的详细信息。
 
-Once the application is running, the icon shown to the upper right can be clicked to open the URL for the application route which was created.
+应用程序运行后，可以单击右上角的图标，打开创建的应用程序路由的URL。
 
-The ring itself will progress from being white, indicating the deployment is pending, to light blue indicating the deployment is starting, and blue to indicate the application is running. The ring can also turn dark blue if the application is stopping.
+环本身将从白色(表示部署未完成)进展到浅蓝色(表示部署正在启动)，蓝色(表示应用程序正在运行)。如果应用程序停止，圆环也可以变成深蓝色。
 
-Clicking anywhere on the area enclosed by the ring will bring up a panel giving details of the resources for the application, and access to a general overview of the deployment.
+单击ring所包围区域上的任何地方，将出现一个面板，提供应用程序资源的详细信息，并访问部署的总体概况。
 
 ![Deployment Details](../../assets/introduction/deploying-python-44/02-deployment-details.png)

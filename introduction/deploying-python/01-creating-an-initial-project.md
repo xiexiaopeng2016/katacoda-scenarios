@@ -1,17 +1,17 @@
-Before we get started, you need to login and create a project in OpenShift
-to work in.
+在我们开始之前，您需要登录并在OpenShift中创建一个项目
+在工作。
 
-To login to the OpenShift cluster used for this course from the _Terminal_,
-run:
+要从_终端_ 登录到本课程使用的OpenShift群集，
+运行:
 
-``oc login -u developer -p developer``{{execute}}
+`oc login -u developer -p developer`{{execute}}
 
-This will log you in using the credentials:
+这将使用凭证登录您:
 
-* **Username:** ``developer``
-* **Password:** ``developer``
+* **用户名:** `developer`
+* **密码:** `developer`
 
-You should see the output:
+您应该会看到输出:
 
 ```
 Login successful.
@@ -21,11 +21,11 @@ You don't have any projects. You can try to create a new project, by running
     oc new-project <projectname>
 ```
 
-To create a new project called ``myproject`` run the command:
+要创建一个名为`myproject`的新项目，运行以下命令:
 
-``oc new-project myproject``{{execute}}
+`oc new-project myproject`{{execute}}
 
-You should see output similar to:
+你应该看到类似的输出:
 
 ```
 Now using project "myproject" on server "https://openshift:6443".
@@ -39,20 +39,19 @@ to build a new example application in Python. Or use kubectl to deploy a simple 
     kubectl create deployment hello-node --image=gcr.io/hello-minikube-zero-install/hello-node
 ```
 
-Switch to the _Console_ and login to the OpenShift web console using the
-same credentials you used above.
+切换到_控制台_ 并使用。登录到OpenShift web控制台
+与上面使用的凭据相同。
 
 ![Web Console Login](../../assets/introduction/deploying-python-44/01-web-console-login.png)
 
-This should leave you at the list of projects you have access to. As we only
-created the one project, all you should see is ``myproject``.
+这应该会让您停留在您可以访问的项目列表中。当我们只
+创建了一个项目，你应该看到的是`myproject`。
 
 ![List of Projects](../../assets/introduction/deploying-python-44/01-list-of-projects.png)
 
-Click on ``myproject`` and you should then be at the _Overview_ page for
-the project. Select the _Developer_ perspective for the project instead of the _Adminstrator_ perspective in the left hand side menu. If necessary click on the hamburger menu icon top left of the web console to expose the left hand side menu.
+单击`myproject`，然后您应该在_概述_页面为
+该项目。为项目选择_开发人员_ 透视图，而不是左侧菜单中的_管理员_ 透视图。如果有必要，单击web控制台左上角的汉堡包菜单图标，以显示左边的菜单。
 
 ![Add to Project](../../assets/introduction/deploying-images-44/01-add-to-project.png)
 
-
-As the project is currently empty, no workloads should be found and you will be presented with various options for how you can deploy an application.
+由于项目当前是空的，不应该找到工作负载，您将看到如何部署应用程序的各种选项。
