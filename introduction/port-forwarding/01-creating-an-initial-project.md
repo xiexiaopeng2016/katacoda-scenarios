@@ -4,7 +4,7 @@
 要从_终端_ 登录到本课程使用的OpenShift群集，
 运行:
 
-`oc login -u developer -p developer`{{执行HOST1}}
+`oc login -u developer -p developer`{{execute HOST1}}
 
 这将使用凭证登录您:
 
@@ -21,9 +21,9 @@ You don't have any projects. You can try to create a new project, by running
     oc new-project <projectname>
 ```
 
-要创建一个名为`myproject`的新项目，运行以下命令:
+要创建一个名为 `myproject` 的新项目，运行以下命令:
 
-`oc new-project myproject`{{执行HOST1}}
+`oc new-project myproject` {{execute HOST1}}
 
 你应该看到类似的输出:
 

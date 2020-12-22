@@ -1,6 +1,6 @@
 ### 名称空间用于监控
 
-我们在OpenShift上创建了一个名为`pad-monitoring`的[名称空间](https://docs.openshift.com/container-platform/4.2/applications/projects/working-with-projects.html) ，我们将在这里部署所有监控应用程序(Prometheus和Grafana)。
+我们在OpenShift上创建了一个名为`pad-monitoring`的 [名称空间](https://docs.openshift.com/container-platform/4.2/applications/projects/working-with-projects.html) ，我们将在这里部署所有监控应用程序(Prometheus和Grafana)。
 
 * 为了确保我们正在使用命名空间，运行以下命令:<br>
 `oc project pad-monitoring`{{execute}}
@@ -17,7 +17,7 @@
 
 ### 为我们的应用程序配置Prometheus
 
-在OpenShift中，我们使用ConfigMaps来管理应用程序的配置([更多信息](https://docs.openshift.com/container-platform/3.11/dev_guide/configmaps.html#overview) )。
+在OpenShift中，我们使用ConfigMaps来管理应用程序的配置( [更多信息](https://docs.openshift.com/container-platform/3.11/dev_guide/configmaps.html#overview) )。
 
 * 我们将使用下面的ConfigMap来设置Prometheus实例。
 
@@ -85,9 +85,9 @@ ConfigMap文件应该存储在一个名为`prometheus-configmap.yaml`{{open}}，
 
 在此之后，Prometheus服务器可能需要几分钟时间准备好接收请求。
 
-Prometheus控制台应该可以[在这里](http://prometheus-demo-route-pad-monitoring.[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com) 找到
+Prometheus控制台应该可以 [在这里](http://prometheus-demo-route-pad-monitoring.[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com) 找到
 
-您还可以使用[OpenShift仪表板](https://console-openshift-console-[[HOST_SUBDOMAIN]]-443-[[KATACODA_HOST]].environments.katacoda.com/k8s/ns/pad-monitoring/deploymentconfigs/prometheus-demo) 来检查Prometheus的部署。
+您还可以使用 [OpenShift仪表板](https://console-openshift-console-[[HOST_SUBDOMAIN]]-443-[[KATACODA_HOST]].environments.katacoda.com/k8s/ns/pad-monitoring/deploymentconfigs/prometheus-demo) 来检查Prometheus的部署。
 
 * 访问OpenShift控制台的凭证是:
   * **用户名:**`developer`{{copy}}
@@ -100,7 +100,8 @@ Prometheus控制台应该可以[在这里](http://prometheus-demo-route-pad-moni
 * 访问普罗米修斯的目标页面，[在这里](http://prometheus-demo-route-pad-monitoring.[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/targets)。<br>
 targets页面应该显示Prometheus已配置为从中收集指标的目标列表。
 
-它应该看起来像这样:![Prometheus Targets Page](../../assets/introduction/deploy-prometheus-grafana/02-prometheus-targets-page.png)
+它应该看起来像这样:
+![Prometheus Targets Page](../../assets/introduction/deploy-prometheus-grafana/02-prometheus-targets-page.png)
 
 * 如果您无法在目标列表中找到演示应用程序，<br>
 尝试修复ConfigMap文件中的Prometheus配置`prometheus-configmap.yaml`{{open}}并重复前面的步骤。
@@ -111,5 +112,5 @@ targets页面应该显示Prometheus已配置为从中收集指标的目标列表
 这应该查询Prometheus实例，以获得标签`group="pad"`的所有度量。
 
 
-* 要了解更多关于Prometheus查询语言或PromQL的信息，您可以访问[这个页面](https://prometheus.io/docs/prometheus/latest/querying/basics/#querying-prometheus) 。
+* 要了解更多关于Prometheus查询语言或PromQL的信息，您可以访问 [这个页面](https://prometheus.io/docs/prometheus/latest/querying/basics/#querying-prometheus) 。
 

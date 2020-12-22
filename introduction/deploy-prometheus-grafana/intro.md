@@ -1,6 +1,6 @@
 ## 目标
 
-学习如何在OpenShift上使用[普罗米修斯](https://github.com/prometheus/prometheus) 来收集应用程序的指标，然后与[Grafana](https://github.com/grafana/grafana) 一起可视化结果。
+学习如何在OpenShift上使用 [普罗米修斯](https://github.com/prometheus/prometheus) 来收集应用程序的指标，然后与 [Grafana](https://github.com/grafana/grafana) 一起可视化结果。
 
 ## 概念
 

@@ -7,10 +7,10 @@
 * OpenShift集群上的持久卷存储
 * 临时路由外部流量到群集服务
 * OpenShift项目和应用程序
-* OpenShift`oc`命令行部署工具
+* OpenShift `oc` 命令行部署工具
 
 ## 用例
 
-您可以在OpenShift集群上部署应用程序的底层数据库服务器，通过开发逐步发展到一个自动化[操作符](https://www.openshift.com/learn/topics/operators) 封装的生产数据库。
+您可以在OpenShift集群上部署应用程序的底层数据库服务器，通过开发逐步发展到一个自动化 [操作](https://www.openshift.com/learn/topics/operators) 封装的生产数据库。
 
 这个OpenShift集群将在一小时内自毁。
