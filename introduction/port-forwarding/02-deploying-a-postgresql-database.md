@@ -1,15 +1,15 @@
-To create a database which you can then connect to, run the command:
+要创建一个数据库，然后你可以连接，运行命令:
 
-``oc new-app postgresql-ephemeral --name database --param DATABASE_SERVICE_NAME=database --param POSTGRESQL_DATABASE=sampledb --param POSTGRESQL_USER=username --param POSTGRESQL_PASSWORD=password``{{execute}}
+`oc new-app postgresql-ephemeral --name database --param DATABASE_SERVICE_NAME=database --param POSTGRESQL_DATABASE=sampledb --param POSTGRESQL_USER=username --param POSTGRESQL_PASSWORD=password`{{execute}}
 
-This will start up an instance of a PostgreSQL database.
+这将启动一个PostgreSQL数据库实例。
 
-Although a database would normally be paired with a persistent volume, we only want to demonstrate how to access the database in this course. The database instance we create here, will therefore only store the database in the filesystem local to the container. This means that if the database were restarted, any changes would be lost. When you deploy a database to be used with your own applications, you would want to look at using persistent volumes.
+虽然数据库通常会与持久卷配对，但在本课程中，我们只想演示如何访问数据库。因此，我们在这里创建的数据库实例只将数据库存储在容器本地的文件系统中。这意味着如果重新启动数据库，任何更改都将丢失。当您部署要与自己的应用程序一起使用的数据库时，您可能希望考虑使用持久卷。
 
-To monitor progress as the database is deployed and made ready, run the command:
+要在数据库部署和准备就绪时监控进度，可以运行以下命令:
 
-``oc rollout status dc/database``{{execute}}
+`oc rollout status dc/database`{{execute}}
 
-This command will exit once the database is ready to be used.
+一旦数据库准备好使用，该命令将退出。
 
-When using a database with your front end web application, you will need to configure the web application to know about the database. We are going to skip that in this course.
+在前端web应用程序中使用数据库时，需要配置web应用程序以了解数据库。我们这门课会跳过这个。

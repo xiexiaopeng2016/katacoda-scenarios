@@ -1,18 +1,16 @@
-## Goal
+## 目标
 
-Learn how to run a database with persistent storage on OpenShift. Access the database server in the cluster with a command-line shell, then use port forwarding to temporarily expose the database service outside of OpenShift so you can access it with any database API tool, like a graphical database manager.
+了解如何在OpenShift上使用持久存储运行数据库。使用命令行shell访问集群中的数据库服务器，然后使用端口转发临时公开OpenShift外部的数据库服务，这样您就可以使用任何数据库API工具(比如图形化数据库管理器)访问它。
 
-## Concepts
+## 概念
 
-* Persistent Volumes storage on OpenShift clusters
-* Provisional routing of external traffic to cluster services
-* OpenShift Projects and Applications
-* OpenShift `oc` command line deployment tool
+* OpenShift集群上的持久卷存储
+* 临时路由外部流量到群集服务
+* OpenShift项目和应用程序
+* OpenShift`oc`命令行部署工具
 
-## Use case
+## 用例
 
-You can deploy your application's underlying database server on an OpenShift cluster, growing through development toward a production database packaged in an automating [Operator][operator].
+您可以在OpenShift集群上部署应用程序的底层数据库服务器，通过开发逐步发展到一个自动化[操作符](https://www.openshift.com/learn/topics/operators) 封装的生产数据库。
 
-This OpenShift cluster will self-destruct in one hour.
-
-[operator]: https://www.openshift.com/learn/topics/operators
+这个OpenShift集群将在一小时内自毁。
