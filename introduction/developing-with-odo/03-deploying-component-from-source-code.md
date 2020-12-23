@@ -1,63 +1,63 @@
-With the `backend` component running and connected to persistent storage, we are ready to bring up the `frontend` component and connect it to the `backend`. Once again, source code for the component is already available in the command line environment.
+在 ``backend`` 组件运行并连接到持久存储之后，我们准备启动 ``frontend`` 组件并将其连接到 ``backend`` 。同样，该组件的源代码已经在命令行环境中可用。
 
-Change directories to the `frontend` directory:
+将目录更改为 ``frontend`` 目录:
 
-`cd ~/frontend`{{execute interrupt}}
+ ``cd ~/frontend``{{execute interrupt}}
 
-Listing the contents of this directory shows that `frontend` is a Node.js application.
+列出该目录的内容表明 ``frontend`` 是一个Node.js应用程序。
 
-`ls`{{execute}}
+ ``ls``{{execute}}
 
-Since `frontend` is written in an interpreted language, there is no build step analogous to the Maven build we performed for the `backend` component. We can proceed directly to specifying the `nodejs` environment from the cluster's catalog.
+由于 ``frontend`` 是用解释语言编写的，所以没有与我们为 ``backend`` 组件执行的Maven构建步骤类似的构建步骤。我们可以直接从集群的目录中指定 ``nodejs`` 环境。
 
-We give this Node.js component the name `frontend`:
+我们将这个Node.js组件命名为 ``frontend`` :
 
-`odo create nodejs frontend`{{execute}}
+ ``odo create nodejs frontend``{{execute}}
 
-`odo` will create a `config.yaml` just like with the `backend` component, and you should see the following output:
+ ``odo`` 将创建一个 ``config.yaml`` ，就像 ``backend`` 组件一样，你应该看到以下输出:
 
 ```
-✓  Validating component [6ms]
+✓ Validating component [6ms]
 Please use `odo push` command to create the component with source deployed
 ```
 
-With the component named and the config file created, we can push the Node.js source code from the current directory:
+有了命名的组件和创建的配置文件，我们可以从当前目录下推Node.js源代码:
 
-`odo push`{{execute}}
+ ``odo push``{{execute}}
 
-`odo push` should produce the following output:
+ ``odo push`` 应该产生以下输出:
 
 ```
 Validation
- ✓  Checking component [23ms]
+ ✓ Checking component [23ms]
 
 Configuration changes
- ✓  Initializing component
- ✓  Creating component [86ms]
+ ✓ Initializing component
+ ✓ Creating component [86ms]
 
 Pushing to component frontend of type local
- ✓  Checking files for pushing [710993ns]
- ✓  Waiting for component to start [52s]
- ✓  Syncing files to the component [26s]
- ✓  Building component [8s]
- ✓  Changes successfully pushed to component
+ ✓ Checking files for pushing [710993ns]
+ ✓ Waiting for component to start [52s]
+ ✓ Syncing files to the component [26s]
+ ✓ Building component [8s]
+ ✓ Changes successfully pushed to component
 ```
 
-When we created the `backend` component, we viewed the logs via the terminal. You can also follow the status of your container creation in the web console. Click the **Console** tab and make sure you're in the project named `myproject`.
+当我们创建 ``backend`` 组件时，我们通过终端查看日志。您还可以在web控制台中跟踪容器创建的状态。单击 **控制台** 选项卡，并确保您位于名为 ``myproject`` 的项目中。
 
-Depending on how far along your `odo push` is, you may see the pod for the `frontend` component starting up with a light blue ring as shown below. This light blue ring means the pod is in a pending state and hasn't started yet:
+根据您的 ``odo push`` 的距离，您可能会看到 ``frontend`` 组件的pod启动了一个浅蓝色环，如下所示。这个浅蓝色的圆环表示豆荚处于待定状态，还没有启动:
 
 ![Frontend Pending](../../assets/introduction/developing-with-odo-42/frontend-pending.png)
 
-Once the pod becomes available, you'll see the `frontend` component become available with a dark blue ring around it like the `backend` component has. This is shown below:
+一旦荚变得可用，你会看到 ``frontend`` 组件变得可用，周围有一个深蓝色的环，就像 ``backend`` 组件一样。如下所示:
 
 ![Frontend Running](../../assets/introduction/developing-with-odo-42/frontend-running.png)
 
-To see the logs of the `frontend` component, wait for the dark blue ring to appear around the component and then click on the `frontend` component circle. This should bring up the deployment config for `frontend` and present the option to **View Logs** under the **Pods** section. This is shown below:
+要查看 ``frontend`` 组件的日志，等待深蓝色环出现在组件周围，然后单击 ``frontend`` 组件圆。这将打开 ``frontend`` 的部署配置，并在 **豆荚** 部分下显示 **查看日志** 的选项。如下所示:
 
 ![Frontend Logs](../../assets/introduction/developing-with-odo-42/frontend-logs.png)
 
-Click on **View Logs** where you should eventually see the following logs confirming `frontend` is running:
+单击 **查看日志** ，您应该最终看到以下日志，确认 ``frontend`` 正在运行:
 
 ```
 CONFIG ERROR: Can't find backend webservices component!
@@ -67,6 +67,6 @@ Frontend available at URL_PREFIX: /
 { Error: 'Backend Component Not Configured' }
 ```
 
-Don't worry about the error message for now! You'll correct this in the next section.
+现在不要担心错误消息!你将在下一节中更正这个错误。
 
-When you are done viewing the logs, click on the **Topology** tab on the left side of the web console to head back to `myproject`.
+查看完日志后，单击web控制台左侧的 **拓扑结构** 选项卡，返回到 ``myproject`` 。

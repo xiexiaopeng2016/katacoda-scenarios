@@ -1,13 +1,13 @@
-The application you will be deploying is a wild west shooter style game.
+您将部署的应用程序是一个狂野西部射击风格的游戏。
 
-Applications are often divided into components based on a logical division of labor. For example, an application might consist of a data-storage, backend component that performs the application's primary work and stores the results. The backend component is paired with a user interface, frontend component that accesses the backend to retrieve data and displays it to a user.
+应用程序通常根据逻辑分工划分为组件。例如，一个应用程序可能包含一个数据存储和后端组件，它执行应用程序的主要工作并存储结果。后端组件与用户界面(前端组件)配对，前端组件访问后端以检索数据并将其显示给用户。
 
-The application deployed in this tutorial consists of two such components.
+本教程中部署的应用程序由两个这样的组件组成。
 
-## Backend
+## 后端
 
-The backend is a Java Spring Boot application. It performs queries against the Kubernetes and OpenShift REST APIs to retrieve a list of the resource objects that were created when you deployed the application. Then, it returns details about these resource objects to the frontend.
+后端是一个Java Spring引导应用程序。它对Kubernetes和OpenShift REST api执行查询，以检索部署应用程序时创建的资源对象列表。然后，它将这些资源对象的详细信息返回给前端。
 
-## Frontend
+## 前端
 
-The frontend is the user interface for a wild west style game written in Node.js. It displays popup images which you can shoot, corresponding to the resource objects returned by the backend.
+前端是一个用Node.js编写的狂野西部风格游戏的用户界面。它显示可以拍摄的弹出图像，对应于后端返回的资源对象。

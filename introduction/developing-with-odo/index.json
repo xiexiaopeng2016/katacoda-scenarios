@@ -1,51 +1,69 @@
 {
-    "icon": "fa-openshift",
-    "title": "Developing with odo",
-    "description": "",
-    "pathwayTitle": "OpenShift",
-    "difficulty": "beginner",
-    "time": "10-15 minutes",
-    "backend": {
-        "imageid": "openshift-4-2"
+  "icon": "fa-openshift",
+  "title": "使用odo开发",
+  "description": "",
+  "pathwayTitle": "OpenShift",
+  "difficulty": "beginner",
+  "time": "10-15 minutes",
+  "backend": {
+    "imageid": "openshift-4-2"
+  },
+  "environment": {
+    "showdashboard": true,
+    "dashboards": [
+      {
+        "name": "Console",
+        "href": "https://console-openshift-console-[[HOST_SUBDOMAIN]]-443-[[KATACODA_HOST]].environments.katacoda.com"
+      }
+    ],
+    "uilayout": "terminal-iframe"
+  },
+  "details": {
+    "steps": [
+      {
+        "title": "应用程序概述",
+        "text": "00-application-overview.md"
+      },
+      {
+        "title": "创建初始项目",
+        "text": "01-creating-initial-project.md"
+      },
+      {
+        "title": "创建新的二进制组件",
+        "text": "02-creating-new-binary-component.md"
+      },
+      {
+        "title": "从源代码部署组件",
+        "text": "03-deploying-component-from-source-code.md"
+      },
+      {
+        "title": "连接组件",
+        "text": "04-linking-components.md"
+      },
+      {
+        "title": "向公众公开组件",
+        "text": "05-exposing-components-to-public.md"
+      },
+      {
+        "title": "对源代码进行更改",
+        "text": "06-making-changes-to-source-code.md"
+      }
+    ],
+    "intro": {
+      "courseData": "env-init.sh",
+      "code": "set-env.sh",
+      "text": "intro.md"
     },
-    "environment": {
-        "showdashboard": true,
-        "dashboards": [{"name": "Console", "href": "https://console-openshift-console-[[HOST_SUBDOMAIN]]-443-[[KATACODA_HOST]].environments.katacoda.com"}],
-        "uilayout": "terminal-iframe"
+    "finish": {
+      "text": "finish.md"
     },
-    "details": {
-        "steps": [{
-          "title": "Application Overview",
-          "text": "00-application-overview.md"
-        }, {
-            "title": "Creating an Initial Project",
-            "text": "01-creating-initial-project.md"
-        }, {
-            "title": "Creating new binary component",
-            "text": "02-creating-new-binary-component.md"
-        }, {
-            "title": "Deploying component from source-code",
-            "text": "03-deploying-component-from-source-code.md"
-        }, {
-            "title": "Linking components",
-            "text": "04-linking-components.md"
-        }, {
-            "title": "Exposing components to public",
-            "text": "05-exposing-components-to-public.md"
-        }, {
-            "title": "Making changes to source-code",
-            "text": "06-making-changes-to-source-code.md"
-        }],
-        "intro": {
-            "courseData": "env-init.sh",
-            "code": "set-env.sh",
-            "text": "intro.md"
-        },
-        "finish": {
-            "text": "finish.md"
-        }, "assets": {
-            "host01": [{"file": "volumes.json", "target": "~/"}]
-          }
-
+    "assets": {
+      "host01": [
+        {
+          "file": "volumes.json",
+          "target": "~/"
+        }
+      ]
     }
+  }
 }

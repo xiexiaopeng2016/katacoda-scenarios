@@ -1,34 +1,34 @@
-We've deployed the first version of our application and tested it by visiting it with a browser. Let's look at how OpenShift and `odo` help make it easier to iterate on that app once it's running.
+我们已经部署了应用程序的第一个版本，并通过浏览器访问它进行了测试。让我们来看看OpenShift和 ``odo`` 是如何帮助我们在应用运行后更容易迭代。
 
-First, make sure you are still in the `frontend` directory:
+首先，确保您仍然在 ``frontend`` 目录中:
 
-`cd ~/frontend`{{execute}}
+ ``cd ~/frontend``{{execute}}
 
-Now, we will tell `odo` to `watch` for changes on the file system in the background. Note that the `&` is included to run `odo watch` in the background for this tutorial, but it is usually just run as `odo watch` and can be terminated using `ctrl+c`.
+现在，我们将告诉 ``odo`` 到 ``watch`` 关于后台文件系统的变化。请注意，在本教程的后台包含 ``&`` 来运行 ``odo watch`` ，但它通常只是作为 ``odo watch`` 运行，可以使用 ``ctrl+c`` 终止。
 
-`odo watch &`{{execute}}
+ ``odo watch &``{{execute}}
 
-Let's change the displayed name for our wild west game. Currently, the title is "Wild West The OpenShift Way!" We will change this to "My App The OpenShift Way!"
+让我们为我们的狂野西部游戏改变显示的名称。目前，标题是“狂野西部的开放转变之路!”我们将把它改为“My App The OpenShift Way!”
 
 ![Application Title](../../assets/introduction/developing-with-odo-42/app-name.png)
 
-Edit the file `index.html` with a search-and-replace one-liner performed with the Unix stream editor, `sed`:
+用Unix流编辑器 ``sed`` 执行的搜索和替换一行代码编辑文件 ``index.html`` :
 
-`sed -i "s/Wild West/My App/" index.html`{{execute}}
+ ``sed -i "s/Wild West/My App/" index.html``{{execute}}
 
-There may be a slight delay before `odo` recognizes the change. Once the change is recognized, `odo` will push the changes to the `frontend` component and print its status to the terminal:
+在 ``odo`` 识别更改之前可能会有一点延迟。一旦识别到更改， ``odo`` 将把更改推送到 ``frontend`` 组件，并将其状态打印到终端:
 
 ```
 File /root/frontend/index.html changed
-File  changed
+File changed
 Pushing files...
-✓  Waiting for component to start [10ms]
-✓  Syncing files to the component [16s]
-✓  Building component [6s]
+✓ Waiting for component to start [10ms]
+✓ Syncing files to the component [16s]
+✓ Building component [6s]
 ```
 
-Refresh the application's page in the web browser. You will see the new name in the web interface for the application.
+在web浏览器中刷新应用程序的页面。您将在应用程序的web界面中看到新名称。
 
-__NOTE__: If you no longer have the application page opened in a browser, you can recall the url by executing:
+注意:如果你不再在浏览器中打开应用程序页面，你可以执行以下命令回调url:
 
-`odo url list`{{execute interrupt}}
+ ``odo url list``{{execute interrupt}}

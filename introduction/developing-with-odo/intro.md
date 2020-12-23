@@ -1,17 +1,17 @@
-## Goal
+## 目标
 
-Learn how to use the *OpenShift Do* (`odo`) command line tool to build and deploy applications on OpenShift.
+了解如何使用 _OpenShift Do_ ( ``odo`` )命令行工具在OpenShift上构建和部署应用程序。
 
-## Concepts
+## 概念
 
-* `odo` developer tool abstracts deployment tasks
-* OpenShift Projects and Applications
-* OpenShift Web Console’s Developer Perspective
-* Multi-tiered applications with a web frontend
-* Automatic OpenShift Builds for iterative development
+* ``odo``开发人员工具抽象部署任务
+* OpenShift项目和应用程序
+* OpenShift Web控制台的开发人员视角
+* 具有web前端的多层应用程序
+* 用于迭代开发的自动OpenShift构建
 
-## Use case
+## 用例
 
-Odo is a developer-centric tool for building and running software on OpenShift. Odo streamlines common build and deployment tasks to let you focus on your application’s source code. You can use odo to reduce the cognitive load and rote steps of building components, linking them together, and routing traffic to them on the OpenShift Container Platform.
+Odo是一个以开发人员为中心的工具，用于在OpenShift上构建和运行软件。Odo简化了常见的构建和部署任务，使您能够专注于应用程序的源代码。您可以使用odo来减少构建组件、将它们链接在一起以及在OpenShift容器平台上将流量路由到它们的认知负荷和机械步骤。
 
-This OpenShift cluster will self-destruct in one hour.
+这个OpenShift集群将在一小时内自毁。

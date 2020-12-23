@@ -1,16 +1,16 @@
-## Logging in to OpenShift
+## 登录到OpenShift
 
-Before we get started, you need to log in to OpenShift. To log in to the OpenShift cluster used for this scenario from the _Terminal_,
-run:
+在开始之前，您需要登录到OpenShift。要从 _终端_ 登录到本场景使用的OpenShift集群，
+运行:
 
-`odo login -u developer -p developer`{{execute}}
+ ``odo login -u developer -p developer``{{execute}}
 
-This will log you in using the credentials:
+这将使用凭证登录您:
 
-* **Username:** ``developer``
-* **Password:** ``developer``
+* **用户名:** ``developer``
+* **密码:** ``developer``
 
-You should see the output below:
+您应该会看到下面的输出:
 
 ```
 Connecting to the OpenShift cluster
@@ -18,54 +18,55 @@ Connecting to the OpenShift cluster
 Login successful.
 
 You don't have any projects. You can try to create a new project, by running
-    odo project create <project-name>
+  odo project create <project-name>
 ```
 
-We will start by creating a new project by running `odo project create`:
+我们将通过运行 ``odo project create`` 来创建一个新项目:
 
-`odo project create myproject`{{execute}}
+ ``odo project create myproject``{{execute}}
 
-You should see the following output confirming the creation of a new OpenShift project called `myproject` and that `odo` is now using `myproject`:
+你应该看到下面的输出确认了名为 ``myproject`` 的新OpenShift项目的创建，并且 ``odo`` 现在正在使用 ``myproject`` :
 
 ```
- ✓  New project created and now using project : myproject
+ ✓ New project created and now using project : myproject
 ```
 
-## Creating a Service Account
-The backend of our application uses the OpenShift REST API. In order for the backend to access the API, we need to grant access to the service account that the backend is using. We will do this in the web console.
+## 创建服务帐户
 
-Click the **Console** tab next to the **Terminal** tab near the center top of your browser. This opens the OpenShift web console.
+应用程序的后端使用OpenShift REST API。为了让后端访问API，我们需要授予对后端正在使用的服务帐户的访问权。我们将在web控制台中执行此操作。
 
-You should see an OpenShift window with **Username** and **Password** fields, which is similar to this one:
+单击浏览器中央顶部靠近 **终端** 选项卡旁边的 **控制台** 选项卡。这将打开OpenShift web控制台。
+
+您应该会看到一个带有 **用户名** 和 **密码** 字段的OpenShift窗口，它与下面这个类似:
 
 ![OCP Web Console](../../assets/introduction/developing-with-odo-42/ocp-login.png)
 
-For this scenario, start by entering the following:
+对于这个场景，首先输入以下内容:
 
-**Username:** ``developer``{{copy}}
+ **用户名:** ``developer``{{copy}}
 
-**Password:** ``developer``{{copy}}
+ **密码:** ``developer``{{copy}}
 
-After logging in to the web console, you'll be in the **Administrator** perspective of the web console, which is a view of the console for handling operations and administrative tasks associated with your OpenShift cluster.
+登录到web控制台后，您将处于web控制台的 **管理员** 透视图中，这是用于处理与OpenShift集群相关的操作和管理任务的控制台视图。
 
-To start, select the project you just created using `odo` (i.e. `myproject`) by clicking on `myproject` on the **Projects** page as shown below:
+首先，选择您刚刚使用 ``odo`` 创建的项目(即。 ``myproject`` )点击 **项目** 页面 ``myproject`` ，如下图所示:
 
 ![Projects](../../assets/introduction/developing-with-odo-42/myproject.png)
 
-By clicking on the project name, you will be taken to the **Project Details** page that shows information about what is happening in your project. By clicking on the project name, you are also now using this project and all actions via the web console will now happen in this project.
+通过单击项目名称，您将转到 **项目详细信息** 页面，该页面显示有关项目中正在发生的事情的信息。通过单击项目名称，您现在也在使用这个项目，通过web控制台的所有操作现在都将在这个项目中发生。
 
-On the left side of the console, click the **Administration** tab and select the **RoleBindings** option as shown below:
+在控制台的左侧，单击 **政府** 选项卡并选择 **RoleBindings** 选项，如下所示:
 
 ![Role Binding](../../assets/introduction/developing-with-odo-42/role-binding.png)
 
-On the **RoleBindings** page, click the **Create Binding** button and fill out the wizard with the information shown below:
+在 **RoleBindings** 页面上，单击 **创建绑定** 按钮，用如下所示的信息填充向导:
 
 ![Role Binding Wizard](../../assets/introduction/developing-with-odo-42/role-binding-wizard.png)
 
-Feel free to copy the information for the role binding name and service account subject name below:
+请随意复制以下角色绑定名称和服务帐户主题名称的信息:
 
-**Role Binding Name:** ``defaultview``{{copy}}
+ **角色绑定名称:** ``defaultview``{{copy}}
 
-**Subject Name:** ``default``{{copy}}
+ **主题名称:** ``default``{{copy}}
 
-Now the service account that the backend uses has **view** access so it can retrieve objects via the API. Note that you could choose **edit** access instead. That would allow the backend to both retrieve and modify or delete objects. If you do that, you can end up destroying certain resources in the game that are not recoverable, which is why we are choosing **view** access for this scenario.
+现在后端使用的服务帐户具有 **视图** 访问，因此它可以通过API检索对象。注意，您可以选择 **编辑** 访问。这将允许后端检索、修改或删除对象。如果你这么做了，你可能会破坏游戏中某些不可恢复的资源，这就是为什么我们在这个场景中选择 **视图** 访问。
