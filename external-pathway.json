@@ -1,11 +1,11 @@
 {
-    "title": "Use technologies from our Partners in OpenShift",
+    "title": "在OpenShift中使用我们合作伙伴的技术",
     "icon": "fa-openshift",
     "courses": [
         {
             "action": "Start Course",
             "external_link": "https://learn.openshift.com/external/citrus",
-            "title": "Testing services in OpenShift with Citrus"
-          }
+            "title": "使用Citrus在OpenShift测试服务"
+        }
     ]
 }

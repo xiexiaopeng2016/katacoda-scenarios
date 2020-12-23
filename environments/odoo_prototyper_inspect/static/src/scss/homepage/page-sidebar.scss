@@ -1,0 +1,252 @@
+
+.page-sidebar {
+  width: 300px;
+  float: left;
+  position: relative;
+  margin-right: -100%
+}
+
+.page-sidebar {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+
+  &.navbar-collapse {
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .page-sidebar-menu {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 0;
+
+    > li {
+      display: block;
+      margin: 0;
+      padding: 0;
+      border: 0;
+
+      &.heading {
+        height: 50px;
+        padding: 25px 15px 10px;
+
+        > h3 {
+          font-size: 13px;
+          padding: 0;
+          margin: 0;
+          font-weight: 600
+        }
+
+        > .menu_setting {
+          float: right;
+          display: none;
+
+          i {
+            font-size: 18px;
+            color: #b7c9d6;
+          }
+        }
+
+        &:hover {
+          > .menu_setting {
+            display: inline-block;
+          }
+        }
+      }
+
+      > a {
+        display: block;
+        position: relative;
+        margin: 1px 0 0;
+        border: 0;
+        padding: 12px 15px;
+        text-decoration: none;
+
+        > .title {
+          font-size: 14px;
+          font-weight: 400;
+          width: 218px;
+          overflow: hidden;
+          display: inline-block;
+        }
+
+        > i {
+          font-size: 18px;
+          text-shadow: none;
+          font-weight: 300;
+
+          &.glyphicon {
+            top: 3px;
+            margin-left: 1px;
+            margin-right: 4px
+          }
+        }
+
+        > [class^=icon-] {
+          top: 2px;
+          margin-left: 1px;
+          margin-right: 4px;
+        }
+      }
+
+      &.open {
+        > a {
+          font-size: 14px
+        }
+      }
+
+      &.active {
+        > a {
+          border: none;
+          text-shadow: none;
+          font-size: 14px
+        }
+      }
+    }
+
+    li {
+      > a {
+        > .arrow {
+          &:before {
+            width: 10px;
+            float: right;
+            margin-right: 5px;
+            margin-left: 5px;
+            display: inline;
+            font-size: 16px;
+            font-family: FontAwesome;
+            height: auto;
+            content: "\f104";
+            font-weight: 300;
+            text-shadow: none;
+          }
+
+          &.open {
+            &:before {
+              content: "\f107";
+              margin-right: 6px;
+            }
+          }
+        }
+
+        > .badge {
+          float: right;
+          margin-top: 1px;
+          margin-right: 0
+        }
+      }
+
+      &.active {
+        > .sub-menu {
+          display: block
+        }
+      }
+    }
+
+    .sub-menu {
+      list-style: none;
+      display: none;
+      padding: 0;
+      margin: 8px 0;
+
+      li {
+        background: 0 0;
+        margin: 0;
+        padding: 0;
+        margin-top: 1px !important;
+
+        > a {
+          display: block;
+          margin: 0;
+          padding: 9px 14px 9px 30px;
+          text-decoration: none;
+          font-size: 14px;
+          font-weight: 400;
+          background: 0 0;
+          white-space: nowrap;
+
+          > i {
+            font-size: 16px;
+            margin-right: 1px
+          }
+
+          .arrow {
+            &:before {
+              margin-top: -4px
+            }
+
+            .open {
+              &:before {
+                margin-top: -2px
+              }
+            }
+          }
+        }
+
+        > .sub-menu {
+          margin: 0;
+
+          > li {
+            > a {
+              padding-left: 40px;
+            }
+
+            .sub-menu {
+              margin: 0;
+
+              > li {
+                > a {
+                  padding-left: 50px
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &.always-open {
+        display: block
+      }
+    }
+  }
+}
+
+.page-md {
+  .page-sidebar {
+    &.navbar-collapse {
+      box-shadow: 0 2px 3px 2px rgba(0, 0, 0, .03);
+    }
+  }
+}
+
+.page-sidebar-fixed {
+  .page-sidebar {
+    .page-sidebar-menu {
+      > li {
+        > a {
+          transition: all .2s ease
+        }
+      }
+    }
+  }
+
+  &.page-sidebar-reversed {
+    .page-sidebar {
+      .page-sidebar-menu {
+        > li {
+          > a {
+            transition: none
+          }
+        }
+      }
+    }
+  }
+}

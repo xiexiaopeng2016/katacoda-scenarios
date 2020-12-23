@@ -1,35 +1,35 @@
-# OpenShift learning on Katacoda
+# 在Katacoda上的OpenShift学习
 
-This is the content that appears on learn.openshift.com. If you have any questions raise an issue here.
+这是出现在learn.openshift.com上的内容。如果你有任何问题，在这里提出问题。
 
-## Contributions
+## 贡献
 
-First, you want to fork this repo and sign up at [Katacoda](https://katacoda.com/login) with your GitHub handle.
+首先，你要分叉这个回购和注册在 [Katacoda](https://katacoda.com/login) 与你的GitHub handle。
 
-For each scenario, please do the following:
+对于每个场景，请执行以下步骤:
 
-1. Work on the scenario, try it out in your own environment `https://www.katacoda.com/$GITHUBHANDLE`
-1. When you're satisfied, send in a pull request mentioning the issue you created in the first step.
-1. Next, get two reviews/thumbs up from team members (mention @btannous or @jdob on your issue if you don't see activity within a couple of days)
-1. Once your scenario has been reviewed, we will merge it and it will appear on learn.openshift.com
+1. 处理这个场景，在您自己的环境中进行尝试``https://www.katacoda.com/$GITHUBHANDLE``
+2. 当你感到满意时，发送一个拉入请求，提及你在第一步中创建的问题。
+3. 接下来，从团队成员那里获得两个评论/好评(如果你在几天内没有看到任何活动，就在你的问题上提到@btannous或@jdob)
+4. 一旦你的方案被审查过，我们将合并它，它将出现在learn.openshift.com上
 
-## Delivering a workshop?
+## 交付一个车间?
 
-**IMPORTANT:** If you are delivering a workshop please ensure that you have alerted the Katacoda team a minimum of **48 hours** before the start of the event, but ideally a full week ahead of time. Without this, we cannot guarantee capacity for everyone. If you are a Red Hat employee who needs to schedule a workshop using the learn.openshift.com scenarios, please contact osevg@redhat.com for information on how to set that up.
+重要提示:如果您要交付一个研讨会，请确保您在活动开始前至少 **48小时** 通知了Katacoda团队，但最好是提前一整个星期。没有这一点，我们就不能保证每个人都有能力。如果您是Red Hat的员工，需要使用learn.openshift.com场景安排一个研讨会，请联系osevg@redhat.com获取关于如何设置的信息。
 
-## Content
+## 内容
 
-### Categories
+### 类别
 
-There are currently several top-level categories. Each category has a pathway file to define the order on the page. The homepage pathway file is the top-level file, and it points to each of the catgories. You can find the associated pathway files for each category in the top-level directory of the repository. 
+目前有几个顶级类别。每个类别都有一个路径文件来定义页面上的顺序。主页路径文件是顶层文件，它指向每个catgories。您可以在存储库的顶级目录中找到每个类别的相关路径文件。
 
-* Homepage Pathway: https://github.com/openshift-labs/learn-katacoda/blob/master/homepage-pathway.json
+* 主页的途径:[https://github.com/openshift-labs/learn-katacoda/blob/master/homepage-pathway.json](https://github.com/openshift-labs/learn-katacoda/blob/master/homepage-pathway.json)
 
-The Using the Cluster pathway is a good example to look at to understand how category pathways are structured:
+使用聚类路径是一个很好的例子，可以用来理解类别路径是如何构造的:
 
-* Using the Cluster Pathway: https://github.com/openshift-labs/learn-katacoda/blob/master/using-the-cluster-pathway.json
+* 使用聚类路径:[https://github.com/openshift-labs/learn-katacoda/blob/master/using-the-cluster-pathway.json](https://github.com/openshift-labs/learn-katacoda/blob/master/using-the-cluster-pathway.json)
 
-`pathway_id` indicates which directory the scenario content can be found in. Let's look at the first entry in that file:
+ ``pathway_id`` 指出场景内容可以在哪个目录中找到。让我们来看看该文件中的第一个条目:
 
 ```
 {
@@ -38,35 +38,33 @@ The Using the Cluster pathway is a good example to look at to understand how cat
         "course_id": "cluster-access",
         "title": "Logging in to an OpenShift Cluster"
  }
- ```
- 
-* Content: https://github.com/openshift-labs/learn-katacoda/tree/master/introduction/cluster-access
-* Assets: https://github.com/openshift-labs/learn-katacoda/tree/master/assets/introduction/cluster-access-44
+```
 
+* 内容:[https://github.com/openshift-labs/learn-katacoda/tree/master/introduction/cluster-access](https://github.com/openshift-labs/learn-katacoda/tree/master/introduction/cluster-access)
+* 资产:[https://github.com/openshift-labs/learn-katacoda/tree/master/assets/introduction/cluster-access-44](https://github.com/openshift-labs/learn-katacoda/tree/master/assets/introduction/cluster-access-44)
 
-### Creating a scenario
+### 创建一个场景
 
-* Create a directory for your scenario in the respective category directory. If you are unsure about which category to use, @btannous and @jdob can help.
-* Follow the naming convention for each step
-* If you have images you want to use in the instructions, you must place them into assets. Please make a directory matching your scenario name so we can associate the files with the right scenario.
-* If you need assets copied into the node to be usable from the shell, you must place them into the `assets/` directory in your scenario. Note that files to be copied also must be listed in your `index.json` under the `assets` key.
+* 在相应的类别目录中为您的方案创建一个目录。如果您不确定使用哪个类别，@btannous和@jdob可以帮助您。
+* 遵循每一步的命名约定
+* 如果您想在使用说明中使用图像，您必须将它们放入资产中。请创建一个与您的方案名称匹配的目录，以便我们可以将文件与正确的方案相关联。
+* 如果需要将资产复制到节点中才能从shell中使用，则必须将它们放置到``assets/``在您的方案中。请注意，要复制的文件也必须列在您的``index.json``下``assets``关键。
 
+### 内容管理员
 
-### Content admins
+要向公众推广一个场景，请将其添加到路径文件中。每个目录中的场景不需要在路径文件中就可以访问，但是您需要知道访问它们的完整路径。
 
-To promote a scenario to the public, add it to the pathway file. Scenarios in each directory are accessible without being in the pathway file, but you need to know the full path to access them.
-
-To add the scenario to the dashboard/homepages, include a reference in the pathway file the format of:
+要将场景添加到仪表盘/主页，请在路径文件中包含如下格式的引用:
 
 ```
 https://learn.openshift.com/<category-directory-name>/<scenario-directory-name>/
 ```
 
-For example; https://learn.openshift.com/middleware/fis-deploy-app/
+例如; <https://learn.openshift.com/middleware/fis-deploy-app/> 
 
-To add a new category create a pathway/scenario folder structure similar to introduction and middleware. Add the category to the homepage by editing https://github.com/openshift-evangelists/intro-katacoda/blob/master/homepage-pathway.json
+要添加一个新类别，创建一个路径/场景文件夹结构，类似于introduction和middleware。通过编辑 <https://github.com/openshift-evangelists/intro-katacoda/blob/master/homepage-pathway.json> 将分类添加到主页
 
-## Resources
+## 资源
 
-* [Katacoda Examples](https://katacoda.com/scenario-examples)
-* [Status page](https://openshift.status.katacoda.com/)
+* [Katacoda例子](https://katacoda.com/scenario-examples)
+* [状态页](https://openshift.status.katacoda.com/)

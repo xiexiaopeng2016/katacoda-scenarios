@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+{% for rule in access_rules %}
+{{ rule.access_xml_id }},{{ rule.name }},{{ rule.model_id.id }},{{ rule.group_id.id }},{{ bool2num(rule.perm_read) }},{{ bool2num(rule.perm_write) }},{{ bool2num(rule.perm_create) }},{{ bool2num(rule.perm_unlink) }}
+{% endfor %}

@@ -1,0 +1,40 @@
+{
+	"title": "Linux Container Fundamentals",
+	"icon": "fa-openshift",
+	"courses": [{
+			"external_link": "https://learn.openshift.com/subsystems/container-internals-lab-2-0-part-1",
+			"course_id": "container-internals-lab-2-0-part-1",
+			"title": "Introduction to Containers"
+		},
+		{
+			"external_link": "https://learn.openshift.com/subsystems/container-internals-lab-2-0-part-2",
+			"course_id": "container-internals-lab-2-0-part-2",
+			"title": "Container Images"
+		},
+		{
+			"external_link": "https://learn.openshift.com/subsystems/container-internals-lab-2-0-part-3",
+			"course_id": "container-internals-lab-2-0-part-3",
+			"title": "Container Registries"
+		},
+		{
+			"external_link": "https://learn.openshift.com/subsystems/container-internals-lab-2-0-part-4",
+			"course_id": "container-internals-lab-2-0-part-4",
+			"title": "Container Hosts"
+		},
+		{
+			"external_link": "https://learn.openshift.com/subsystems/container-internals-lab-2-0-part-5",
+			"course_id": "container-internals-lab-2-0-part-5",
+			"title": "Container Orchestration"
+		},
+		{
+			"external_link": "https://learn.openshift.com/subsystems/container-internals-lab-2-0-part-6",
+			"course_id": "container-internals-lab-2-0-part-6",
+			"title": "Container Standards"
+		},
+		{
+			"external_link": "https://lab.redhat.com/container-internals-lab-2-0-part-7",
+			"course_id": "container-internals-lab-2-0-part-7",
+			"title": "Container Tools Ecosystem"
+		}
+	]
+}

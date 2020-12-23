@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_model_tree" model="ir.ui.view">
+        <field name="model">prototyper.ir.model</field>
+        <field name="arch" type="xml">
+            <tree string="Model Description">
+                <field name="model"/>
+                <field name="name"/>
+                <field name="note"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_model_form" model="ir.ui.view">
+        <field name="model">prototyper.ir.model</field>
+        <field name="arch" type="xml">
+            <form string="Model Description" create="0" delete="0">
+                <sheet>
+                    <group name="editor_box">
+                        <group name="left">
+                            <field name="module_id" readonly="0"/>
+                            <field name="model" readonly="0"/>
+                            <field name="model_type" readonly="0"/>
+                            <field name="is_inherit" readonly="0"/>
+                            <field name="inherit" readonly="0"
+                                   attrs="{'invisible':[('is_inherit','=',False)]}"/>
+                            <field name="inherits" readonly="0"
+                                   attrs="{'invisible':[('is_inherit','=',False)]}"/>
+                        </group>
+                        <group name="right">
+                            <field name="name" readonly="0"/>
+                            <field name="order_field" readonly="0"/>
+                            <field name="rec_name" readonly="0"/>
+                            <field name="category_id"/>
+                            <field name="position"/>
+                        </group>
+                    </group>
+                    <group name="fields">
+                        <field name="field_ids" nolabel="1"
+                               widget="innerEdit_kanban"
+                               context="{'default_model_id':active_id}">
+                            <kanban string="字段" editable="bottom">
+                                <field name="sequence"/>
+                                <field name="name"/>
+                                <field name="field_description"/>
+                                <field name="ttype"/>
+                                <field name="is_extend"/>
+                                <field name="required"/>
+                                <field name="readonly"/>
+                                <field name="can_copy"/>
+                                <field name="index"/>
+                                <field name="size"/>
+                                <field name="digits"/>
+                                <field name="is_default_now"/>
+                                <field name="is_attachment"/>
+                                <field name="is_compute_field"/>
+                                <field name="is_related_field"/>
+                                <field name="selection"/>
+                                <field name="comodel_name"/>
+                                <field name="inverse_name"/>
+                                <field name="on_delete"/>
+                                <field name="relation_table"/>
+                                <field name="column1"/>
+                                <field name="column2"/>
+                                <field name="domain"/>
+                                <field name="auto_join"/>
+                                <field name="limit"/>
+                                <field name="default_value"/>
+                                <field name="track_visibility"/>
+                                <field name="groups"/>
+                                <field name="help"/>
+                                <field name="message_follower_ids"/>
+                                <field name="message_ids"/>
+                                <field name="activity_ids"/>
+                                <field name="activity_state"/>
+                                <field name="message_qty"/>
+                                <field name="activity_qty"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div>
+                                            <div>
+                                                <t t-if="record.name.value">
+                                                    <span><field name="sequence"/>.
+                                                    </span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.name.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.field_description.value">
+                                                    <span>字段描述</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.field_description.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.ttype.value">
+                                                    <span>字段类型</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.ttype.value"/>
+                                                        <t t-if="(record.ttype.value=='char' or record.ttype.value=='reference') and record.size.value gt 0">
+                                                            (<t t-esc="record.size.value"/>)
+                                                        </t>
+                                                        <t t-if="record.ttype.value=='float' and record.digits.value">
+                                                            (<t t-esc="record.digits.value"/>)
+                                                        </t>
+                                                    </span>
+                                                </t>
+                                                <t t-if="(record.ttype.value=='many2one' or record.ttype.value=='one2many' or record.ttype.value=='many2many')">
+                                                    <t t-if="(record.ttype.value=='many2one' or record.ttype.value=='one2many')">
+                                                        <span>关联对象</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.comodel_name.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='one2many')">
+                                                        <span>反向字段</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.inverse_name.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='many2one' and record.on_delete.value)">
+                                                        <span>删除时</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.on_delete.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='many2many' and record.relation_table.value)">
+                                                        <span>关联的表</span>
+                                                        <span>
+                                                            <t t-esc="record.relation_table.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='many2many' and record.column1.value)">
+                                                        <span>列1</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.column1.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='many2many' and record.column2.value)">
+                                                        <span>列2</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.column2.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='many2one' or record.ttype.value=='one2many' or record.ttype.value=='many2many') and record.domain.value and record.domain.value != '[]'">
+                                                        <span>过滤条件</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.domain.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='one2many' or record.ttype.value=='many2many') and record.limit.value gt 0">
+                                                        <span>limit</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.limit.value"/>
+                                                        </span>
+                                                    </t>
+                                                </t>
+                                                <t t-if="record.is_attachment.raw_value==true">
+                                                    <span class="field_value">附件</span>
+                                                </t>
+                                                <t t-if="(record.ttype.value=='selection' or record.ttype.value=='reference') and record.selection.raw_value">
+                                                    <span>选项</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.selection.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.track_visibility.value">
+                                                    <span>跟踪变化</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.track_visibility.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.groups.value">
+                                                    <span>权限组</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.groups.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.is_extend.raw_value==true">
+                                                    <span>拓展字段</span>
+                                                    <span class="fa fa-check-square-o"/>
+                                                </t>
+                                                <t t-if="record.name.value and record.required.raw_value==true">
+                                                    <span>必填</span>
+                                                    <span class="fa fa-check-square-o"/>
+                                                </t>
+                                                <t t-if="record.name.value and record.readonly.raw_value==true">
+                                                    <span>只读</span>
+                                                    <span class="fa fa-check-square-o"/>
+                                                </t>
+                                                <t t-if="(record.ttype.value!='one2many' and record.can_copy.raw_value==false)">
+                                                    <span>复制</span>
+                                                    <span class="fa fa-close"/>
+                                                </t>
+                                                <t t-if="(record.ttype.value=='one2many' and record.can_copy.raw_value==true)">
+                                                    <span>复制</span>
+                                                    <span class="fa fa-check-square-o"/>
+                                                </t>
+                                                <t t-if="record.index.raw_value==true">
+                                                    <span>索引</span>
+                                                    <span class="fa fa-check-square-o"/>
+                                                </t>
+                                                <t t-if="_.str.trim(record.default_value.value)">
+                                                    <span>默认值</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.default_value.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="(record.ttype.value=='one2many' or record.ttype.value=='many2many') and record.index.auto_join==true">
+                                                    <span>auto_join</span>
+                                                    <span class="fa fa-check-square-o"/>
+                                                </t>
+                                            </div>
+                                            <div t-if="record.help.value">
+                                                <span>帮助</span>
+                                                <span class="field_value">
+                                                    <t t-esc="record.help.value"/>
+                                                </span>
+                                            </div>
+                                            <!--<t t-if="record.tag_ids.value">
+                                                <field name="tag_ids" widget="many2many_tags"/>
+                                            </t>
+                                            <div class="oe_chatter">
+                                                <field name="message_follower_ids"
+                                                       widget="mail_followers"/>
+                                                <field name="activity_ids" widget="kanban_activity"/>
+                                                <field name="message_ids" widget="mail_thread"/>
+                                            </div>-->
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </group>
+                    <group name="method">
+                        <field name="method_ids" nolabel="1" widget="innerEdit_kanban">
+                            <kanban string="方法">
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="code"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div>
+                                            <span><field name="sequence"/>.</span>
+                                            <span class="field_value">
+                                                <t t-esc="record.description.value"/>
+                                            </span>
+                                            <field name="code" widget="ace" options="{'mode': 'python'}"/>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </group>
+                    <group name="access">
+                        <field name="access_ids" nolabel="1" widget="innerEdit_kanban">
+                            <kanban string="访问规则">
+                                <field name="name"/>
+                                <field name="group_id"/>
+                                <field name="perm_read"/>
+                                <field name="perm_write"/>
+                                <field name="perm_create"/>
+                                <field name="perm_unlink"/>
+                                <field name="active"/>
+                                <field name="message_qty"/>
+                                <field name="activity_qty"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div>
+                                            <field name="name"/>
+                                            <div class="oe_chatter11">
+                                                <!--<field name="message_follower_ids"-->
+                                                <!--widget="mail_followers"/>-->
+                                                <!--<field name="activity_ids" widget="mail_activity"/>-->
+                                                <!--<field name="message_ids" widget="mail_thread"/>-->
+                                            </div>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </group>
+                    <group name="rules">
+                        <field name="rule_ids" nolabel="1" widget="innerEdit_kanban">
+                            <kanban string="记录规则">
+                                <field name="name"/>
+                                <field name="domain_force"/>
+                                <field name="groups" widget="many2many_tags"/>
+                                <field name="perm_read"/>
+                                <field name="perm_write"/>
+                                <field name="perm_create"/>
+                                <field name="perm_unlink"/>
+                                <field name="active"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div>
+                                            <field name="name"/>
+
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </group>
+                    <group name="constraint">
+                        <field name="sql_constraint_ids" nolabel="1" widget="innerEdit_kanban">
+                            <kanban string="SQL约束">
+                                <field name="constraint_type"/>
+                                <field name="constraint_fields"/>
+                                <field name="message"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div>
+                                            <field name="message"/>
+
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </group>
+                    <group name="ui" string="用户界面">
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_prototyper_ir_model_access_form" model="ir.ui.view">
+        <field name="name">prototyper.ir.model.access.form</field>
+        <field name="model">prototyper.ir.model.access</field>
+        <field name="type">form</field>
+        <field name="inherit_id" eval="False"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <form string="记录规则">
+                <group name="main">
+                    <group name="left">
+                        <field name="model_id"/>
+                        <field name="name"/>
+                        <field name="group_id"/>
+                        <field name="active"/>
+                    </group>
+                    <group name="right">
+                        <field name="perm_read"/>
+                        <field name="perm_write"/>
+                        <field name="perm_create"/>
+                        <field name="perm_unlink"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_prototyper_ir_model_sql_constraint_form" model="ir.ui.view">
+        <field name="name">prototyper.ir.model.sql.constraint.form</field>
+        <field name="model">prototyper.ir.model.sql.constraint</field>
+        <field name="type">form</field>
+        <field name="inherit_id" eval="False"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <form string="">
+                <group name="main">
+                    <group name="left">
+                        <field name="constraint_type"/>
+                        <field name="message"/>
+                    </group>
+                    <group name="right">
+                        <field name="constraint_fields"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_prototyper_ir_model_method_form" model="ir.ui.view">
+        <field name="name">prototyper.ir.model.method.form</field>
+        <field name="model">prototyper.ir.model.method</field>
+        <field name="type">form</field>
+        <field name="inherit_id" eval="False"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <form string="方法">
+                <sheet>
+                    <group name="main">
+                        <field name="name"/>
+                        <field name="code" widget="ace" options="{'mode': 'python'}"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

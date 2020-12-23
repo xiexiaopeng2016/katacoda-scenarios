@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_model_fields_tree" model="ir.ui.view">
+        <field name="name">prototyper.ir.model.fields.tree</field>
+        <field name="model">prototyper.ir.model.fields</field>
+        <field name="type">tree</field>
+        <field name="inherit_id" eval="False"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <tree string="Fields">
+                <field name="name"/>
+                <field name="field_description"/>
+                <field name="model_id"/>
+                <field name="ttype"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_model_fields_form" model="ir.ui.view">
+        <field name="name">prototyper.ir.model.fields.form</field>
+        <field name="model">prototyper.ir.model.fields</field>
+        <field name="type">form</field>
+        <field name="inherit_id" eval="False"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <form string="Fields">
+                <group name="main">
+                    <group name="left">
+                        <field name="model_id" invisible="1"/>
+                        <field name="sequence"/>
+                        <field name="is_extend"/>
+                        <field name="name"/>
+                        <field name="ttype"/>
+                        <field name="field_description"/>
+                        <field name="digits"
+                               attrs="{'invisible': [('ttype','!=','float')]}"/>
+                        <field name="is_default_now"
+                               attrs="{'invisible': [('ttype','not in',('date','datetime'))]}"/>
+                        <field name="is_attachment"
+                               attrs="{'invisible': [('ttype','!=','binary')]}"/>
+                        <field name="size"
+                               attrs="{'invisible': [('ttype','not in',['char','reference'])]}"/>
+                        <field name="selection"
+                               attrs="{'required': [('ttype','in',['selection','reference'])],
+                                    'invisible': [('ttype','not in',['selection','reference'])]}"/>
+                        <field name="comodel_name"
+                               attrs="{'required': [('ttype','in',['many2one','one2many','many2many'])],
+                                    'invisible': [('ttype','not in',['many2one','one2many','many2many'])]}"/>
+                        <field name="inverse_name"
+                               attrs="{'required': [('ttype','=','one2many')],
+                                    'invisible': [('ttype','!=','one2many')]}"/>
+                        <field name="on_delete"
+                               attrs="{'invisible': [('ttype','!=','many2one')]}"/>
+                        <field name="relation_table"
+                               attrs="{'invisible': [('ttype','!=','many2many')]}"/>
+                        <field name="column1"
+                               attrs="{'invisible': [('ttype','!=','many2many')]}"/>
+                        <field name="column2"
+                               attrs="{'invisible': [('ttype','!=','many2many')]}"/>
+                        <field name="domain"
+                               attrs="{'invisible': [('ttype','not in',['many2one','one2many','many2many'])]}"/>
+                        <field name="auto_join"
+                               attrs="{'invisible': [('ttype','not in',['one2many','many2many'])]}"/>
+                        <field name="limit"
+                               attrs="{'invisible': [('ttype','not in',['one2many','many2many'])]}"/>
+                    </group>
+                    <group name="right">
+                        <field name="is_compute_field"/>
+                        <!-- <field name="serialization_field_id"
+                            domain="[('ttype','=','serialized'), ('model_id', '=', model_id)]"/>
+                        <field name="related"/> -->
+                        <field name="depends_fields"
+                               attrs="{'required': [('is_compute_field', '!=', False)],'invisible': [('is_compute_field','=',False)]}"/>
+                        <field name="compute_method"
+                               attrs="{'required': [('is_compute_field', '!=', False)],'invisible': [('is_compute_field','=',False)]}"/>
+                        <field name="inverse_method"
+                               attrs="{'invisible': [('is_compute_field','=',False)]}"/>
+                        <field name="search_method"
+                               attrs="{'invisible': [('is_compute_field','=',False)]}"/>
+                        <label for="is_related_field"/>
+                        <div>
+                            <field name="is_related_field" class="oe_inline"/>
+                            <field name="related_field"
+                                   attrs="{'invisible': [('is_related_field','=',False)]}"
+                                   class="oe_inline"/>
+                        </div>
+                        <field name="store"
+                               attrs="{'invisible': [('is_compute_field','=',False),('is_related_field','=',False)]}"/>
+                        <field name="required"/>
+                        <field name="readonly"/>
+                        <field name="index"/>
+                        <field name="can_copy"/>
+                        <field name="translate"
+                               attrs="{'invisible': [('ttype','not in',['char','text','html'])]}"/>
+                        <field name="default_value"/>
+                        <field name="groups"/>
+                        <field name="track_visibility"/>
+                        <field name="help"/>
+                    </group>
+                </group>
+                <field name="note"/>
+            </form>
+        </field>
+    </record>
+
+</odoo>

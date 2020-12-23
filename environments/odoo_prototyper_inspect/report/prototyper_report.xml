@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_prototyper_ir_module_document">
+        <t t-call="report.html_container">
+            <t t-call="report.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang':'zh_CN'})" />
+                <div class="page">
+                    <h2 t-esc="doc.name"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_prototyper_ir_module_module">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="odoo_prototyper_inspect.report_prototyper_ir_module_document" t-lang="zh_CN"/>
+            </t>
+        </t>
+    </template>
+
+    <report 
+        id="report_prototyper_ir_module"
+        string="开发文档"
+        model="prototyper.ir.module.module" 
+        report_type="docx"
+        file="odoo_prototyper_inspect.report_prototyper_ir_module_module"
+        name="odoo_prototyper_inspect.report_prototyper_ir_module_module"
+    />
+
+</odoo>

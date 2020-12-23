@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_prototyper_module_tree" model="ir.ui.view">
+        <field name="name">prototyper.ir.module.module.tree</field>
+        <field name="model">prototyper.ir.module.module</field>
+        <field name="arch" type="xml">
+            <tree string="Apps">
+                <field name="sequence"/>
+                <field name="shortdesc"/>
+                <field name="name"/>
+                <field name="model_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--<button name="action_prototyper_module_reverser_wizard)d" string="代码"-->
+                            <!--type="action" class="oe_highlight oe_read_only"/>-->
+
+    <record id="view_prototyper_module_form" model="ir.ui.view">
+        <field name="name">prototyper.ir.module.module.form</field>
+        <field name="model">prototyper.ir.module.module</field>
+        <field name="arch" type="xml">
+            <form string="Module">
+                <header>
+                    <!--<button name="button_module_export_action" string="生成代码" type="object"-->
+                    <!--class="oe_highlight oe_read_only"/>-->
+
+                </header>
+                <sheet>
+                    <group name="main">
+                        <field name="project_id"/>
+                        <field name="name"/>
+                        <field name="shortdesc" placeholder="Module Name"/>
+                        <field name="category_id"/>
+                        <field name="summary"/>
+                        <field name="published_version"/>
+                        <field name="author" class="oe_inline" placeholder="Author Name"/>
+                        <field name="website" widget="url"/>
+                        <field name="maintainer"/>
+                        <field name="depends"/>
+                        <field name="demo"/>
+                        <field name="application"/>
+                        <field name="license"/>
+                        <field name="sequence"/>
+                        <field name="data" filename="filename"/>
+                    </group>
+                    <group string="" name="">
+                        <field name="group_ids"/>
+                    </group>
+                    <!--<group string="类图" name="">-->
+                    	<!--<div class="o_UmlGraph"/>-->
+                    <!--</group>-->
+                    <group string="类图" name="uml">
+                    	<div id="paper"/>
+                    </group>
+                    <script type="text/javascript">
+                        odoo.define('odoo_prototyper_inspect.UMLGraph1', function (require) {
+                            var UMLGraph = require('odoo_prototyper_inspect.UMLGraph');
+                            var Graph = new UMLGraph();
+                        });
+                    </script>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

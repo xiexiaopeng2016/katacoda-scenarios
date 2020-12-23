@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="view_prototyper_ir_model_doc_search" model="ir.ui.view">
+        <field name="name">prototyper.ir.model.doc.search</field>
+        <field name="model">prototyper.ir.model.doc</field>
+        <field name="type">search</field>
+        <field name="mode">primary</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <search string="Model Description">
+                <field name="name"/>
+                <separator/>
+                <group expand="0" string="分组">
+                    <filter name="module_id" string="模块" icon="terp-go-home" context="{'group_by':'module_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_model_doc_tree" model="ir.ui.view">
+        <field name="model">prototyper.ir.model.doc</field>
+        <field name="arch" type="xml">
+            <tree string="Model Description">
+                <field name="sequence" widget="handle"/>
+                <field name="model"/>
+                <field name="name"/>
+                <field name="transient"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_prototyper_ir_model_method_doc_tree" model="ir.ui.view">
+        <field name="name">prototyper.ir.model.method.doc.tree</field>
+        <field name="model">prototyper.ir.model.method.doc</field>
+        <field name="type">tree</field>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <tree string="方法">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_prototyper_ir_model_fields_doc" model="ir.actions.act_window">
+        <field name="name">相关字段</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.ir.model.fields.doc</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('comodel_name','=', context.get('model')),('model_id','!=',False)]</field>
+        <field name="context">{'create':0,'delete':0}</field>
+        <field name="target">current</field>
+    </record>
+
+    <record id="action_prototyper_ir_model_fields_doc2" model="ir.actions.act_window">
+        <field name="name">字段排序</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.ir.model.fields.doc</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('model_id','=',active_id)]</field>
+        <field name="context">{'create':0,'delete':0}</field>
+        <field name="target">current</field>
+    </record>
+
+    <record id="action_prototyper_ir_model_method_doc2" model="ir.actions.act_window">
+        <field name="name">方法排序</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.ir.model.method.doc</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('model_id','=',active_id)]</field>
+        <field name="target">current</field>
+    </record>
+
+    <record id="view_model_doc_form" model="ir.ui.view">
+        <field name="model">prototyper.ir.model.doc</field>
+        <field name="arch" type="xml">
+            <form string="Model Description" create="0" delete="0">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_prototyper_ir_model_fields_doc)d"
+                                string="相关字段"
+                                type="action"
+                                context="{'model': model}"
+                                class="oe_stat_button"
+                                icon="fa-snowflake-o">
+                        </button>
+                        <button name="%(action_prototyper_ir_model_fields_doc2)d"
+                                string="字段排序"
+                                type="action"
+                                class="oe_stat_button"
+                                groups="odoo_prototyper_inspect.group_prototyper_manager"
+                                icon="fa-sort-alpha-asc">
+                        </button>
+                        <button name="%(action_prototyper_ir_model_method_doc2)d"
+                                string="方法排序"
+                                type="action"
+                                class="oe_stat_button"
+                                groups="odoo_prototyper_inspect.group_prototyper_manager"
+                                icon="fa-sort-amount-asc">
+                        </button>
+                        <!--<button name="get_uml_data"
+                                string="关系图"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-snowflake-o">
+                        </button>-->
+                    </div>
+                    <group name="editor_box">
+                        <group name="left">
+                            <field name="module_id" invisible="1"/>
+                            <field name="class_name"/>
+                            <field name="model"/>
+                            <field name="model_type"/>
+                            <label for="is_inherit"/>
+                            <div>
+                                <field name="is_inherit" class="oe_inline oe_edit_only"/>
+                                <field name="inherit" class="oe_inline"
+                                       attrs="{'invisible':[('is_inherit','=',False)]}"/>
+                                <field name="inherits" class="oe_inline"
+                                       attrs="{'invisible':[('is_inherit','=',False)]}"/>
+                            </div>
+                        </group>
+                        <group name="right">
+                            <field name="name"/>
+                            <field name="order_field"/>
+                            <field name="rec_name"/>
+                            <field name="category_id" invisible="1"/>
+                            <field name="position" invisible="1"/>
+                        </group>
+                    </group>
+                    <group name="note">
+                        <field name="note"/>
+                    </group>
+                    <group name="fields" attrs="{'invisible':[('field_ids','=',[])]}">
+                        <field name="field_ids" nolabel="1"
+                               widget="innerEdit_kanban"
+                               context="{'default_model_id':active_id}">
+                            <kanban string="字段" editable="bottom">
+                                <field name="sequence"/>
+                                <field name="name"/>
+                                <field name="field_description"/>
+                                <field name="ttype"/>
+                                <field name="is_extend"/>
+                                <field name="store"/>
+                                <field name="required"/>
+                                <field name="readonly"/>
+                                <field name="can_copy"/>
+                                <field name="index"/>
+                                <field name="translate"/>
+                                <field name="size"/>
+                                <field name="digits"/>
+                                <field name="is_default_now"/>
+                                <field name="is_attachment"/>
+                                <field name="is_compute_field"/>
+                                <field name="is_related_field"/>
+                                <field name="depends_fields"/>
+                                <field name="related_field"/>
+                                <field name="compute_method"/>
+                                <field name="inverse_method"/>
+                                <field name="search_method"/>
+                                <field name="selection"/>
+                                <field name="comodel_name"/>
+                                <field name="comodel_name_link"/>
+                                <field name="inverse_name"/>
+                                <field name="on_delete"/>
+                                <field name="relation_table"/>
+                                <field name="column1"/>
+                                <field name="column2"/>
+                                <field name="domain"/>
+                                <field name="auto_join"/>
+                                <field name="limit"/>
+                                <field name="default_value"/>
+                                <field name="track_visibility"/>
+                                <field name="groups"/>
+                                <field name="help"/>
+                                <field name="note"/>
+                                <field name="currency_field"/>
+                                <field name="change_default"/>
+                                <field name="company_dependent"/>
+                                <field name="group_operator"/>
+                                <field name="group_expand"/>
+                                <field name="states"/>
+                                <field name="depends"/>
+                                <field name="message_follower_ids"/>
+                                <field name="message_ids"/>
+                                <field name="activity_ids"/>
+                                <field name="activity_state"/>
+                                <field name="message_qty"/>
+                                <field name="activity_qty"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div>
+                                            <div>
+                                                <t t-if="record.name.value">
+                                                    <span><field name="sequence"/>.
+                                                    </span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.name.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.field_description.value">
+                                                    <span>描述</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.field_description.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.ttype.value">
+                                                    <span>类型</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.ttype.value"/>
+                                                        <t t-if="(record.ttype.value=='char' or record.ttype.value=='reference') and record.size.value gt 0">
+                                                            (<t t-esc="record.size.value"/>)
+                                                        </t>
+                                                        <t t-if="record.ttype.value=='float' and record.digits.value">
+                                                            (<t t-esc="record.digits.value"/>)
+                                                        </t>
+                                                    </span>
+                                                </t>
+                                                <t t-if="(record.ttype.value=='many2one' or record.ttype.value=='one2many' or record.ttype.value=='many2many')">
+                                                    <t t-if="(record.ttype.value=='many2one' or record.ttype.value=='one2many' or record.ttype.value=='many2many')">
+                                                        <span>关联对象</span>
+                                                        <span class="field_value">
+                                                            <t t-if="record.comodel_name_link.value">
+                                                                <a t-att-href="record.comodel_name_link.value"
+                                                                   target="_blank">
+                                                                    <t t-esc="record.comodel_name.value"/>
+                                                                </a>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <t t-esc="record.comodel_name.value"/>
+                                                            </t>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='one2many')">
+                                                        <span>反向字段</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.inverse_name.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='many2one' and record.on_delete.value)">
+                                                        <span>删除时</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.on_delete.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='many2many' and record.column1.value)">
+                                                        <span>列1</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.column1.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='many2many' and record.column2.value)">
+                                                        <span>列2</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.column2.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='many2one' or record.ttype.value=='one2many' or record.ttype.value=='many2many') and record.domain.value and record.domain.value != '[]'">
+                                                        <span>过滤条件</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.domain.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='one2many' or record.ttype.value=='many2many') and record.limit.value gt 0">
+                                                        <span>limit</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.limit.value"/>
+                                                        </span>
+                                                    </t>
+                                                </t>
+                                                <t t-if="record.is_attachment.raw_value==true">
+                                                    <span class="field_value">附件</span>
+
+                                                </t>
+                                                <t t-if="(record.ttype.value=='selection' or record.ttype.value=='reference') and record.selection.raw_value and record.selection.value!='[]'">
+                                                    <span>选项</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.selection.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.related_field.value">
+                                                    <span>关联字段</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.related_field.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.track_visibility.value">
+                                                    <span>跟踪变化</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.track_visibility.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.groups.value">
+                                                    <span>权限组</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.groups.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.is_compute_field.raw_value==true">
+                                                    <span>计算方法</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.compute_method.value"/>
+                                                    </span>
+                                                    <t t-if="record.depends_fields.value">
+                                                        <span>依赖字段</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.depends_fields.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="record.inverse_method.value">
+                                                        <span>反算方法</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.inverse_method.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="record.search_method.value">
+                                                        <span>搜索方法</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.search_method.value"/>
+                                                        </span>
+                                                    </t>
+                                                </t>
+                                                <t t-if="record.name.value and record.required.raw_value==true">
+                                                    <span class="field_value">必填</span>
+                                                </t>
+                                                <t t-if="record.name.value and record.readonly.raw_value==true">
+                                                    <span class="field_value">只读</span>
+                                                </t>
+                                                <t t-if="_.str.trim(record.default_value.value)">
+                                                    <span>默认值</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.default_value.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="(record.ttype.value!='one2many' and record.is_compute_field.raw_value!=true and record.is_related_field.raw_value !=true and record.company_dependent.raw_value !=true and record.can_copy.raw_value==false)">
+                                                    <span class="field_value"
+                                                          style="text-decoration:line-through red;">复制
+                                                    </span>
+                                                </t>
+                                                <t t-if="(record.ttype.value=='one2many' and record.can_copy.raw_value==true)">
+                                                    <span class="field_value">复制</span>
+                                                </t>
+                                                <t t-if="record.index.raw_value==true">
+                                                    <span class="field_value">索引</span>
+                                                </t>
+                                                <t t-if="record.is_compute_field.raw_value!=true and record.is_related_field.raw_value !=true and record.company_dependent.raw_value !=true and record.store.raw_value==false">
+                                                    <span class="field_value"
+                                                          style="text-decoration:line-through red;">存储
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.translate.raw_value==true">
+                                                    <span class="field_value">翻译</span>
+                                                </t>
+                                                <t t-if="record.currency_field.value">
+                                                    <span>币别字段</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.currency_field.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.change_default.raw_value==true">
+                                                    <span class="field_value">change_default</span>
+                                                </t>
+                                                <t t-if="record.company_dependent.raw_value==true">
+                                                    <span class="field_value">company_dependent</span>
+                                                </t>
+                                                <t t-if="record.group_operator.value">
+                                                    <span>group_operator</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.group_operator.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.group_expand.value">
+                                                    <span>group_expand</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.group_expand.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.states.value">
+                                                    <span>states</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.states.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.depends.value">
+                                                    <span>depends</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.depends.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="(record.ttype.value=='one2many' or record.ttype.value=='many2many') and record.index.auto_join==true">
+                                                    <span class="field_value">auto_join</span>
+                                                </t>
+                                                <t t-if="record.help.value">
+                                                    <span>帮助</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.help.value"/>
+                                                    </span>
+                                                </t>
+                                                <span t-if="record.note.value" style="color:#da1414;">
+                                                    <t t-esc="record.note.value"/>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </group>
+                    <group name="other_field_ids" string="继承的字段"
+                           attrs="{'invisible':[('other_field_ids','=',[])]}">
+                        <field name="other_field_ids" nolabel="1"
+                               widget="innerEdit_kanban"
+                               context="{'default_model_id':active_id}">
+                            <kanban string="字段" editable="bottom">
+                                <field name="sequence"/>
+                                <field name="name"/>
+                                <field name="field_description"/>
+                                <field name="ttype"/>
+                                <field name="is_extend"/>
+                                <field name="store"/>
+                                <field name="required"/>
+                                <field name="readonly"/>
+                                <field name="can_copy"/>
+                                <field name="index"/>
+                                <field name="translate"/>
+                                <field name="size"/>
+                                <field name="digits"/>
+                                <field name="is_default_now"/>
+                                <field name="is_attachment"/>
+                                <field name="is_compute_field"/>
+                                <field name="is_related_field"/>
+                                <field name="depends_fields"/>
+                                <field name="related_field"/>
+                                <field name="compute_method"/>
+                                <field name="inverse_method"/>
+                                <field name="search_method"/>
+                                <field name="selection"/>
+                                <field name="comodel_name"/>
+                                <field name="comodel_name_link"/>
+                                <field name="inverse_name"/>
+                                <field name="on_delete"/>
+                                <field name="relation_table"/>
+                                <field name="column1"/>
+                                <field name="column2"/>
+                                <field name="domain"/>
+                                <field name="auto_join"/>
+                                <field name="limit"/>
+                                <field name="default_value"/>
+                                <field name="track_visibility"/>
+                                <field name="groups"/>
+                                <field name="help"/>
+                                <field name="note"/>
+                                <field name="currency_field"/>
+                                <field name="change_default"/>
+                                <field name="company_dependent"/>
+                                <field name="group_operator"/>
+                                <field name="group_expand"/>
+                                <field name="states"/>
+                                <field name="depends"/>
+                                <field name="module_id"/>
+                                <field name="message_follower_ids"/>
+                                <field name="message_ids"/>
+                                <field name="activity_ids"/>
+                                <field name="activity_state"/>
+                                <field name="message_qty"/>
+                                <field name="activity_qty"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div>
+                                            <div>
+                                                <t t-if="record.name.value">
+                                                    <span><field name="sequence"/>.
+                                                    </span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.name.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.field_description.value">
+                                                    <span>描述</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.field_description.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.ttype.value">
+                                                    <span>类型</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.ttype.value"/>
+                                                        <t t-if="(record.ttype.value=='char' or record.ttype.value=='reference') and record.size.value gt 0">
+                                                            (<t t-esc="record.size.value"/>)
+                                                        </t>
+                                                        <t t-if="record.ttype.value=='float' and record.digits.value">
+                                                            (<t t-esc="record.digits.value"/>)
+                                                        </t>
+                                                    </span>
+                                                </t>
+                                                <t t-if="(record.ttype.value=='many2one' or record.ttype.value=='one2many' or record.ttype.value=='many2many')">
+                                                    <t t-if="(record.ttype.value=='many2one' or record.ttype.value=='one2many' or record.ttype.value=='many2many')">
+                                                        <span>关联对象</span>
+                                                        <span class="field_value">
+                                                            <t t-if="record.comodel_name_link.value">
+                                                                <a t-att-href="record.comodel_name_link.value"
+                                                                   target="_blank">
+                                                                    <t t-esc="record.comodel_name.value"/>
+                                                                </a>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <t t-esc="record.comodel_name.value"/>
+                                                            </t>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='one2many')">
+                                                        <span>反向字段</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.inverse_name.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='many2one' and record.on_delete.value)">
+                                                        <span>删除时</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.on_delete.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='many2many' and record.column1.value)">
+                                                        <span>列1</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.column1.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='many2many' and record.column2.value)">
+                                                        <span>列2</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.column2.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='many2one' or record.ttype.value=='one2many' or record.ttype.value=='many2many') and record.domain.value and record.domain.value != '[]'">
+                                                        <span>过滤条件</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.domain.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="(record.ttype.value=='one2many' or record.ttype.value=='many2many') and record.limit.value gt 0">
+                                                        <span>limit</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.limit.value"/>
+                                                        </span>
+                                                    </t>
+                                                </t>
+                                                <t t-if="record.is_attachment.raw_value==true">
+                                                    <span class="field_value">附件</span>
+
+                                                </t>
+                                                <t t-if="(record.ttype.value=='selection' or record.ttype.value=='reference') and record.selection.raw_value and record.selection.value!='[]'">
+                                                    <span>选项</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.selection.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.related_field.value">
+                                                    <span>关联字段</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.related_field.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.track_visibility.value">
+                                                    <span>跟踪变化</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.track_visibility.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.groups.value">
+                                                    <span>权限组</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.groups.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.is_compute_field.raw_value==true">
+                                                    <span>计算方法</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.compute_method.value"/>
+                                                    </span>
+                                                    <t t-if="record.depends_fields.value">
+                                                        <span>依赖字段</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.depends_fields.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="record.inverse_method.value">
+                                                        <span>反算方法</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.inverse_method.value"/>
+                                                        </span>
+                                                    </t>
+                                                    <t t-if="record.search_method.value">
+                                                        <span>搜索方法</span>
+                                                        <span class="field_value">
+                                                            <t t-esc="record.search_method.value"/>
+                                                        </span>
+                                                    </t>
+                                                </t>
+                                                <t t-if="record.name.value and record.required.raw_value==true">
+                                                    <span class="field_value">必填</span>
+                                                </t>
+                                                <t t-if="record.name.value and record.readonly.raw_value==true">
+                                                    <span class="field_value">只读</span>
+                                                </t>
+                                                <t t-if="_.str.trim(record.default_value.value)">
+                                                    <span>默认值</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.default_value.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="(record.ttype.value!='one2many' and record.is_compute_field.raw_value!=true and record.is_related_field.raw_value !=true and record.company_dependent.raw_value !=true and record.can_copy.raw_value==false)">
+                                                    <span class="field_value"
+                                                          style="text-decoration:line-through red;">复制
+                                                    </span>
+                                                </t>
+                                                <t t-if="(record.ttype.value=='one2many' and record.can_copy.raw_value==true)">
+                                                    <span class="field_value">复制</span>
+                                                </t>
+                                                <t t-if="record.index.raw_value==true">
+                                                    <span class="field_value">索引</span>
+                                                </t>
+                                                <t t-if="record.is_compute_field.raw_value!=true and record.is_related_field.raw_value !=true and record.company_dependent.raw_value !=true and record.store.raw_value==false">
+                                                    <span class="field_value"
+                                                          style="text-decoration:line-through red;">存储
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.translate.raw_value==true">
+                                                    <span class="field_value">翻译</span>
+                                                </t>
+                                                <t t-if="record.currency_field.value">
+                                                    <span>币别字段</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.currency_field.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.change_default.raw_value==true">
+                                                    <span class="field_value">change_default</span>
+                                                </t>
+                                                <t t-if="record.company_dependent.raw_value==true">
+                                                    <span class="field_value">company_dependent</span>
+                                                </t>
+                                                <t t-if="record.group_operator.value">
+                                                    <span>group_operator</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.group_operator.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.group_expand.value">
+                                                    <span>group_expand</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.group_expand.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.states.value">
+                                                    <span>states</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.states.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.depends.value">
+                                                    <span>depends</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.depends.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="(record.ttype.value=='one2many' or record.ttype.value=='many2many') and record.index.auto_join==true">
+                                                    <span class="field_value">auto_join</span>
+                                                </t>
+                                                <t t-if="record.help.value">
+                                                    <span>帮助</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.help.value"/>
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.module_id.value">
+                                                    <span>模块</span>
+                                                    <span class="field_value">
+                                                        <t t-esc="record.module_id.value"/>
+                                                    </span>
+                                                </t>
+                                                <span t-if="record.note.value" style="color:#da1414;">
+                                                    <t t-esc="record.note.value"/>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </group>
+                    <group name="method" attrs="{'invisible':[('method_ids','=',[])]}">
+                        <field name="method_ids" nolabel="1" widget="innerEdit_kanban">
+                            <kanban string="方法">
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="code"/>
+                                <field name="message_follower_ids"/>
+                                <field name="message_ids"/>
+                                <field name="activity_ids"/>
+                                <field name="message_qty"/>
+                                <field name="activity_qty"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div>
+                                            <span><field name="sequence"/>.
+                                            </span>
+                                            <span style="color:black; margin-left: 15px;">
+                                                <t t-raw="record.description.raw_value"/>
+                                            </span>
+                                            <field name="code" widget="ace" options="{'mode': 'python'}"/>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </group>
+                    <group name="method2" attrs="{'invisible':[('other_method_ids','=',[])]}">
+                        <field name="other_method_ids" nolabel="1" widget="innerEdit_kanban">
+                            <kanban string="方法">
+                                <field name="module_id"/>
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="code"/>
+                                <field name="message_follower_ids"/>
+                                <field name="message_ids"/>
+                                <field name="activity_ids"/>
+                                <field name="message_qty"/>
+                                <field name="activity_qty"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div>
+                                            <span>
+                                                <field name="sequence"/>.
+                                            </span>
+                                            <span>
+                                                <t t-esc="record.module_id.value"/>
+                                            </span>
+                                            <span style="color:#da1414;">
+                                                <t t-raw="record.description.raw_value"/>
+                                            </span>
+                                            <field name="code" widget="ace" options="{'mode': 'python'}"/>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </group>
+                    <group name="image">
+                    	<field name="image_ids" nolabel="1">
+                            <tree string="原型" edit="bottom">
+                                <field name="url"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_prototyper_ir_model_access_form" model="ir.ui.view">
+        <field name="name">prototyper.ir.model.access.form</field>
+        <field name="model">prototyper.ir.model.access</field>
+        <field name="type">form</field>
+        <field name="inherit_id" eval="False"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <form string="记录规则">
+                <group name="main">
+                    <group name="left">
+                        <field name="model_id"/>
+                        <field name="name"/>
+                        <field name="group_id"/>
+                        <field name="active"/>
+                    </group>
+                    <group name="right">
+                        <field name="perm_read"/>
+                        <field name="perm_write"/>
+                        <field name="perm_create"/>
+                        <field name="perm_unlink"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_prototyper_ir_model_sql_constraint_form" model="ir.ui.view">
+        <field name="name">prototyper.ir.model.sql.constraint.form</field>
+        <field name="model">prototyper.ir.model.sql.constraint</field>
+        <field name="type">form</field>
+        <field name="inherit_id" eval="False"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <form string="">
+                <group name="main">
+                    <group name="left">
+                        <field name="constraint_type"/>
+                        <field name="message"/>
+                    </group>
+                    <group name="right">
+                        <field name="constraint_fields"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_prototyper_ir_model_method_doc_form" model="ir.ui.view">
+        <field name="name">prototyper.ir.model.method.doc.form</field>
+        <field name="model">prototyper.ir.model.method.doc</field>
+        <field name="type">form</field>
+        <field name="inherit_id" eval="False"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <form string="方法">
+                <sheet>
+                    <group name="main">
+                        <field name="model_id"/>
+                        <field name="name"/>
+                        <field name="code" widget="ace" options="{'mode': 'python'}"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+</odoo>

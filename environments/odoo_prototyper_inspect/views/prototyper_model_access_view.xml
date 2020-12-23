@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_prototyper_ir_model_access_form" model="ir.ui.view">
+        <field name="name">prototyper.ir.model.access.form</field>
+        <field name="model">prototyper.ir.model.access</field>
+        <field name="type">form</field>
+        <field name="inherit_id" eval="False"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <form string="">
+                <group name="main">
+                    <group name="left">
+                        <field name="name"/>
+                        <field name="group_id"/>
+                        <field name="active"/>
+                    </group>
+                    <group name="right">
+                        <field name="perm_read"/>
+                        <field name="perm_write"/>
+                        <field name="perm_create"/>
+                        <field name="perm_unlink"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_prototyper_ir_rule_form" model="ir.ui.view">
+        <field name="name">prototyper.ir.rule.form</field>
+        <field name="model">prototyper.ir.rule</field>
+        <field name="type">form</field>
+        <field name="inherit_id" eval="False"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <form string="">
+                <group name="main">
+                    <group name="left">
+                        <field name="name"/>
+                        <field name="groups" widget="many2many_tags"/>
+                        <field name="domain_force"/>
+                        <field name="active"/>
+                    </group>
+                    <group name="right">
+                        <field name="perm_read"/>
+                        <field name="perm_write"/>
+                        <field name="perm_create"/>
+                        <field name="perm_unlink"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo>

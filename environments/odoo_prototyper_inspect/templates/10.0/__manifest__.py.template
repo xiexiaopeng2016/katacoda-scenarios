@@ -1,0 +1,41 @@
+{% extends "header.template" %}
+{% block body %}
+
+{
+    'name': '{{ module.shortdesc }}',
+    'author': '{{ module.author }}',
+    'maintainer': '{{ module.maintainer }}',
+    'website': '{{ module.website }}',
+    'category': '{{ module.with_context({}).category_id.name }}',
+    'summary': '{{ module.summary }}',
+    'description': '',
+    'depends': [
+        {% for dependency in module.dependency_ids %}
+            '{{ dependency.name }}',
+        {% endfor %}
+    ],
+    'external_dependencies': {
+        'python': [],
+    },
+    'data': [
+        {% for data_file in data_files %}
+            '{{ data_file }}',
+        {% endfor %}
+    ],
+    'demo': [
+        {% for demo_file in module.demo_ids %}
+            '{{ demo_file.name }}',
+        {% endfor %}
+    ],
+    'js': [],
+    'css': [],
+    'qweb': [],
+    'license': '{{ module.licence }}',
+    'version': '{{ module.published_version }}',
+    'installable': True,
+    'auto_install': {{ module.auto_install }},
+    'application': {{ module.application }},
+    'sequence': {{ module.sequence }},
+}
+{% endblock %}
+

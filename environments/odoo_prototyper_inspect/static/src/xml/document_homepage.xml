@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <t t-name="Document.Home.Page">
+        <div class="page-wrapper">
+            <div class="page-wrapper-row">
+                <div class="page-wrapper-top">
+                    <div class="page-header">
+                        <div class="page-header-top">
+                            <div class="container-fluid">
+                                <div class="page-logo">
+
+                                </div>
+                                <a href="javascript:;" class="menu-toggler"></a>
+                                <div class="top-menu">
+                                    <ul class="nav navbar-nav pull-right"/>
+                                    <ul class="nav navbar-nav navbar-right oe_user_menu_placeholder"
+                                        style="display: none;"/>
+                                    <ul class="nav navbar-nav pull-right o_menu_systray"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page-header-menu">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-wrapper-row full-height">
+                <div class="page-wrapper-middle">
+                    <div class="page-container">
+                        <div class="page-sidebar-wrapper">
+
+                        </div>
+                        <div class="page-content-wrapper">
+                            <div class="page-content">
+                                <div class="page-content-inner o_main_content">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <div t-name="HomeMenu" class="o_home_menu">
+        <div class="o_menu_search o_bar_hidden d-none d-md-flex">
+            <span class="fa fa-search o_menu_search_icon" role="img" aria-label="Search" title="Search"/>
+            <input type="text" placeholder="Search..." class="o_menu_search_input" onfocus="this.value = this.value;"/>
+        </div>
+        <div class="o_home_menu_scrollable">
+            <t t-call="HomeMenu.Content"/>
+        </div>
+    </div>
+
+    <t t-name="HomeMenu.Content">
+        <div t-if="widget._state.apps.length" class="o_apps">
+            <t t-set="focused_app_index" t-value="widget.getAppIndex()"/>
+            <t t-foreach="widget._state.apps" t-as="app">
+              <a
+                      t-att-class="'o_app o_menuitem' + ((focused_app_index === app_index)? ' o_focused' : '')"
+                      t-att-data-menu="app.id"
+                      t-att-data-action-model="app.action ? app.action.split(',')[0] : ''"
+                      t-att-data-action-id="app.action"
+                      t-att-data-menu-xmlid="app.xmlid"
+                      t-att-href="app.href ? app.href : ('#menu_id='+app.id+'&amp;action_id='+app.action)">
+                <div t-if="app.web_icon_data" class="o_app_icon"
+                     t-attf-style="background-image: url('#{app.web_icon_data}');"/>
+                  <div t-else="" class="o_app_icon o_app_icon_has_pictogram"
+                       t-attf-style="background-color: #{app.web_icon.background};">
+                    <i t-att-class="app.web_icon.class" t-attf-style="color: #{app.web_icon.color};"/>
+                </div>
+                  <div class="o_caption"><t t-esc="app.label"/></div>
+              </a>
+            </t>
+        </div>
+            <div t-if="widget._state.menuItems.length" class="o_menuitems">
+            <t t-set="focused_menu_index" t-value="widget.getMenuIndex()"/>
+                <t t-foreach="widget._state.menuItems" t-as="menu">
+                <a role="menuitem"
+                   t-att-class="'o_menuitem' + ((focused_menu_index === menu_index)? ' o_focused' : '')"
+                   t-att-href="menu.href ? menu.href : ('#menu_id='+menu.id+'&amp;action_id='+menu.action)"
+                   t-att-data-menu="menu.id">
+                      <span class="o_menuitem_parents"><t t-esc="menu.parents"/>
+                          /</span>
+                    <t t-esc="menu.label"/>
+                </a>
+            </t>
+        </div>
+            <t t-if="widget._state.apps.length + widget._state.menuItems.length === 0">
+            <div class="o_no_result" role="alert">No result</div>
+        </t>
+            <div class="o_home_menu_footer">
+            <img src="/web/static/src/img/logo_inverse_white_206px.png" alt="Logo"/>
+        </div>
+    </t>
+
+    <t t-name="WebClient.database_expiration_panel">
+        <div class="database_expiration_panel" id="announcement_bar_table">
+            <div t-attf-class="alert alert-#{diffDays&lt;6?'danger':(diffDays&lt;16?'warning':'info')}" role="alert">
+                <a href="#" class="oe_instance_hide_panel float-right" t-translation="off"
+                   aria-label="Dismiss">&amp;times;</a>
+                <span>
+                    <span class="oe_instance_expires"></span>
+                    <span class="oe_instance_register">
+                        <t t-if="!has_mail">
+                            You will be able to register your database once you have installed your first app.
+                        </t>
+                        <t t-if="has_mail">
+                            <t t-if="diffDays == 30">
+                                <t t-set="delay">1 month</t>
+                            </t>
+                            <t t-if="diffDays != 30">
+                                <t t-set="delay"><t t-esc="diffDays"/>
+                                    days</t>
+                            </t>
+                            <t t-if="diffDays &gt; 0">
+                                <t t-if="dbexpiration_reason == 'demo'">
+                                    This demo database will expire in <span t-esc="delay"/>.
+                                </t>
+                                <t t-if="dbexpiration_reason != 'demo'">
+                                    This database will expire in <span t-esc="delay"/>.
+                                </t>
+                            </t>
+                            <t t-if="diffDays &lt; 1">
+                                This database has expired.
+                            </t>
+                            <!-- only show corrective actions to an admin (group_system) -->
+                            <t t-if="warning=='admin'">
+                                <t t-if="dbexpiration_reason == 'trial' or dbexpiration_reason == 'demo' or dbexpiration_reason === false">
+                                    <a class="oe_instance_register_show" href="#">Register your subscription</a>
+                                    or <a class="oe_instance_buy" href="#">buy a subscription</a>.
+                                </t>
+                                <t t-if="dbexpiration_reason == 'renewal'">
+                                    <a class="oe_instance_renew" href="#">Renew your subscription</a>
+                                    <a class="check_enterprise_status" href="#" title="Refresh subscription status"
+                                       aria-label="Refresh subscription status"><i class="fa fa-refresh"></i></a>
+                                </t>
+                                <t t-if="dbexpiration_reason == 'upsell'">
+                                    You have more users than your subscription allows.<br/>
+                                    <a class="oe_instance_upsell" href="#">Upgrade your subscription</a>
+                                    <a class="check_enterprise_status" href="#" title="Refresh subscription status"
+                                       aria-label="Refresh subscription status"><i class="fa fa-refresh"></i></a>
+                                </t>
+                            </t>
+                            <t t-if="warning=='user'">
+                                Log in as an administrator to correct the issue.
+                            </t>
+                        </t>
+                    </span>
+                </span>
+                <span class="oe_instance_register oe_instance_success">
+                    Thank you, your registration was successful! Your database is valid until <span class="valid_date"/>.
+                </span>
+                <span class="oe_instance_register oe_subscription_updated">
+                    Your subscription was updated and is valid until <span class="valid_date"/>.
+                </span>
+                <span class="oe_instance_register oe_instance_error">
+                  Something went wrong while registering your database. You can try again or contact <a
+                        href="https://www.odoo.com/help" target="_blank">Odoo Help</a>.
+                </span>
+                <form class="form-inline oe_instance_register oe_instance_register_form">
+                    <br/>
+                    <div class="form-group">
+                        <label for="enterprise_code">Subscription Code: </label>
+                        <input type="text" class="form-control" id="enterprise_code"
+                               placeholder="Paste code here"
+                               title="Your subscription code"/>
+                    </div>
+                    <button class="btn btn-primary" id="confirm_enterprise_code">Register</button>
+                </form>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="Metronic.Menu">
+        <div class="container">
+            <form class="search-form" action="page_general_search.html" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="query"/>
+                    <span class="input-group-btn">
+                        <a href="javascript:;" class="btn submit">
+                            <i class="icon-magnifier"></i>
+                        </a>
+                    </span>
+                </div>
+            </form>
+            <div class="hor-menu">
+                <ul class="nav navbar-nav o_menu_sections">
+                </ul>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="Metronic.Menu.sections">
+        <t t-foreach="menu_data.children" t-as="menu">
+            <section t-att-class="menu.id">
+                <t t-if="menu.children.length">
+                    <t t-if="menu.menu_style=='classic' or !menu.menu_style">
+                        <li aria-haspopup="true"
+                            class="menu-dropdown classic-menu-dropdown">
+                            <a href="javascript:;">
+                                <t t-call="menu_icon"/>
+                                <t t-esc="menu.name"/>
+                                <span class="arrow"/>
+                            </a>
+                            <t t-call="header_menu_secondary"/>
+                        </li>
+                    </t>
+                    <t t-if="menu.menu_style=='mega'">
+                        <li aria-haspopup="true"
+                            class="menu-dropdown mega-menu-dropdown">
+                            <a href="javascript:;">
+                                <t t-call="menu_icon"/>
+                                <t t-esc="menu.name"/>
+                                <span class="arrow"/>
+                            </a>
+                            <t t-call="header_menu_mega"/>
+                        </li>
+                    </t>
+                    <t t-if="menu.menu_style=='mega-full'">
+                        <li aria-haspopup="true"
+                            class="menu-dropdown mega-menu-dropdown mega-menu-full">
+                            <a href="javascript:;">
+                                <t t-call="menu_icon"/>
+                                <t t-esc="menu.name"/>
+                                <span class="arrow"/>
+                            </a>
+                            <t t-call="header_menu_mega_full"/>
+                        </li>
+                    </t>
+                </t>
+                <t t-else="">
+                    <t t-call="header_menu_link"/>
+                </t>
+            </section>
+        </t>
+        <li class="menu-dropdown classic-menu-dropdown"
+            id="menu_more_container" aria-haspopup="true"
+            style="display: none;">
+            <a href="javascript:;">More
+                <span class="arrow"></span>
+            </a>
+            <ul class="dropdown-menu pull-left">
+            </ul>
+        </li>
+    </t>
+
+    <t t-name="header_menu_secondary">
+        <ul class="dropdown-menu pull-left">
+            <t t-foreach="menu.children" t-as="menu"
+               aria-haspopup="true" class="dropdown-submenu">
+                <t t-if="menu.children.length">
+                    <li aria-haspopup="true" class="dropdown-submenu">
+                        <a href="javascript:;" class="444 nav-link nav-toggle">
+                            <t t-call="menu_icon"/>
+                            <t t-esc="menu.name"/>
+                            <span class="arrow"/>
+                        </a>
+                        <t t-call="header_menu_secondary_submenu"/>
+                    </li>
+                </t>
+                <t t-else="">
+                    <t t-call="header_menu_link"/>
+                </t>
+            </t>
+        </ul>
+    </t>
+
+    <t t-name="header_menu_secondary_submenu">
+        <ul t-if="menu.children.length" class="dropdown-menu">
+            <t t-foreach="menu.children" t-as="menu">
+                <t t-if="menu.children.length">
+                    <li aria-haspopup="true" class="dropdown-submenu">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <t t-call="menu_icon"/>
+                            <t t-esc="menu.name"/>
+                            <span class="arrow"/>
+                        </a>
+                        <t t-call="header_menu_secondary_submenu"/>
+                    </li>
+                </t>
+                <t t-else="">
+                    <t t-call="header_menu_link"/>
+                </t>
+            </t>
+        </ul>
+    </t>
+
+    <t t-name="header_menu_link">
+        <t t-set="debug_param" t-value="debug ? '?&amp;debug=': ''"/>
+        <li aria-haspopup="true">
+            <a t-att-class="menu.children ? 'oe_menu_toggler': 'oe_menu_leaf'"
+               t-att-data-menu="menu.id"
+               t-att-data-menu-xmlid="menu.xmlid"
+               t-att-data-action-model="(menu.action or ',').split(',')[0] or ''"
+               t-att-data-action-id="(menu.action or ',').split(',')[1] or ''">
+                <t t-call="menu_icon"/>
+                <t t-esc="menu.name"/>
+            </a>
+        </li>
+    </t>
+
+    <t t-name="Menu.link">
+        <t t-set="depth" t-value="(depth || 0) + 1"/>
+
+        <t t-if="!menu.children.length">
+            <t t-set="_link">
+                <a role="menuitem"
+                   t-attf-href="#menu_id=#{menu.id}&amp;action=#{menu.action ? menu.action.split(',')[1] : ''}"
+                   t-att-data-menu="menu.id"
+                   t-att-data-action-model="menu.action ? menu.action.split(',')[0] : ''"
+                   t-att-data-action-id="menu.action ? menu.action.split(',')[1] : ''"
+                   t-att-data-menu-xmlid="menu.xmlid"
+                   t-attf-class="#{inNavbar ? '' : 'dropdown-item '}o_menu_entry_lvl_#{depth}"
+                   data-toggle="collapse" data-target="#o_navbar_collapse.in">
+                    <span><t t-esc="menu.name"/></span>
+                </a>
+            </t>
+                <li t-if="inNavbar">
+                <t t-raw="_link"/>
+            </li>
+                <t t-else="">
+                <t t-raw="_link"/>
+            </t>
+        </t>
+            <t t-else="">
+            <!-- Desktop case -->
+                <t t-if="!mobile">
+                <div t-attf-class="dropdown-header o_menu_header_lvl_#{depth}">
+                    <span><t t-esc="menu.name"/></span>
+                </div>
+                    <t t-foreach="menu.children" t-as="menu">
+                    <t t-call="Menu.link"/>
+                </t>
+            </t>
+                <!-- Mobile case -->
+                <li t-else="" class="o_burger_menu_section">
+                <a href="#" t-attf-class="o_menu_entry_lvl_#{depth}" t-att-data-menu-xmlid="menu.xmlid"
+                   data-toggle="dropdown" role="button" aria-expanded="false">
+                    <t t-esc="menu.name"/>
+                    <span class="fa fa-chevron-right toggle_icon float-right"/>
+                </a>
+                    <ul>
+                    <t t-foreach="menu.children" t-as="menu">
+                        <t t-call="Menu.link"/>
+                    </t>
+                </ul>
+            </li>
+        </t>
+    </t>
+
+    <t t-name="sider_menu_link">
+        <t t-set="debug_param" t-value="debug ? '?&amp;debug=': ''"/>
+        <li class="nav-item nav-leaf">
+            <a t-att-class="menu.children ? 'oe_menu_toggler': 'nav-link oe_menu_leaf'"
+               t-att-data-menu="menu.id"
+               t-att-data-menu-xmlid="menu.xmlid"
+               t-att-data-action-model="(menu.action or ',').split(',')[0]"
+               t-att-data-action-id="(menu.action or ',').split(',')[1]"
+               href="javascript:;">
+                <t t-call="menu_icon"/>
+                <span class="title">
+                    <t t-esc="menu.name"/>
+                </span>
+            </a>
+        </li>
+    </t>
+
+    <t t-name="header_menu_mega">
+        <ul class="dropdown-menu">
+            <li>
+                <div class="mega-menu-content">
+                    <div class="row">
+                        <t t-foreach="menu.children" t-as="menus">
+                            <div class="col-md-2">
+                                <ul class="mega-menu-submenu">
+                                    <li><h3><t t-esc="menus.name"/></h3></li>
+                                    <t t-foreach="menus.children" t-as="menu">
+                                        <t t-call="header_menu_link"/>
+                                    </t>
+                                </ul>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </t>
+
+    <t t-name="header_menu_mega_full">
+        <ul class="dropdown-menu">
+            <li>
+                <div class="mega-menu-content">
+                    <div class="row">
+
+                        <t t-foreach="menu.children" t-as="menu">
+                            <div class="col-md-2">
+                                <ul class="mega-menu-submenu">
+                                    <t t-if="menu.children.length">
+                                        <li>
+                                            <h3>
+                                                <t t-esc="menu.name"/>
+                                            </h3>
+                                        </li>
+                                        <t t-call="header_menu_mega_full_submenu"/>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-call="header_menu_link"/>
+                                    </t>
+                                </ul>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </t>
+
+    <t t-name="header_menu_mega_full_submenu">
+        <t t-foreach="menu.children" t-as="menu">
+            <t t-if="menu.children.length">
+                <t t-call="header_menu_mega_full_submenu"/>
+            </t>
+            <t t-else="">
+                <t t-call="header_menu_link"/>
+            </t>
+        </t>
+    </t>
+
+    <t t-name="SiderMenu">
+        <div class="page-sidebar navbar-collapse collapse show">
+            <t t-foreach="widget.menu_data.sider_menus" t-as="menu">
+                <div class="oe_secondary_menu o_hidden"
+                     t-att-data-menu-parent="menu.id">
+                    <ul class="page-sidebar-menu"
+                        data-keep-expanded="false"
+                        data-auto-scroll="true"
+                        data-slide-speed="200"
+                        data-initialized="1">
+                        <li class="heading">
+                            <h3 class="uppercase">
+                                <t t-esc="menu.name"/>
+                            </h3>
+                            <span class="menu_setting">
+                                <a href="#" class="o_web_edit_menu dropdown-toggle"
+                                   data-toggle="dropdown" role="button"
+                                   t-att-data-current_primary_menu="menu.id"
+                                   aria-expanded="false">
+                                    <i class="icon-note"/>
+                                </a>
+                            </span>
+                        </li>
+                        <t t-foreach="menu.children" t-as="menu">
+                            <t t-if="!menu.children">
+                                <t t-call="sider_menu_link"/>
+                            </t>
+                            <t t-else="">
+                                <li class="nav-item">
+                                    <a href="javascript:;" class="nav-link nav-toggle">
+                                        <t t-call="menu_icon"/>
+                                        <span class="title">
+                                            <t t-esc="menu.name"/>
+                                        </span>
+                                        <span class="arrow"/>
+                                    </a>
+                                    <t t-call="sider_secondary_menu"/>
+                                </li>
+                            </t>
+                        </t>
+                    </ul>
+                </div>
+            </t>
+        </div>
+    </t>
+
+    <t t-name="sider_secondary_menu">
+        <ul class="sub-menu">
+            <t t-foreach="menu.children" t-as="menu">
+                <t t-if="!menu.children">
+                    <t t-call="sider_menu_link"/>
+                </t>
+                <t t-else="">
+                    <li class="nav-item">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <t t-call="menu_icon"/>
+                            <span class="title">
+                                <t t-esc="menu.name"/>
+                            </span>
+                            <span class="arrow"/>
+                        </a>
+                        <t t-call="sider_secondary_menu"/>
+                    </li>
+                </t>
+            </t>
+        </ul>
+    </t>
+
+    <t t-name="menu_icon">
+        <t t-if="menu.web_icon">
+            <t t-if="menu.web_icon.startsWith('fa ')">
+                <i t-attf-class="{{menu.web_icon}} fa-fw"/>
+            </t>
+            <t t-if="menu.web_icon.indexOf('/') >=0">
+                <t t-set="imgurl" t-value="menu.web_icon.replace(',','/')"/>
+                <i class="icon hidden-xs" style="display:none"
+                   t-attf-style1="background:url('/{{imgurl}}') no-repeat center;background-size:contain;width:20px;height:20px;display:inline-block;"/>
+            </t>
+            <t t-if="!menu.web_icon.startsWith('fa ') and !menu.web_icon.indexOf('/') >= 0">
+                <i t-attf-class="{{menu.web_icon}}"/>
+            </t>
+        </t>
+    </t>
+
+    <t t-extend="DashboardShare">
+        <t t-jquery=".user-heading h3" t-operation="replace">
+            <h3>
+                Odoo <t t-esc="server_version"/>
+                (Enterprise Edition)
+            </h3>
+        </t>
+            <t t-jquery=".user-heading h3" t-operation="after">
+            <t t-set="expiration_date" t-value="new moment(widget.data.expiration_date).format('LL')"/>
+                <t t-if="expiration_date">
+                <h5>Database expiration: <t t-esc="expiration_date"/></h5>
+            </t>
+        </t>
+    </t>
+
+</odoo>

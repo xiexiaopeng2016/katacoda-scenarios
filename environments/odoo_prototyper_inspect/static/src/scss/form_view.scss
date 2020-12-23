@@ -1,0 +1,37 @@
+.o_listform_view {
+	.o_form_view {
+		&.o_form_readonly {
+			.o_form_label {
+				margin-right: 0px !important;
+				font-size: 12px !important;
+			}
+			.o_field_widget {
+				margin: 0 5px;
+				border-radius: 2px;
+				white-space: nowrap;
+				width: auto;
+				&:not(.o_field_boolean) {
+					background-color: #eeeeee;
+				}
+			}
+			.o_form_label_empty {
+				display: none;
+			}
+		}
+		&.o_form_editable {
+			.o_form_label {
+				margin-left: 5px;
+			}
+			input.o_field_char, select {
+				width: 10%;
+			}
+			input.o_field_integer {
+				width: 5%;
+			}
+		}
+	}
+	.o_form_nosheet {
+		padding-top: 6px !important;
+		padding-bottom: 6px !important;
+	}
+}

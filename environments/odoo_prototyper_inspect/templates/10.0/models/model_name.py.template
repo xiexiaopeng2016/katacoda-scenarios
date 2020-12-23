@@ -1,0 +1,133 @@
+{% extends "header.template" %}
+{% block body %}
+from odoo import models, fields
+from odoo.tools.translate import _
+
+
+class {{ unprefix(name) }}(models.Model):
+    {% if model.is_inherit %}
+    _inherit = '{{ model.model|trim }}'
+    {% else %}
+    _name = '{{ model.model|trim }}'
+    {% endif %}
+    {% if model.name %}
+    _description = '{{ model.name|trim }}'
+    {% endif %}
+    {% if model.order_field|trim and model.order_field|trim !='id' %}
+    _order = '{{ model.order_field|trim }}'
+    {% endif %}
+    {% if model.rec_name|trim and model.rec_name|trim !='name' %}
+    _rec_name = '{{ model.rec_name|trim }}'
+    {% endif %}
+    
+
+    {% for field in fields %}
+        {% for line in wrap(field.notes, replace_whitespace=False) %}
+    # {{line}}
+        {% endfor %}
+    {{ unprefix(field.name) }} = fields.{{ field.ttype|capitalize }}(
+    {% if field.ttype in ['many2one','one2many','many2many'] %}
+        comodel_name='{{ field.comodel_name }}',
+    {% endif %}
+    {% if field.ttype == 'one2many' %}
+        inverse_name='{{ field.inverse_name }}',
+    {% endif %}
+    {% if field.ttype == 'many2many' and field.relation_table %}
+        relation='{{ field.relation_table }}',
+    {% endif %}
+    {% if field.ttype == 'many2many' and field.column1 %}
+        column1='{{ field.column1 }}',
+    {% endif %}
+    {% if field.ttype == 'many2many' and field.column2 %}
+        column2='{{ field.column2 }}',
+    {% endif %}
+    {% if field.ttype in ['many2one','one2many','many2many'] and field.auto_join %}
+        auto_join='{{ field.auto_join }}',
+    {% endif %}
+    {% if field.ttype in ['one2many','many2many'] and field.limit %}
+        limit='{{ field.limit }}',
+    {% endif %}
+    {% if field.ttype == 'selection' %}
+        selection={{ field.selection }},
+    {% endif %}
+    {% if field.field_description %}
+        string='{{ field.field_description }}',
+    {% endif %}
+    {% if field.size %}
+        size={{ field.size }},
+    {% endif %}
+    {% if field.digits %}
+        digits=(16,{{ field.digits }}),
+    {% endif %}
+    {% if field.ttype == 'binary' and field.is_prefetch %}
+        prefetch={{ field.is_prefetch }},
+    {% endif %}
+    {% if field.ttype == 'binary' and field.is_attachment %}
+        attachment={{ field.is_attachment }},
+    {% endif %}
+    {% if field.ttype == 'monetary' and field.currency_field %}
+        currency_field={{ field.currency_field }},
+    {% endif %}
+    {% if field.is_compute_field %}
+    {% if field.compute_method %}
+        compute='{{ field.compute_method }}',
+    {% endif %}
+    {% if field.inverse_method %}
+        compute='{{ field.inverse_method }}',
+    {% endif %}
+    {% if field.inverse_method %}
+        inverse='{{ field.inverse_method }}',
+    {% endif %}
+    {% if field.search_method %}
+        search='{{ field.search_method }}',
+    {% endif %}
+        store='{{ field.store }}',
+    {% endif %}
+    {% if field.is_related_field %}
+        related='{{ field.related_field }}',
+        store='{{ field.store }}',
+    {% endif %}
+    {% if field.ttype == 'many2one' %}
+        on_delete='{{ field.on_delete }}',
+    {% endif %}
+    {% if field.domain and field.domain != '[]' %}
+    {% if field.ttype == 'many2one' %}
+        domain="{{ field.domain }}",
+    {% else %}
+        domain={{ field.domain }},
+    {% endif %}
+    {% endif %}
+    {% if field.default_value != False and field.default_value|trim != '' %}
+    {% if field.ttype in ['char','text'] and field.default_value|trim is not callable %}
+        default='{{ field.default_value|trim }}',
+    {% else %}
+        default={{ field.default_value|trim }},
+    {% endif %}
+    {% endif %}
+    {% if field.required %}
+        required={{ field.required }},
+    {% endif %}
+    {% if field.readonly %}
+        readonly={{ field.readonly }},
+    {% endif %}
+    {% if field.translate %}
+        translate={{ field.translate }},
+    {% endif %}
+    {% if not field.can_copy %}
+        can_copy={{ field.can_copy }},
+    {% endif %}
+    {% if field.index %}
+        index={{ field.index }},
+    {% endif %}
+    {% if field.track_visibility %}
+        track_visibility='{{ field.track_visibility }}',
+    {% endif %}
+    {% if field.helper %}
+        help='{{ field.helper }}',
+    {% endif %}
+    {% if field.groups %}
+        groups='{{ field.groups }}',
+    {% endif %}
+    )
+    {% endfor %}
+{% endblock %}

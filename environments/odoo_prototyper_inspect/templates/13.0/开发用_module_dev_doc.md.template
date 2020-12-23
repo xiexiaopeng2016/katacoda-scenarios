@@ -1,0 +1,32 @@
+
+{% for field in model.field_ids %}
+* `{{ unprefix(field.name) }}` `{{ field.field_description }}`, 类型`{{ field.ttype|capitalize }}{% if (field.ttype=='char' or field.ttype=='reference') and field.size > 0 %}({{ field.size }}){% endif %} {% if field.ttype=='float' and field.digits %}({{ field.digits }}){% endif %}` {% if (field.ttype=='many2one' or field.ttype=='one2many' or field.ttype=='many2many') %}{% if (field.ttype=='many2one' or field.ttype=='one2many') %}, 关联对象`{{ field.comodel_name }}`{% endif %}{% if (field.ttype=='one2many') %}, 反向字段`{{ field.inverse_name }}`{% endif %}{% if (field.ttype=='many2one' and field.on_delete) %}, 删除时`{{ field.on_delete }}` {% endif %}{% if (field.ttype=='many2many' and field.comodel_name) %}, 关联对象`{{ field.comodel_name }}` {% endif %}{% if (field.ttype=='many2many' and field.column1) %}, 列1`{{ field.column1 }}` {% endif %}{% if (field.ttype=='many2many' and field.column2) %}, 列2`{{ field.column2 }}` {% endif %}{% if (field.ttype=='many2one' or field.ttype=='one2many' or field.ttype=='many2many') and field.domain and field.domain != '[]' %}, 过滤条件`{{ field.domain }}` {% endif %}{% if (field.ttype=='one2many' or field.ttype=='many2many') and field.limit > 0 %}, limit`{{ field.limit }}` {% endif %}{% endif %}
+{% if (field.ttype=='selection' or field.ttype=='reference')%}
+{% if field.selection and field.selection!='[]' %}, 选项`{{ field.selection }}`{% endif %}
+{% if field.selection_add and field.selection_add!='[]' %}, 添加选项`{{ field.selection_add }}`{% endif %}
+{% endif %}
+{% if field.related_field %}, 关联字段`{{ field.related_field }}` {% endif %}
+{% if field.track_visibility %}, 跟踪变化`{{ field.track_visibility }}`{% endif %}
+{% if field.groups %}, 权限组`{{ field.groups }}`{% endif %}
+{% if field.is_compute_field==true %}, 计算方法`{{ field.compute_method }}`{% if field.depends_fields %}, 依赖字段`{{ field.depends_fields }}`{% endif %}{% if field.inverse_method %}, 反算方法`{{ field.inverse_method }}`{% endif %}{% if field.search_method %}, 搜索方法`{{ field.search_method }}`{% endif %}{% if field.store==true %}, 存储`True`{% endif %}{% if field.name and field.readonly==false %}, 只读`False`{% endif %}{% endif %}
+{% if field.name and field.required==true %}, 必填`True`{% endif %}{% if field.name and field.readonly==true %}, 只读`True`{% endif %}{% if field.default_value|trim %}, 默认值 `{{ field.default_value }}`{% endif %}
+{% if (field.ttype!='one2many' and not field.is_compute_field and field.can_copy==false) %}, 复制`False`{% endif %}{% if (field.ttype=='one2many' and field.can_copy==true) %}, 复制`True`{% endif %}
+{% if field.index==true %}, 索引`True`{% endif %}
+{% if field.store==false %}, 存储`False`{% endif %}
+{% if field.translate==true %}, 翻译`True`{% endif %}
+{% if field.currency_field %}, 币别字段`{{ field.currency_field }}`{% endif %}
+{% if field.change_default==true %}, change_default `True`{% endif %}
+{% if field.company_dependent==true %}, company_dependent `True`{% endif %}
+{% if field.group_operator %}, group_operator `{{ field.group_operator }}`{% endif %}
+{% if field.group_expand %}, group_operator `{{ field.group_expand }}`{% endif %}
+{% if field.states %}, group_operator `{{ field.states }}`{% endif %}
+{% if field.depends %}, group_operator `{{ field.depends }}`{% endif %}
+{% if (field.ttype=='one2many' or field.ttype=='many2many') and field.index.auto_join==true %}, auto_join `True`{% endif %}
+{% if field.is_attachment==true %}, 附件`True`{% endif %}
+{% if field.help %}, 帮助`{{ field.help }}`{% endif %}
+{% if field.note %}, 注意`{{ field.note }}`{% endif %}
+
+
+
+color: #0b4df0;
+font-weight: bold;

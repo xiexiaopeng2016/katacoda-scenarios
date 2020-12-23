@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="action_prototyper_project" model="ir.actions.act_window">
+        <field name="name">项目</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.project</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'create':1,'edit':1,'delete':1}</field>
+    </record>
+
+    <record id="action_prototyper_ir_model" model="ir.actions.act_window">
+        <field name="name">Ir Model</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.ir.model</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_prototyper_ir_model_access" model="ir.actions.act_window">
+        <field name="name">Ir Model Access</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.ir.model.access</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_prototyper_ir_model_fields" model="ir.actions.act_window">
+        <field name="name">Ir Model Fields</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.ir.model.fields</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_prototyper_ir_model_method" model="ir.actions.act_window">
+        <field name="name">Ir Model Method</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.ir.model.method</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_prototyper_ir_module_module" model="ir.actions.act_window">
+        <field name="name">Ir Module Module</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.ir.module.module</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_prototyper_ir_module_module_doc" model="ir.actions.act_window">
+        <field name="name">Ir Module Module</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.ir.module.module.doc</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_prototyper_ir_model_doc" model="ir.actions.act_window">
+        <field name="name">Ir Model</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.ir.model.doc</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_module_id':1}</field>
+    </record>
+
+    <record id="action_prototyper_ir_model_fields_doc" model="ir.actions.act_window">
+        <field name="name">Ir Model Fields</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.ir.model.fields.doc</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_prototyper_ir_model_method_doc" model="ir.actions.act_window">
+        <field name="name">Ir Model Method</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.ir.model.method.doc</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_prototyper_ir_rule" model="ir.actions.act_window">
+        <field name="name">Ir Rule</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.ir.rule</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_prototyper_ir_ui_view" model="ir.actions.act_window">
+        <field name="name">Ir Ui View</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.ir.ui.view</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_prototyper_res_groups" model="ir.actions.act_window">
+        <field name="name">User Groups</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.res.groups</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_prototyper_ir_module_category" model="ir.actions.act_window">
+        <field name="name">Module Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.ir.module.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_prototyper_module_reverser_wizard" model="ir.actions.act_window">
+        <field name="name">模块逆向向导</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prototyper.module.reverser.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_document_homepage" model="ir.actions.client">
+        <field name="name">首页</field>
+        <field name="tag">document_homepage_action</field>
+    </record>
+
+    <menuitem id="menu_module_document"
+              name="模块文档"
+              action="action_prototyper_ir_module_module_doc"
+              web_icon="odoo_prototyper_inspect,static/description/icon.png"
+              sequence="40"/>
+
+    <menuitem id="menu_prototyper_ir_module_module_do"
+              name="模块"
+              action="action_prototyper_ir_module_module_doc"
+              parent="menu_module_document"
+              sequence="10"/>
+
+    <menuitem id="menu_prototyper_ir_model_doc"
+              name="模型"
+              action="action_prototyper_ir_model_doc"
+              parent="menu_module_document"
+              sequence="10"/>
+
+    <!--<menuitem id="menu_document_homepage"
+              name="首页"
+              parent="menu_module_document"
+              action="action_document_homepage"
+              sequence="10"/>-->
+
+    <menuitem id="menu_prototyper_module_reverser_wizard"
+              parent="menu_module_document"
+              name="模块逆向"
+              action='action_prototyper_module_reverser_wizard'
+              web_icon="icon-puzzle"
+              sequence="50"/>
+
+</odoo>

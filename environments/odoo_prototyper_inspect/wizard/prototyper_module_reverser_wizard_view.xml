@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_prototyper_module_reverser_wizard_form" model="ir.ui.view">
+        <field name="name">prototyper.module.reverser.wizard.form</field>
+        <field name="model">prototyper.module.reverser.wizard</field>
+        <field name="type">form</field>
+        <field name="inherit_id" eval="False"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <form string="">
+                <group name="main">
+                    <field name="project_id"/>
+                    <field name="module_path"/>
+                </group>
+                <footer>
+                    <button string="确认" name="button_module_reverser" type="object" class="btn-primary"/>
+                    <button string="取消" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--<record id="view_prototyper_module_new_wizard_form" model="ir.ui.view">
+        <field name="name">prototyper.module.new.wizard.form</field>
+        <field name="model">prototyper.module.new.wizard</field>
+        <field name="type">form</field>
+        <field name="inherit_id" eval="False"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <form string="">
+                <group name="main">
+                    <field name="project_id"/>
+                    <field name="name"/>
+                </group>
+                <footer>
+                    <button string="确认" name="button_module_reverser" type="object" class="btn-primary"/>
+                    <button string="取消" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_prototyper_model_new_wizard_form" model="ir.ui.view">
+        <field name="name">prototyper.model.new.wizard.form</field>
+        <field name="model">prototyper.model.new.wizard</field>
+        <field name="type">form</field>
+        <field name="inherit_id" eval="False"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <form string="">
+                <group name="main">
+                    <field name="project_id"/>
+                    <field name="name"/>
+                </group>
+                <footer>
+                    <button string="确认" name="button_new" type="object" class="btn-primary"/>
+                    <button string="取消" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>-->
+
+</odoo>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_prototyper_module_doc_tree" model="ir.ui.view">
+        <field name="name">prototyper.ir.module.module.doc.tree</field>
+        <field name="model">prototyper.ir.module.module.doc</field>
+        <field name="arch" type="xml">
+            <tree string="Apps">
+                <field name="sequence"/>
+                <field name="shortdesc"/>
+                <field name="name"/>
+                <field name="model_ids"/>
+            </tree>
+        </field>
+    </record>
+    <!--
+    <button name="%(action_prototyper_module_reverser_wizard)d" string="代码"
+                            type="action" class="oe_highlight oe_read_only"/>-->
+
+    <record id="view_prototyper_module_doc_form" model="ir.ui.view">
+        <field name="name">prototyper.ir.module.module.doc.form</field>
+        <field name="model">prototyper.ir.module.module.doc</field>
+        <field name="arch" type="xml">
+            <form string="Module">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="get_uml_data"
+                                string="关系图"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-snowflake-o">
+                        </button>
+                    </div>
+                    <group name="main">
+                        <group name="left">
+                            <field name="project_id"/>
+                            <field name="name"/>
+                            <field name="shortdesc" placeholder="模块名"/>
+                            <field name="category_id"/>
+                            <field name="summary"/>
+                            <field name="published_version"/>
+                            <field name="chapter_code"/>
+                            <!--<field name="author" class="oe_inline" placeholder="Author Name"/>-->
+                            <!--<field name="website" widget="url"/>-->
+                        </group>
+                        <group name="right">
+                            <field name="maintainer"/>
+                            <field name="depends"/>
+                            <field name="demo"/>
+                            <field name="application"/>
+                            <field name="license"/>
+                            <field name="sequence"/>
+                            <label for="data"/>
+                            <div style="margin-left: -13px;">
+                                <button name="button_module_export_action" type="object" string=""
+                                        class="btn-link" icon="fa-play-circle-o"/>
+                                <field name="data" filename="filename" class="oe_inline"/>
+                            </div>
+                        </group>
+                    </group>
+                    <group name="note">
+                    	<field name="note"/>
+                    </group>
+                    <!--<group string="" name="">
+                        <field name="group_ids"/>
+                    </group>
+                    <group string="类图" name="uml">
+                        <div id="paper"></div>
+                    </group>
+                    <script type="text/javascript">-->
+                        <!--odoo.define('odoo_prototyper_inspect.UMLGraph1', function (require) {-->
+                            <!--var UMLGraph = require('odoo_prototyper_inspect.UMLGraph');-->
+                            <!--var Graph = new UMLGraph();-->
+                        <!--});-->
+                    <!--</script>-->
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+</odoo>

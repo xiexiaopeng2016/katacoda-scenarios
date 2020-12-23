@@ -1,89 +1,89 @@
 {
-  "title": "Building Applications On OpenShift",
-  "icon": "fa-openshift",
-  "courses": [
-    {
-      "action": "Start Course",
-      "count": 2,
-      "external_link": "https://learn.openshift.com/middleware/courses/middleware-quarkus/",
-      "course_id": "middleware-quarkus",
-      "title": "Developing with Quarkus"
-    },
-    {
-      "count": 5,
-      "external_link": "https://learn.openshift.com/middleware/courses/middleware-vertx/",
-      "course_id": "middleware-vertx",
-      "title": "Eclipse Vert.x development"
-    },
-    {
-      "action": "Start Course",
-      "count": 11,
-      "external_link": "https://learn.openshift.com/middleware/courses/middleware-spring-boot/",
-      "course_id": "middleware-spring-boot",
-      "title": "Spring and Spring Boot development"
-    },
-    {
-      "external_link": "https://learn.openshift.com/middleware/middleware-javaee8/",
-      "count": 1,
-      "course_id": "middleware-javaee8",
-      "title": "Java EE 8 Development"
-    },
-    {
-      "action": "Start Course",
-      "coount": 3,
-      "external_link": "https://learn.openshift.com/middleware/courses/middleware-kogito/",
-      "course_id": "middleware-kogito",
-      "title": "Developing with Kogito"
-    },
-    {
-      "action": "Start Course",
-      "count": 2,
-      "external_link": "https://learn.openshift.com/middleware/courses/middleware-camelk/",
-      "course_id": "middleware-camelk",
-      "title": "Developing with Camel K"
-    },
-    {
-      "action": "Start Course",
-      "count": 2,
-      "external_link": "https://learn.openshift.com/middleware/courses/middleware-kafka/",
-      "course_id": "middleware-kafka",
-      "title": "Event-Driven Architecture with Apache Kafka"
-    },
-    {
-      "external_link": "https://learn.openshift.com/middleware/amq-getting-started-broker/",
-      "course_id": "amq-getting-started-broker",
-      "title": "Application Messaging with Openshift",
-      "description": "Get started with Red Hat AMQ and OpenShift"
-    },
-    {
-      "external_link": "https://learn.openshift.com/middleware/rhoar-getting-started-thorntail/",
-      "course_id": "rhoar-getting-started-thorntail",
-      "title": "Thorntail development"
-    },
-    {
-      "external_link": "https://learn.openshift.com/middleware/rhoar-getting-started-rhdg/",
-      "course_id": "rhoar-getting-started-rhdg",
-      "title": "Red Hat Data Grid development"
-    },
-    {
-      "external_link": "https://learn.openshift.com/middleware/rhoar-getting-started-nodejs/",
-      "course_id": "rhoar-getting-started-nodejs",
-      "title": "Node.js development"
-    },
-    {
-      "external_link": "https://learn.openshift.com/middleware/java-batch-processing/",
-      "course_id": "java-batch-processing",
-      "title": "Java EE Batch Processing with OpenShift, WildFly & JBeret"
-    },
-    {
-      "external_link": "https://learn.openshift.com/middleware/debezium-getting-started/",
-      "course_id": "debezium-getting-started",
-      "title": "Debezium deployment"
-    },
-    {
-      "external_link": "https://learn.openshift.com/middleware/pipelines/",
-      "course_id": "pipelines",
-      "title": "Using OpenShift Pipelines"
-    }
-  ]
+    "title": "在OpenShift上构建应用程序",
+    "icon": "fa-openshift",
+    "courses": [
+        {
+            "action": "Start Course",
+            "count": 2,
+            "external_link": "https://learn.openshift.com/middleware/courses/middleware-quarkus/",
+            "course_id": "middleware-quarkus",
+            "title": "使用Quarkus开发"
+        },
+        {
+            "count": 5,
+            "external_link": "https://learn.openshift.com/middleware/courses/middleware-vertx/",
+            "course_id": "middleware-vertx",
+            "title": "Eclipse Vert.x 开发"
+        },
+        {
+            "action": "Start Course",
+            "count": 11,
+            "external_link": "https://learn.openshift.com/middleware/courses/middleware-spring-boot/",
+            "course_id": "middleware-spring-boot",
+            "title": "Spring和Spring Boot开发"
+        },
+        {
+            "external_link": "https://learn.openshift.com/middleware/middleware-javaee8/",
+            "count": 1,
+            "course_id": "middleware-javaee8",
+            "title": "Java EE 8开发"
+        },
+        {
+            "action": "Start Course",
+            "coount": 3,
+            "external_link": "https://learn.openshift.com/middleware/courses/middleware-kogito/",
+            "course_id": "middleware-kogito",
+            "title": "使用Kogito开发"
+        },
+        {
+            "action": "Start Course",
+            "count": 2,
+            "external_link": "https://learn.openshift.com/middleware/courses/middleware-camelk/",
+            "course_id": "middleware-camelk",
+            "title": "使用Camel K 开发"
+        },
+        {
+            "action": "Start Course",
+            "count": 2,
+            "external_link": "https://learn.openshift.com/middleware/courses/middleware-kafka/",
+            "course_id": "middleware-kafka",
+            "title": "使用Apache Kafka的事件驱动架构"
+        },
+        {
+            "external_link": "https://learn.openshift.com/middleware/amq-getting-started-broker/",
+            "course_id": "amq-getting-started-broker",
+            "title": "应用程序消息传递与Openshift",
+            "description": "Get started with Red Hat AMQ and OpenShift"
+        },
+        {
+            "external_link": "https://learn.openshift.com/middleware/rhoar-getting-started-thorntail/",
+            "course_id": "rhoar-getting-started-thorntail",
+            "title": "Thorntail开发"
+        },
+        {
+            "external_link": "https://learn.openshift.com/middleware/rhoar-getting-started-rhdg/",
+            "course_id": "rhoar-getting-started-rhdg",
+            "title": "红帽数据网格开发"
+        },
+        {
+            "external_link": "https://learn.openshift.com/middleware/rhoar-getting-started-nodejs/",
+            "course_id": "rhoar-getting-started-nodejs",
+            "title": "Node.js开发"
+        },
+        {
+            "external_link": "https://learn.openshift.com/middleware/java-batch-processing/",
+            "course_id": "java-batch-processing",
+            "title": "使用OpenShift, WildFly和JBeret 处理 Java EE 批处理"
+        },
+        {
+            "external_link": "https://learn.openshift.com/middleware/debezium-getting-started/",
+            "course_id": "debezium-getting-started",
+            "title": "Debezium部署"
+        },
+        {
+            "external_link": "https://learn.openshift.com/middleware/pipelines/",
+            "course_id": "pipelines",
+            "title": "使用OpenShift管道"
+        }
+    ]
 }

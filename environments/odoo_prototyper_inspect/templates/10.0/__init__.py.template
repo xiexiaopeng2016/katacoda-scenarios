@@ -1,0 +1,9 @@
+{% extends "header.template" %}
+{% block body %}
+{% if models %}
+from . import models
+{% endif %}
+{% if wizard %}
+from . import wizard
+{% endif %}
+{% endblock %}

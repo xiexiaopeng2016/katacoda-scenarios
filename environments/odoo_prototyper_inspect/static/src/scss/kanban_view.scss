@@ -1,0 +1,115 @@
+.o_form_view {
+	&.o_form_editable {
+		.o_kanban_view {
+			.o_kanban_record11 {
+				&:hover {
+					.o_record_edit_bar {
+						.o_edit_record, .oe_kanban_action {
+							display: inline-block;
+						}
+					}
+				}
+			}
+		}
+		.o_edit_buttons {
+			display: block;
+		}
+	}
+	.o_edit_buttons {
+		display: none;
+		.add_record {
+			float: right;
+			padding-right: 75px;
+			padding-top: 10px;
+		}
+	}
+}
+
+.o_kanban_view {
+	.o_kanban_record11 {
+		width: 100% !important;
+		border-width: 0px;
+		padding: 0px;
+		margin: 0px 8px !important;
+		.o_record_edit_bar {
+			float: right;
+			font-size: 12px;
+			span.toggle_chatter {
+				margin-right: 5px;
+			}
+			.o_followers {
+				width: auto;
+				.btn-sm, .btn-group-sm > .btn {
+					padding: 0px 10px;
+				}
+			}
+			.o_edit_record, .oe_kanban_action {
+				display: none;
+			}
+		}
+		.o_chatter {
+			background-color: #f9f9f9;
+			margin: 30px 0px;
+		}
+		.field_value {
+			padding-left: 4px;
+			padding-right: 4px;
+			margin: 0 3px;
+			border-radius: 4px;
+			background-color: #f8f8f8;
+			a {
+				color: #666666;
+			}
+		}
+		.ace-tm .ace_gutter {
+			background: #ffffff;
+		}
+	}
+	.inner-editor {
+		border: 1px solid #e5e5e5;
+		width: 100%;
+		.editor-footer {
+			text-align: center;
+			padding: 0 0 25px;
+			button {
+				text-align: center;
+				margin: 0 10px;
+			}
+		}
+		.o_form_nosheet {
+			padding-top: 0px;
+			padding-bottom: 0px;
+		}
+	}
+	.o_chatter {
+		.o_mail_thread {
+			//display: none;
+		}
+	}
+}
+
+.o_x2m_control_panel {
+	//position: sticky;
+	//top: 0px;
+	//left: 5px;
+	//right: 5px;
+	//z-index: 2;
+	//background-color: white;
+	.o_record_edit_bar {
+		font-size: 14px;
+		display: none;
+	}
+	.o_cp_buttons {
+		display: none;
+	}
+	&.on {
+		position: fixed;
+		width: 778px;
+		top: 45px;
+		background-color: #fff;
+		border: 1px solid #ddd;
+		border-top: 0 none;
+		box-shadow: 2px 3px 5px #f5f5f5;
+		z-index: 10;
+	}
+}

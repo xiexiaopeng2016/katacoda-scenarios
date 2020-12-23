@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    {% for model in module.model_ids %}
+    {% if model.have_menu %}
+    <record id="action_{{ model.model|replace('.','_') }}" model="ir.actions.act_window">
+        <field name="name">{{ model.name }}</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">{{ model.model }}</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    {% endif %}
+    {% endfor %}
+
+    {% for menu in module.menu_ids %}
+    <menuitem id="{{ menu.menu_id }}"
+        {% if menu.parent_id %}
+        parent="{{ menu.parent_id.menu_id }}"
+        {% endif %}
+        name="{{ menu.name }}"
+        {% if menu.model_name %}
+        action='action_{{ menu.model_name|replace('.','_') }}'
+        {% endif %}
+        {% if menu.groups_ids %}
+        groups="{{ menu.groups_ids.ids }}"
+        {% endif %}
+        {% if menu.web_icon %}
+        web_icon="{{ menu.web_icon }}"
+        {% endif %}
+        sequence="{{ menu.menu_sequence }}"/>
+    {% endfor %}
+
+</odoo>

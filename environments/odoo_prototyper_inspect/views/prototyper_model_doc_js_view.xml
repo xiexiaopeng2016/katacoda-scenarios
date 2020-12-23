@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_model_doc_js_form" model="ir.ui.view">
+        <field name="model">prototyper.ir.model.doc</field>
+        <field name="arch" type="xml">
+            <form string="Model Description" create="0" delete="0">
+                <sheet>
+                    <group name="editor_box">
+                        <group name="left">
+                            <field name="module_id" invisible="1"/>
+                            <field name="rec_name" string="模块"/>
+                            <field name="name" string="类"/>
+                        </group>
+                        <group name="right">
+                            <label for="is_inherit"/>
+                            <div>
+                                <field name="is_inherit" class="oe_inline oe_edit_only"/>
+                                <field name="inherit" class="oe_inline"
+                                       attrs="{'invisible':[('is_inherit','=',False)]}"/>
+                                <field name="inherits" class="oe_inline"
+                                       attrs="{'invisible':[('inherits','=','[]')]}"/>
+                            </div>
+                        </group>
+                    </group>
+                    <group name="note">
+                    	<field name="note"/>
+                    </group>
+                    <group name="fields" attrs="{'invisible':[('field_ids','=',[])]}">
+                        <field name="field_ids" nolabel="1" string="属性"
+                               widget="innerEdit_kanban"
+                               context="{'default_model_id':active_id,'form_view_ref':'odoo_prototyper_inspect.view_model_fields_doc_js_form'}">
+                            <kanban string="字段" editable="bottom">
+                                <field name="sequence"/>
+                                <field name="name"/>
+                                <field name="help"/>
+                                <field name="note"/>
+                                <field name="message_follower_ids"/>
+                                <field name="message_ids"/>
+                                <field name="activity_ids"/>
+                                <field name="activity_state"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div>
+                                            <div>
+                                                <t t-if="record.name.value">
+                                                    <span>
+                                                        <field name="sequence"/>.
+                                                    </span>
+                                                </t>
+                                                <t t-if="record.help.value">
+                                                    <span>
+                                                        <t t-esc="record.help.value"/>
+                                                    </span>
+                                                </t>
+                                                <span t-if="record.note.value"
+                                                      style="color:#da1414;">
+                                                    <t t-esc="record.note.value"/>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </group>
+                    <group name="method" attrs="{'invisible':[('method_ids','=',[])]}">
+                        <field name="method_ids" nolabel="1" widget="innerEdit_kanban">
+                            <kanban string="方法">
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="code"/>
+                                <field name="message_follower_ids"/>
+                                <field name="message_ids"/>
+                                <field name="activity_ids"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div>
+                                            <span>
+                                                <field name="sequence"/>.
+                                            </span>
+                                            <span style="color:#da1414;">
+                                                <t t-esc="record.description.value"/>
+                                            </span>
+                                            <field name="code" widget="ace" options="{'mode': 'python'}"/>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

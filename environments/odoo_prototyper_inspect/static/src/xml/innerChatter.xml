@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <t t-name="innerChatter.Buttons">
+        <div class="o_record_edit_bar">
+            <span class="oe_kanban_action" data-type="open">
+                <i class="fa fa-edit"/>编辑
+            </span>
+            <span class="oe_kanban_action" data-type="delete">
+                <i class="fa fa-trash-o"/>删除
+            </span>
+            <span t-if="new_message_btn"
+                  class="o_chatter_button_new_message"
+                  title="Send a message">
+                <i class="fa fa-commenting-o"/>评论
+            </span>
+            <span class="toggle_chatter">
+                <t t-esc="message_qty"/>
+            </span>
+            <span t-if="log_note_btn" class="o_chatter_button_log_note"
+                  title="Log a note. Followers will not be notified.">
+                <i class="fa fa-bookmark-o"/>
+            </span>
+            <!--<span t-if="schedule_activity_btn"-->
+                  <!--class="o_chatter_button_schedule_activity"-->
+                  <!--title="Log or schedule an activity">-->
+                <!--<i class="fa fa-clock-o"/>任务-->
+            <!--</span>-->
+            <!--<span class="toggle_chatter">-->
+                <!--<t t-esc="activity_qty"/>-->
+            <!--</span>-->
+        </div>
+    </t>
+
+</odoo>

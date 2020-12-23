@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        {% for group in module.group_ids %}
+        <record id="{{ group.tech_name }}" model="res.groups">
+            <field name="name">{{ group.name }}</field>
+            {% if group.category_id.tech_name %}
+            <field name="category_id" ref="{{ group.category_id.tech_name }}"/>
+            {% endif %}
+            {% if group.implied_ids %}
+            <field name="implied_ids" eval="{{ join_groups(group.implied_ids) }}"/>
+            {% endif %}
+            {% if group.implied_ids %}
+            <field name="users" eval="{{ join_groups(group.users) }}"/>
+            {% endif %}
+        </record>
+
+        {% endfor %}
+    </data>
+</odoo>

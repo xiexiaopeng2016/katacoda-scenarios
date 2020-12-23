@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_backend" name="odoo_prototyper_inspect assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/odoo_prototyper_inspect/static/src/scss/form_view.scss"/>
+            <link rel="stylesheet" href="/odoo_prototyper_inspect/static/src/scss/hierarchy.scss"/>
+            <link rel="stylesheet" href="/odoo_prototyper_inspect/static/src/scss/kanban_view.scss"/>
+            <!--<link rel="stylesheet" type="text/scss"
+                  href="/odoo_prototyper_inspect/static/src/scss/homepage/layout.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/odoo_prototyper_inspect/static/src/scss/homepage/default.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/odoo_prototyper_inspect/static/src/scss/homepage/page-sidebar.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/odoo_prototyper_inspect/static/src/scss/homepage/components.scss"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/odoo_prototyper_inspect/static/src/scss/homepage/simple-line-icons.scss"/>-->
+            <!--<link rel="stylesheet" href="/odoo_prototyper_inspect/static/lib/jointjs/joint.css"/>-->
+            <script type="text/javascript"
+                    src="/odoo_prototyper_inspect/static/src/js/InnerEditor_view.js"/>
+            <script type="text/javascript"
+                    src="/odoo_prototyper_inspect/static/src/js/innerChatter.js"/>
+            <script type="text/javascript"
+                    src="/odoo_prototyper_inspect/static/src/js/innerEdit_kanban.js"/>
+            <!--<script type="text/javascript"
+                    src="/odoo_prototyper_inspect/static/lib/jquery-slimscroll/jquery.slimscroll.js"/>
+            <script type="text/javascript"
+                    src="/odoo_prototyper_inspect/static/src/js/homepage/document_action_manager.js"/>
+            <script type="text/javascript"
+                    src="/odoo_prototyper_inspect/static/src/js/homepage/document_menu.js"/>
+            <script type="text/javascript"
+                    src="/odoo_prototyper_inspect/static/src/js/homepage/document_sidemenu.js"/>
+            <script type="text/javascript"
+                    src="/odoo_prototyper_inspect/static/src/js/homepage/document_menu_tree.js"/>
+            <script type="text/javascript"
+                    src="/odoo_prototyper_inspect/static/src/js/homepage/document_homepage.js"/>-->
+        </xpath>
+
+    </template>
+
+</odoo>

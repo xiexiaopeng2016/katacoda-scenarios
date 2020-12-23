@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <t t-name="InnerEditorView">
+        <div class="inner-editor">
+            <div class="editor-content">
+                <div class="editor-header">
+                    <h4 class="modal-title">
+                        <t t-raw="title"/>
+                        <span class="o_subtitle text-muted small">
+                            <t t-esc="subtitle"/>
+                        </span>
+                    </h4>
+                </div>
+                <div class="editor-body"/>
+                <div class="editor-footer"/>
+            </div>
+        </div>
+    </t>
+
+</odoo>

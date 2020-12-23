@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <t t-name="One2ManyHierarchy">
+        <aside class="main-sidebar11">
+            <section class="sidebar11">
+                <form method="get" class="sidebar-form" id="sidebar-form">
+                    <div class="input-group">
+                        <input type="text"
+                               name="q"
+                               id="search-input"
+                               class="form-control"
+                               placeholder="Search..."/>
+                        <span class="input-group-btn">
+                            <button type="submit"
+                                    name="search"
+                                    id="search-btn"
+                                    class="btn btn-flat">
+                                <i class="fa fa-search"/>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <ul class="sidebar-menu tree" data-widget="tree">
+                </ul>
+            </section>
+        </aside>
+        <div class="main-context"></div>
+    </t>
+
+    <t t-name="One2ManyHierarchyItem">
+        <li>
+            <a href="#">
+                <i class="fa fa-microchip"/>
+                <span>
+                    <t t-esc="widget.display_name"/>
+                </span>
+            </a>
+        </li>
+    </t>
+
+</odoo>
