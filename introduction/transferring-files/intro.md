@@ -1,15 +1,15 @@
-## Goal
+## 目标
 
-Learn how to copy files to and from a running container without rebuilding the container image. Augment this with a watch function that automatically applies local changes to a running container so you can immediately see the effects in your application.
+了解如何在不重新构建容器镜像的情况下与正在运行的容器之间复制文件。增加一个监视功能，该功能可以自动将本地更改应用到运行中的容器，这样您就可以立即看到应用程序中的效果。
 
-## Concepts
+## 概念
 
-* Rapid inner-loop development by modifying a running container
-* OpenShift Projects and Applications
-* OpenShift `oc` tool’s `new-app` subcommand
+* 通过修改运行中的容器来快速开发内部循环
+* OpenShift项目和应用程序
+* OpenShift``oc``工具的``new-app``子命令
 
-## Use case
+## 用例
 
-You can modify an application in a container to develop and test before building a new version of the container's immutable image. Automatatically synchronizing the container with local changes speeds the "inner loop" of develop and test cycles, especially with interpreted programming languages.
+您可以修改容器中的应用程序，以便在构建容器的不可变镜像的新版本之前进行开发和测试。自动同步容器与本地更改加速了“内部循环”;开发和测试周期，特别是使用解释型编程语言。
 
-This OpenShift cluster will self-destruct in one hour.
+这个OpenShift集群将在一小时内自毁。

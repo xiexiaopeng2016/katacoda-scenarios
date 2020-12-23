@@ -8,7 +8,7 @@
 
 ![Available Python Versions](../../assets/introduction/deploying-python-44/02-deploy-python-source.png)
 
-单击_Python_ tile获得通用的Python源代码到映像(S2I)构建器。这将弹出一个对话框，显示构建器映像的详细信息。在对话框中单击_创建应用程序_ 。
+单击_Python_ tile获得通用的Python源代码到镜像(S2I)构建器。这将弹出一个对话框，显示构建器镜像的详细信息。在对话框中单击_创建应用程序_ 。
 
 ![Create Python Application #1](../../assets/introduction/deploying-python-44/02-create-python-application-1.png)
 

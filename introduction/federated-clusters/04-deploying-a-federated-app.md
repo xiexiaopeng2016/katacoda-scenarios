@@ -18,7 +18,8 @@ for type in namespaces secrets serviceaccounts services configmaps deployments.a
 do
   /usr/local/bin/kubefedctl enable $type --kubefed-namespace test-namespace
 done
-```{{execute HOST1}}
+```
+{{execute HOST1}}
 
 Some k8s objects are required:
 

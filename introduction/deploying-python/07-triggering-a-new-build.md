@@ -96,7 +96,7 @@ Resolving deltas: 100% (200/200), done.
 
 `echo 'BLOG_BANNER_COLOR=blue' >> .s2i/environment`{{execute}}
 
-该命令将更新S2I使用的环境变量设置文件，以确定将哪些环境变量烘焙到创建的应用程序映像中。
+该命令将更新S2I使用的环境变量设置文件，以确定将哪些环境变量烘焙到创建的应用程序镜像中。
 
 通过运行命令开始一个新的构建:
 

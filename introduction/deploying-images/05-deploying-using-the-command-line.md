@@ -1,4 +1,4 @@
-现在您又有了一个干净的项目，所以让我们部署相同的现有容器镜像，但这一次使用`oc`命令行程序。
+现在您又有了一个干净的项目，所以让我们部署相同的现有容器镜像，但这一次使用 `oc` 命令行程序。
 
 你之前使用的镜像的名称是:
 
@@ -6,7 +6,7 @@
 openshiftkatacoda/blog-django-py
 ```
 
-如果已经提供了要部署的镜像的名称，并希望从命令行验证它是否有效，可以使用`oc new-app --search`命令。对于这个镜像运行:
+如果已经提供了要部署的镜像的名称，并希望从命令行验证它是否有效，可以使用 `oc new-app --search` 命令。对于这个镜像运行:
 
 `oc new-app --search openshiftkatacoda/blog-django-py`{{execute}}
 
@@ -52,7 +52,7 @@ openshiftkatacoda/blog-django-py
     Run 'oc status' to view your app.
 ```
 
-OpenShift将基于镜像的名称分配一个默认名称，在本例中为`blog-django-py`。通过提供`--name`选项和希望用作参数的名称，可以指定要给应用程序的不同名称和创建的资源。
+OpenShift将基于镜像的名称分配一个默认名称，在本例中为 `blog-django-py` 。通过提供 `--name` 选项和希望用作参数的名称，可以指定要给应用程序的不同名称和创建的资源。
 
 与从web控制台部署现有容器镜像不同，应用程序在默认情况下不会暴露在OpenShift集群之外。要公开创建的应用程序，使其在OpenShift集群之外可用，您可以运行以下命令:
 

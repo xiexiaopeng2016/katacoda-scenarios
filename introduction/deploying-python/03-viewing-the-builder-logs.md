@@ -2,4 +2,4 @@
 
 ![Accessing Build Logs](../../assets/introduction/deploying-python-44/03-application-build-logs.png)
 
-这将允许您在构建运行时监视构建的进展。当你看到最后一条"Push successful"的消息时，构建将完全成功。这表明应用程序的容器映像被推送到OpenShift内部映像注册表。
+这将允许您在构建运行时监视构建的进展。当你看到最后一条"Push successful"的消息时，构建将完全成功。这表明应用程序的容器镜像被推送到OpenShift内部镜像注册表。

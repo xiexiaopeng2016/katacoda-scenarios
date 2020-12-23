@@ -4,7 +4,7 @@
 
 ## 概念
 
-* 在多个集群上部署容器映像
+* 在多个集群上部署容器镜像
 * KubeFed Kubernetes集群联盟API
 * OpenShift项目和应用程序
 

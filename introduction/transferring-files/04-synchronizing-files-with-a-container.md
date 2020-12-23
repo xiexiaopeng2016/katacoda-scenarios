@@ -1,18 +1,18 @@
-In addition to being able to manually upload or download files when you choose to, the ``oc rsync`` command can also be set up to perform live synchronization of files between your local computer and the container.
+除了可以选择手动上传或下载文件之外，还可以设置 ``oc rsync`` 命令，以便在本地计算机和容器之间执行实时的文件同步。
 
-That is, the file system of your local computer will be monitored for any changes made to files. When there is a change to a file, the changed file will be automatically copied up to the container.
+也就是说，将监视您本地计算机的文件系统，以防对文件所做的任何更改。当文件发生更改时，更改后的文件将自动复制到容器中。
 
-This same process can also be run in the opposite direction if required, with changes made in the container being automatically copied back to your local computer.
+如果需要，同样的过程也可以在相反的方向上运行，容器中的更改将自动复制回您的本地计算机。
 
-An example of where it can be useful to have changes automatically copied from your local computer into the container is during the development of an application.
+在应用程序开发期间，将更改从本地计算机自动复制到容器中是非常有用的。
 
-For scripted programming languages such as PHP, Python or Ruby, where no separate compilation phase is required, provided that the web server can be manually restarted without causing the container to exit, or if the web server always reloads code files which have been modified, you can perform live code development with your application running inside of OpenShift.
+脚本编程语言,例如PHP, Python或Ruby,不需要单独的编译阶段,提供手动重启web服务器不会导致集装箱出口,或者web服务器总是重新加载代码文件已被修改,您可以现场表演与您的应用程序运行在OpenShift代码开发。
 
-To demonstrate this ability, clone the Git repository for the web application which you have already deployed.
+要演示这种能力，请为您已经部署的web应用程序克隆Git存储库。
 
 ``git clone https://github.com/openshift-katacoda/blog-django-py``{{execute}}
 
-This will create a sub directory ``blog-django-py`` containing the source code for the application:
+这将创建一个包含应用程序源代码的子目录 ``blog-django-py`` :
 
 ```
 Cloning into 'blog-django-py'...
@@ -24,96 +24,96 @@ Receiving objects: 100% (412/412), 68.49 KiB | 701.00 KiB/s, done.
 Resolving deltas: 100% (200/200), done.
 ```
 
-Now run the following command to have ``oc rsync`` perform live synchronisation of the code, copying any changes from the ``blog-django-py`` directory up to the container.
+现在运行以下命令，让 ``oc rsync`` 执行代码的实时同步，将 ``blog-django-py`` 目录中的任何更改复制到容器中。
 
 ``oc rsync blog-django-py/. $POD:/opt/app-root/src --no-perms --watch &``{{execute}}
 
-In this case we are running this as a background process as we only have the one terminal window available, you could run it as a foreground process in a separate terminal if doing this yourself.
+在这种情况下，我们是作为一个后台进程运行的，因为我们只有一个终端窗口可用，你可以运行它作为一个前台进程在一个单独的终端，如果这样做自己。
 
-You can see the details for the background process by running:
+你可以通过运行以下程序来查看后台进程的详细信息:
 
 ``jobs``{{execute}}
 
-When you initially ran this ``oc rsync`` command, you will see that it copied up the files so the local and remote directory are synchronized. Any changes made to the local files will now be automatically copied up to the remote directory.
+当您最初运行这个 ``oc rsync`` 命令时，您将看到它复制了文件，因此本地目录和远程目录是同步的。对本地文件所做的任何更改现在都将自动复制到远程目录。
 
-Before we make a change, bring up the web application we have deployed in a separate browser window by using the URL:
+在进行更改之前，使用URL打开我们在单独的浏览器窗口中部署的web应用程序:
 
-http://blog-myproject.[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/
+http://blog-myproject。[[HOST_SUBDOMAIN]] -80 [[KATACODA_HOST]] .environments.katacoda.com/
 
-You should see that the color of the title banner for the web site is red.
+您应该会看到网站标题横幅的颜色是红色的。
 
 ![Blog Web Site Red](../../assets/introduction/transferring-files-42/04-blog-web-site-red.png)
 
-Lets change that banner color by running the command:
+让我们通过运行命令来改变横幅颜色:
 
 ``echo "BLOG_BANNER_COLOR = 'blue'" >> blog-django-py/blog/context_processors.py``{{execute}}
 
-Wait to see that the changed file is uploaded, and then refresh the page for the web site.
+等待查看已更改的文件是否上传，然后刷新web站点的页面。
 
-Unfortunately you will see that the title banner is still red. This is because for Python any code changes are cached by the running process and it is necessary to restart the web server application processes.
+不幸的是，您将看到标题横幅仍然是红色的。这是因为对于Python来说，任何代码更改都被正在运行的进程缓存，并且有必要重新启动web服务器应用程序进程。
 
-For this deployment the WSGI server ``mod_wsgi-express`` is being used. To trigger a restart of the web server application processes, run:
+对于这个部署，将使用WSGI服务器 ``mod_wsgi-express`` 。要触发web服务器应用程序进程的重新启动，请运行:
 
 ``oc rsh $POD kill -HUP 1``{{execute}}
 
-This command will have the affect of sending a HUP signal to process ID 1 running within the container, which is the instance of ``mod_wsgi-express`` which is running. This will trigger the required restart and reloading of the application, but without the web server actually exiting.
+该命令的作用是向容器内运行的进程ID 1发送HUP信号，该容器是正在运行的 ``mod_wsgi-express`` 的实例。这将触发应用程序所需的重新启动和重新加载，但web服务器实际上并没有退出。
 
-Refresh the page for the web site once more and the title banner should now be blue.
+再次刷新web站点的页面，标题横幅现在应该是蓝色的。
 
 ![Blog Web Site Blue](../../assets/introduction/transferring-files-42/04-blog-web-site-blue.png)
 
-Note that the name of the pod as displayed in the title banner is unchanged, indicating that the pod was not restarted and only the web server application processes were restarted.
+注意，标题横幅中显示的pod名称没有改变，这表明pod没有重新启动，只有web服务器应用程序进程被重新启动。
 
-Manually forcing a restart of the web server application processes will get the job done, but a better way is if the web server can automatically detect code changes and trigger a restart.
+手动强制重新启动web服务器应用程序进程将完成这项工作，但是更好的方法是web服务器能够自动检测代码更改并触发重新启动。
 
-In the case of ``mod_wsgi-express`` and how this web application has been configured, this can be enabled by setting an environment variable for the deployment. To set this environment variable run:
+对于 ``mod_wsgi-express`` 以及这个web应用程序是如何配置的，可以通过设置部署的环境变量来启用。要设置这个环境变量运行:
 
 ``oc set env dc/blog MOD_WSGI_RELOAD_ON_CHANGES=1``{{execute}}
 
-This command will update the deployment configuration, shutdown the existing pod and replace it with a new instance of our application with the environment variable now being passed through to the application.
+该命令将更新部署配置，关闭现有pod，并用应用程序的新实例替换它，环境变量现在正传递给应用程序。
 
-Monitor the re-deployment of the application by running:
+通过运行以下程序监控应用程序的重新部署:
 
 ``oc rollout status dc/blog``{{execute}}
 
-Because the existing pod has been shutdown, we will need to capture again the new name for the pod.
+因为现有的pod已经关闭，所以我们需要再次获取pod的新名称。
 
 ``POD=`pod deploymentconfig=blog`; echo $POD``{{execute}}
 
-You may also notice that the synchronization process we had running in the background may have stopped. This is because the pod it was connected to had been shutdown.
+您可能还注意到，我们在后台运行的同步进程可能已经停止。这是因为它连接的豆荚已经关闭。
 
-You can check this is the case by running:
+你可以通过运行:
 
 ``jobs``{{execute}}
 
-If it is still showing as running, due to shutdown of the pod not yet having been detected, run:
+如果它仍然显示为正在运行，由于未检测到pod的关闭，运行:
 
 ``kill -9 %1``{{execute}}
 
-to kill it.
+将其杀死。
 
-Ensure the background task has exited:
+确保后台任务已经退出:
 
 ``jobs``{{execute}}
 
-Now run the ``oc rsync`` command again, against the new pod.
+现在再次运行 ``oc rsync`` 命令，针对新的荚果。
 
 ``oc rsync blog-django-py/. $POD:/opt/app-root/src --no-perms --watch &``{{execute}}
 
-Refresh the page for the web site again and the title banner should still be blue, but you will notice that the pod name displayed has changed.
+再次刷新web站点的页面，标题横幅应该仍然是蓝色的，但您将注意到显示的荚体名称已经更改。
 
-Modify the code file once more, setting the color to green.
+再次修改代码文件，将颜色设置为绿色。
 
 ``echo "BLOG_BANNER_COLOR = 'green'" >> blog-django-py/blog/context_processors.py``{{execute}}
 
-Refresh the web site page again, multiple times if need be, until the title banner shows as green. The change may not be immediate as the file synchronization may take a few moments, as may the detection of the code changes and restart of the web server application process.
+再次刷新web站点页面，如果需要多次刷新，直到标题横幅显示为绿色。更改可能不会立即发生，因为文件同步可能需要花费一些时间，检测代码更改和重新启动web服务器应用程序进程也可能需要一些时间。
 
 ![Blog Web Site Green](../../assets/introduction/transferring-files-42/04-blog-web-site-green.png)
 
-Kill the synchronization task by running:
+通过运行以下命令杀死同步任务:
 
 ``kill -9 %1``{{execute}}
 
-Although one can synchronize files from the local computer into a container in this way, whether you can use it as a mechanism for enabling live coding will depend on the programming language being used, and the web application stack being used. This was possible for Python when using ``mod_wsgi-express``, but may not be possible with other WSGI servers for Python, or other programming languages.
+尽管可以以这种方式将本地计算机中的文件同步到容器中，但是否可以将其作为启用实时编码的机制将取决于所使用的编程语言和所使用的web应用程序堆栈。当使用 ``mod_wsgi-express`` 时，这对于Python是可能的，但对于用于Python的其他WSGI服务器或其他编程语言可能是不可能的。
 
-Do note that even for the case of Python, this can only be used where modifying code files. If you need to install additional Python packages, you would need to re-build the application from the original source code. This is because changes to packages required, which for Python is given in the ``requirements.txt`` file, isn't going to trigger the installation of that package when using this mechanism.
+请注意，即使是在Python的情况下，这只能用于修改代码文件。如果需要安装额外的Python包，则需要从原始源代码重新构建应用程序。这是因为需要对包进行修改，而Python的 ``requirements.txt`` 文件中给出了这一点，在使用这种机制时，不会触发包的安装。

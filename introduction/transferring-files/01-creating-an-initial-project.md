@@ -1,17 +1,17 @@
-Before we get started, you need to login and create a project in OpenShift
-to work in.
+在我们开始之前，您需要登录并在OpenShift中创建一个项目
+在工作。
 
-To login to the OpenShift cluster used for this course from the _Terminal_,
-run:
+要从 _终端_ 登录到本课程使用的OpenShift群集，
+运行:
 
 ``oc login -u developer -p developer``{{execute HOST1}}
 
-This will log you in using the credentials:
+这将使用凭证登录您:
 
-* **Username:** ``developer``
-* **Password:** ``developer``
+* **用户名:** ``developer``
+* **密码:** ``developer``
 
-You should see the output:
+您应该会看到输出:
 
 ```
 Login successful.
@@ -21,11 +21,11 @@ You don't have any projects. You can try to create a new project, by running
     oc new-project <projectname>
 ```
 
-To create a new project called ``myproject`` run the command:
+要创建一个名为 ``myproject`` 的新项目，运行以下命令:
 
 ``oc new-project myproject``{{execute HOST1}}
 
-You should see output similar to:
+你应该看到类似的输出:
 
 ```
 Now using project "myproject" on server "https://openshift:6443".
@@ -39,4 +39,4 @@ to build a new example application in Python. Or use kubectl to deploy a simple 
     kubectl create deployment hello-node --image=gcr.io/hello-minikube-zero-install/hello-node
 ```
 
-We are not going to use the web console for this course, but if you want to check anything from the web console, switch to the _Console_ and  use the same credentials to login as you used above to login from the command line.
+在本课程中，我们不打算使用web _控制台_ ，但是如果您想检查web控制台的任何内容，请切换到控制台，并使用与上面从命令行登录时相同的凭据进行登录。

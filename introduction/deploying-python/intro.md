@@ -1,10 +1,10 @@
 ## 目标
 
-了解如何使用OpenShift上的源代码到映像构建从源代码部署应用程序。
+了解如何使用OpenShift上的源代码到镜像构建从源代码部署应用程序。
 
 ## 概念
 
-* Linux容器和构建容器映像
+* Linux容器和构建容器镜像
 * OpenShift Source-to-Image (S2I)
 * OpenShift项目和应用程序
 * OpenShift`oc`命令行工具
