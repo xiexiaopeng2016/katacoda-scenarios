@@ -1,17 +1,17 @@
-Before we get started, you need to login and create a project in OpenShift
-to work in.
+在我们开始之前，您需要登录并在OpenShift中创建一个项目
+在工作。
 
-To login to the OpenShift cluster used for this course from the _Terminal_,
-run:
+要从 _终端_ 登录到本课程使用的OpenShift群集，
+运行:
 
 ``oc login -u developer -p developer``{{execute}}
 
-This will log you in using the credentials:
+这将使用凭证登录您:
 
-* **Username:** ``developer``
-* **Password:** ``developer``
+* **用户名:** ``developer``
+* **密码:** ``developer``
 
-You should see the output:
+您应该会看到输出:
 
 ```
 Login successful.
@@ -21,11 +21,11 @@ You don't have any projects. You can try to create a new project, by running
     oc new-project <projectname>
 ```
 
-To create a new project called ``myproject`` run the command:
+要创建一个名为 ``myproject`` 的新项目，运行以下命令:
 
 ``oc new-project myproject``{{execute}}
 
-You should see output similar to:
+你应该看到类似的输出:
 
 ```
 Now using project "myproject" on server "https://172.17.0.41:8443".
@@ -37,11 +37,11 @@ You can add applications to this project with the 'new-app' command. For example
 to build a new example application in Ruby.
 ```
 
-Switch to the _Dashboard_ and login to the OpenShift web console using the
-same credentials you used above.
+切换到仪表板并使用。登录到OpenShift web控制台
+与上面使用的凭据相同。
 
 ![Web Console Login](../../assets/introduction/service-binding/01-web-console-login.png)
 
-This should leave you at the service catalog. You should also see listed to the right the project ``myproject`` which you created.
+这将使您停留在服务目录。您还应该看到右侧列出了您创建的项目 ``myproject`` 。
 
 ![Service Catalog](../../assets/introduction/service-binding/01-service-catalog.png)

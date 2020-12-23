@@ -1,33 +1,33 @@
-Once the database has been provisioned, you should see on the _Overview_ page for the project two entries related to the database. The first is the actual deployment and the second is the service binding listed under _Provisioned Services_.
+一旦供应了数据库，您应该在项目的 _概述_ 页面上看到两个与数据库相关的条目。第一个是实际部署，第二个是供应服务下列出的服务绑定。
 
 ![Database Provisioned](../../assets/introduction/service-binding/05-postgresql-provisioned.png)
 
-Click on the right facing arrow to the left of the entry under _Provisioned Services_ to display the details of the service.
+单击 _提供服务_ 下条目左边向右的箭头，以显示服务的详细信息。
 
 ![Database Expanded](../../assets/introduction/service-binding/05-postgresql-expanded.png)
 
-Under _Bindings_ you can see the service binding which was created, along with the _Secret_ containing the database credentials.
+在Bindings下，您可以看到创建的服务 _绑定_ ，以及包含数据库凭据的 _秘密_ 。
 
-Click on _View Secret_.
+点击查看秘密。
 
 ![Database Secret](../../assets/introduction/service-binding/05-postgresql-secret.png)
 
-The secret created contains the name of the database, user details, and the connection details for the database.
+创建的秘密包含数据库的名称、用户详细信息和数据库的连接详细信息。
 
-To have the web application use these details, click on _Add to Application_.
+要让web应用程序使用这些详细信息，单击Add To application。
 
 ![Add to Application](../../assets/introduction/service-binding/05-add-to-application.png)
 
-Select ``blog`` from the _Add this secret to Application_ drop down menu.
+从“添加这个秘密到应用程序”下拉菜单中选择 ``blog`` 。
 
-Two options are then presented as to how the database credentials can be injected into the application.
+关于如何将数据库凭据注入到应用程序中，有两个选项。
 
-The first is as environment variables, the second is by mounting the secrets as a volume within the container.
+第一种是作为环境变量，第二种是将秘密作为一个卷挂载到容器中。
 
-The web application used in this tutorial is setup to accept the secrets via a mounted volume. Select _Volume_ and enter in:
+本教程中使用的web应用程序通过安装卷接受秘密。选择 _体积_ 并输入:
 
 ``/opt/app-root/secrets/database``{{copy}}
 
-as the _mount path_.
+作为mount路径。
 
-Click on _Save_.
+单击 _保存_ 。

@@ -1,6 +1,6 @@
 {
     "icon": "fa-openshift",
-    "title": "Binding a Database to an Application",
+    "title": "将数据库绑定到应用程序",
     "description": "",
     "pathwayTitle": "OpenShift",
     "difficulty": "beginner",
@@ -17,25 +17,32 @@
         "hidefinish": false
     },
     "details": {
-        "steps": [{
-            "title": "Topic 1 - Creating an Initial Project",
-            "text": "01-creating-an-initial-project.md"
-        }, {
-            "title": "Topic 2 - Deploying the Web Application",
-            "text": "02-deploying-the-web-application.md"
-        }, {
-            "title": "Topic 3 - Accessing the Web Application",
-            "text": "03-accessing-the-web-application.md"
-        }, {
-            "title": "Topic 4 - Deploying the Database",
-            "text": "04-deploying-the-database.md"
-        }, {
-            "title": "Topic 5 - Add Secret to Application",
-            "text": "05-add-secret-to-application.md"
-        }, {
-            "title": "Topic 6 - Verifying the Connection",
-            "text": "06-verifying-the-connection.md"
-        }],
+        "steps": [
+            {
+                "title": "主题1 - 创建初始项目",
+                "text": "01-creating-an-initial-project.md"
+            },
+            {
+                "title": "主题2 - 部署Web应用程序",
+                "text": "02-deploying-the-web-application.md"
+            },
+            {
+                "title": "主题3 - 访问Web应用程序",
+                "text": "03-accessing-the-web-application.md"
+            },
+            {
+                "title": "主题4 - 部署数据库",
+                "text": "04-deploying-the-database.md"
+            },
+            {
+                "title": "主题5 - 添加秘密到应用程序",
+                "text": "05-add-secret-to-application.md"
+            },
+            {
+                "title": "主题6 - 验证连接",
+                "text": "06-verifying-the-connection.md"
+            }
+        ],
         "intro": {
             "courseData": "env-init.sh",
             "code": "set-env.sh",
@@ -45,7 +52,12 @@
             "text": "finish.md"
         },
         "assets": {
-          "host01": [{"file": "volumes.json", "target": "~/"}]
+            "host01": [
+                {
+                    "file": "volumes.json",
+                    "target": "~/"
+                }
+            ]
         }
     }
 }

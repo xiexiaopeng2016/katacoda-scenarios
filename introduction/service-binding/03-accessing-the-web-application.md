@@ -1,15 +1,15 @@
-Once the build of the application image has completed, it will be deployed.
+一旦完成了应用程序镜像的构建，就将部署它。
 
 ![Build has Completed](../../assets/introduction/service-binding/03-build-has-completed.png)
 
-When you deploy an application from application source code using the web console, a _Route_ will be automatically created for the application and it will be exposed outside of the cluster. The URL which can be used to access the application from a web browser will be displayed on the _Overview_ page.
+当您使用web控制台从应用程序源代码部署应用程序时，将自动为该应用程序创建一个路由，并且它将暴露在集群之外。可用于从web浏览器访问应用程序的URL将显示在 _概述_ 页面上。
 
-Click on the URL and you can view the web application.
+单击URL，您可以查看web应用程序。
 
 ![Blog Web Site](../../assets/introduction/service-binding/03-blog-web-site.png)
 
-At this point, the sample Python web application has been deployed using a local SQLite database, with data pre-loaded into the database on startup to allow for testing.
+此时，示例Python web应用程序已经使用本地SQLite数据库部署，并在启动时将数据预加载到数据库中，以便进行测试。
 
-The SQLite database used is however stored in the container file system which means that it will be discarded each time the web application is re-deployed. This will result in any content entered through the web application being lost and the web application will revert to displaying what is being pre-loaded as test data.
+但是使用的SQLite数据库存储在容器文件系统中，这意味着每次重新部署web应用程序时都将丢弃它。这将导致通过web应用程序输入的任何内容都将丢失，并且web应用程序将恢复到显示作为测试数据预先加载的内容。
 
-For a production site, a separate database using a persistent volume should be used and the web application configured to use it.
+对于生产站点，应该使用使用持久卷的单独数据库，并配置web应用程序来使用它。

@@ -1,15 +1,15 @@
-Web applications are not always completely stateless and would usually use
-a database for storing data which needs to be shared between instances of
-the web application.
+Web应用程序并不总是完全无状态的，通常会使用
+的实例之间共享用于存储数据的数据库
+web应用程序。
 
-The ability of OpenShift to provide persistent storage means that you can
-deploy a database along side the web application. This database would only
-be visible within the same project as the web application, however it still
-should be secured with a database password.
+OpenShift提供持久存储的能力意味着您可以
+在web应用程序旁边部署一个数据库。这个数据库只会
+在与web应用程序相同的项目中可见，但仍然可见
+应该使用数据库密码进行保护。
 
-In this course you will learn how to deploy a web application, along with a
-database for storing data entered via the web application. You will then
-update the deployment configuration for the web application configuration
-so that the database credentials will be passed to the web application.
+在本课程中，您将学习如何部署一个web应用程序，以及
+用于存储通过web应用程序输入的数据的数据库。然后,您将
+更新web应用程序配置的部署配置
+以便将数据库凭据传递给web应用程序。
 
-The environment used for this course is based on OpenShift 3.7, with service catalog and template service broker enabled. The features used to bind the database to the web application are not present in older versions of OpenShift.
+本课程使用的环境是基于OpenShift 3.7，启用了服务目录和模板服务代理。用于将数据库绑定到web应用程序的功能在旧版本的OpenShift中不存在。

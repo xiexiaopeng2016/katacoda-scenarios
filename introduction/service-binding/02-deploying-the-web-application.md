@@ -1,31 +1,31 @@
-In this course you are going to first deploy a web application which is implemented using the Python programming language.
+在本课程中，你将首先部署一个web应用程序，它是使用Python编程语言实现的。
 
-Select the _Languages_ category from the service catalog and then select _Python_.
+从服务目录中选择 _语言_ 类别，然后选择 _Python_ 。
 
 ![Available Languages](../../assets/introduction/service-binding/02-python-language-category.png)
 
-Any options for deploying applications which are related to Python will be displayed. In the environment used for this course, the only option presented will be that for the Python Source-to-Image (S2I) builder. Click on _Python_ in the lower pane to start setting up the deployment for the application.
+任何与Python相关的应用程序部署选项都将显示出来。在本课程使用的环境中，给出的唯一选项将是Python源代码到镜像(S2I)构建器。单击下方窗格中的 _Python_ ，开始为应用程序设置部署。
 
-The first splash screen displayed will provide information on the S2I builder being used.
+显示的第一个闪屏将提供有关正在使用的S2I构建器的信息。
 
 ![Builder Information](../../assets/introduction/service-binding/02-builder-information.png)
 
-Click on _Next_ in order to enter in configuration for the deployment.
+单击 _下一个_ 以进入部署的配置。
 
 ![Deployment Configuration](../../assets/introduction/service-binding/02-deployment-configuration.png)
 
-For the _Application Name_ enter:
+对于 _应用程序名称_ ，输入:
 
-`blog`{{copy}}
+``blog``{{copy}}
 
-For the _Git Repository_ enter:
+对于Git仓库，输入:
 
-`https://github.com/openshift-katacoda/blog-django-py`{{copy}}
+``https://github.com/openshift-katacoda/blog-django-py``{{copy}}
 
-When you are ready, at the bottom of the page click on _Create_. This will take you to a final splash page confirming the application has been created.
+准备好之后，在页面底部单击 _创建_ 。这将带您进入最终的启动页面，确认应用程序已经创建。
 
 ![Application Created](../../assets/introduction/service-binding/02-application-created.png)
 
-Click on _Continue to the project overview_. This will take you to the _Overview_ page for the project, where you can view the details of the application created and monitor progress as it is built and deployed.
+单击Continue以查看项目概述。这将把您带到项目的 _概述_ 页面，在这里您可以查看创建的应用程序的详细信息，并在构建和部署应用程序时监视进度。
 
 ![Application Overview](../../assets/introduction/service-binding/02-build-in-progress.png)
