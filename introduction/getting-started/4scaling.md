@@ -26,7 +26,7 @@ OpenShift的 *部署* 会不断地监控，以确定实际运行的 *pod* 的期
 
 ![List of pods](../../assets/introduction/getting-started-44/4scaling-terminating.png)
 
-我们删除的pod正在终止(即，它正在被清理)。一个新的豆荚被创造，因为OpenShift将始终确保，如果一个pod死亡，将会有新的pod被创建填补它的位置。
+我们删除的pod正在终止(即，它正在被清理)。一个新的pod被创造，因为OpenShift将始终确保，如果一个pod死亡，将会有新的pod被创建填补它的位置。
 
 ### 练习: 按比例减少
 
