@@ -1,6 +1,6 @@
 {
     "icon": "fa-openshift",
-    "title": "Getting Started with OpenShift for Developers",
+    "title": "开始使用OpenShift for开发人员",
     "description": "",
     "pathwayTitle": "OpenShift",
     "difficulty": "beginner",
@@ -10,31 +10,43 @@
     },
     "environment": {
         "showdashboard": true,
-        "dashboards": [{"name": "Console", "href": "https://console-openshift-console-[[HOST_SUBDOMAIN]]-443-[[KATACODA_HOST]].environments.katacoda.com"}],
+        "dashboards": [
+            {
+                "name": "Console",
+                "href": "https://console-openshift-console-[[HOST_SUBDOMAIN]]-443-[[KATACODA_HOST]].environments.katacoda.com"
+            }
+        ],
         "uilayout": "terminal",
         "hideintro": false,
         "hidefinish": false
     },
     "details": {
-        "steps": [{
-            "title": "Step 1 - Exploring The Command Line",
-            "text": "1explore-cli.md"
-        }, {
-            "title": "Step 2 - Exploring The Web Console",
-            "text": "2explore-console.md"
-        }, {
-            "title": "Step 3 - Deploying a Docker Image",
-            "text": "3deploy-docker.md"
-        }, {
-            "title": "Step 4 - Scaling Your Application",
-            "text": "4scaling.md"
-        }, {
-            "title": "Step 5 - Routing HTTP Requests",
-            "text": "5routes.md"
-        }, {
-            "title": "Step 6 - Building From Source Code",
-            "text": "6s2i.md"
-        }],
+        "steps": [
+            {
+                "title": "步骤1 - 探索命令行",
+                "text": "1explore-cli.md"
+            },
+            {
+                "title": "步骤2 - 探索Web控制台",
+                "text": "2explore-console.md"
+            },
+            {
+                "title": "步骤3 - 部署Docker映像",
+                "text": "3deploy-docker.md"
+            },
+            {
+                "title": "步骤4 - 扩展应用程序",
+                "text": "4scaling.md"
+            },
+            {
+                "title": "步骤5 - 路由HTTP请求",
+                "text": "5routes.md"
+            },
+            {
+                "title": "步骤6 - 从源代码构建",
+                "text": "6s2i.md"
+            }
+        ],
         "intro": {
             "courseData": "env-init.sh",
             "code": "set-env.sh",
