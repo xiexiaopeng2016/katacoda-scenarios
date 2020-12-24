@@ -1,7 +1,6 @@
 {
     "title": "在OpenShift中使用我们合作伙伴的技术",
     "icon": "fa-openshift",
-	"id": "09",
     "courses": [
         {
             "action": "Start Course",

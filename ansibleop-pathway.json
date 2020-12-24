@@ -1,7 +1,6 @@
 {
     "title": "Ansible Operator和Operator SDK",
     "icon": "fa-openshift",
-	"id": "06",
     "courses": [
         {
             "external_link": "https://learn.openshift.com/ansibleop/ansible-refresher/",

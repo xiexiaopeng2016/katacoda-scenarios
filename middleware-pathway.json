@@ -1,7 +1,6 @@
 {
     "title": "在OpenShift上构建应用程序",
     "icon": "fa-openshift",
-	"id": "03",
     "courses": [
         {
             "action": "Start Course",

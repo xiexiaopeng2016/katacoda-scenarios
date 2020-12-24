@@ -1,7 +1,6 @@
 {
     "title": "OpenShift基础",
     "icon": "fa-openshift",
-	"id": "01",
     "courses": [
         {
             "external_link": "https://learn.openshift.com/introduction/getting-started/",

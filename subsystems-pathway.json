@@ -1,7 +1,6 @@
 {
     "title": "Linux容器基本原理",
     "icon": "fa-openshift",
-	"id": "10",
     "courses": [
         {
             "external_link": "https://learn.openshift.com/subsystems/container-internals-lab-2-0-part-1",

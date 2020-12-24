@@ -1,7 +1,6 @@
 {
     "title": "为OpenShift添加持久化",
     "icon": "fa-openshift",
-	"id": "04",
     "courses": [
         {
             "external_link": "https://learn.openshift.com/persistence/persistent-intro/",
