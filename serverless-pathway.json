@@ -1,6 +1,7 @@
 {
     "title": "OpenShift Serverless",
     "icon": "fa-openshift",
+	"id": "07",
     "courses": [
         {
             "external_link": "https://learn.openshift.com/developing-on-openshift/serverless/",
