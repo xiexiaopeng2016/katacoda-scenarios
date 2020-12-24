@@ -1,5 +1,5 @@
 {
-    "title": "OpenShift的基础",
+    "title": "OpenShift基础",
     "icon": "fa-openshift",
     "courses": [
         {
@@ -15,7 +15,7 @@
         {
             "external_link": "https://learn.openshift.com/introduction/developing-with-odo/",
             "course_id": "developing-with-odo",
-            "title": "使用odok开发"
+            "title": "使用odo开发"
         },
         {
             "external_link": "https://learn.openshift.com/introduction/deploying-images/",
