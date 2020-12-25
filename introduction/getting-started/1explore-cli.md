@@ -1,37 +1,36 @@
-## 命令行接口(CLI)
+## Command Line Interface (CLI)
 
-使用 _oc_ 命令访问OpenShift CLI。从这里，您可以管理整个OpenShift集群并部署新的应用程序。
+The OpenShift CLI is accessed using the command _oc_. From here, you can administrate the entire OpenShift cluster and deploy new applications.
 
-CLI通过OpenShift增强了底层Kubernetes编配系统。熟悉Kubernetes的用户将能够迅速适应OpenShift。 _oc_ 提供了 _kubectl_ 的所有功能，以及使其更容易使用OpenShift的附加功能。CLI是理想的情况下，您是:
+The CLI exposes the underlying Kubernetes orchestration system with the enhancements made by OpenShift. Users familiar with Kubernetes will be able to adapt to OpenShift quickly. _oc_ provides all of the functionality of _kubectl_, along with additional functionality to make it easier to work with OpenShift. The CLI is ideal in situations where you are:
 
-1)直接使用项目源代码
+1) Working directly with project source code
 
-2)编写OpenShift操作脚本
+2) Scripting OpenShift operations
 
-3)受带宽资源限制，无法使用web控制台
+3) Restricted by bandwidth resources and cannot use the web console
 
-在本教程中，我们不关注OpenShift CLI，但我们希望你知道它，以防你更喜欢使用命令行。您可以查看我们的其他课程，更深入地了解CLI的使用。现在，我们将练习登录，这样您就可以获得一些CLI如何工作的经验。
+In this tutorial, we're not focusing on the OpenShift CLI, but we want you to be aware of it in case you prefer using the command line. You can check out our other courses that go into the use of the CLI in more depth. Now, we're just going to practice logging in so you can get some experience with how the CLI works.
 
-## 练习: 使用CLI登录
+## Exercise: Logging in with the CLI
+Let's get started by logging in. Your task is to enter the following into the console:
 
-我们从登录开始吧。您的任务是在控制台输入以下内容:
+`oc login`{{execute}}
 
-``oc login``{{execute}}
+When prompted, enter the following username and password:
 
-当出现提示时，输入以下用户名和密码:
+**Username:** `developer`{{execute}}
 
- **用户名:** ``developer``{{execute}}
+**Password:** `developer`{{execute}}
 
- **密码:** ``developer``{{execute}}
+Next, you can check if it was successful:
 
-接下来，你可以检查它是否成功:
+`oc whoami`{{execute}}
 
-``oc whoami``{{execute}}
+`oc whoami` should return a response of:
 
- ``oc whoami`` 应该返回如下响应:
+`developer`
 
- ``developer`` 
+That's it!
 
-就是这样!
-
-在下一步中，我们将开始使用 **web控制台** 创建您的第一个项目。
+In the next step, we'll get started with creating your first project using the **web console**.

@@ -1,49 +1,49 @@
-本节重点介绍如何使用web控制台。
+This section focuses on using the web console.
 
-## 练习: 用Web控制台登录
+## Exercise: Logging in with the Web Console
+To begin, click on the **Console** tab on your screen. This will open the web console on your browser.
 
-首先，单击屏幕上的 **控制台** 选项卡。这将打开浏览器上的web控制台。
-
-您应该会看到一个Red Hat OpenShift容器平台窗口，其中带有 **用户名** 和 **密码** 表单，如下所示:
+You should see a **Red Hat OpenShift Container Platform** window with **Username** and **Password** forms as shown below:
 
 ![OpenShift Web Console](../../assets/introduction/getting-started-44/2ocp-login.png)
 
-对于这个场景，通过输入以下内容进行登录:
+For this scenario, log in by entering the following:
 
- **用户名:** ``developer``{{copy}}
+**Username:** `developer`{{copy}}
 
- **密码:** ``developer``{{copy}}
+**Password:** `developer`{{copy}}
 
-登录到web控制台后，您将进入一个 _项目_ 页面。
+After logging in to the web console, you'll be on a *Projects* page. 
 
-## 什么是项目? 为什么这很重要?
+## What is a project? Why does it matter?
 
-OpenShift通常被称为容器应用程序平台，因为它是为在容器中开发和部署应用程序而设计的平台。
+OpenShift is often referred to as a container application platform in that it is a platform designed for the development and deployment of applications in containers.
 
-我们使用项目对应用程序进行分组。让项目包含应用程序的原因是允许对开发人员或团队的访问和配额进行控制。
+To group your application, we use projects. The reason for having a project to contain your application is to allow for controlled access and quotas for developers or teams.
 
-从技术上讲，它是基于开发人员访问控制的Kubernetes命名空间的可视化。
+More technically, it's a visualization of the Kubernetes namespace based on the developer access controls.
 
-## 练习: 创建一个项目
+## Exercise: Creating a Project
 
-单击蓝色的 **创建项目** 按钮。
+Click the blue **Create Project** button.
 
-现在，您应该看到在web控制台中创建第一个项目的页面。填写 _的名字_ 字段为``myproject``{{copy}}。
+You should now see a page for creating your first project in the web console. Fill in the _Name_ field as `myproject`{{copy}}.
 
 ![Create Project](../../assets/introduction/getting-started-44/2create-project.png)
 
-表单的其余部分是可选的，由您填写或忽略。单击 _创建_ 继续。
+The rest of the form is optional and up to you to fill in or ignore. Click *Create* to continue.
 
-创建项目之后，您将看到关于项目的一些基本信息。
+After your project is created, you will see some basic information about your project.
 
-## 练习: 探索管理员和开发人员的视角
+## Exercise: Explore the Administrator and Developer Perspectives
 
-注意左边的导航菜单。当您第一次登录时，通常是在Administrator透视图中。如果您不在 **管理员** 透视图中，请单击透视图切换并从 **开发人员** 切换到Administrator。
+Notice the navigation menu on the left. When you first log in, you'll typically be in the *Administrator Perspective*. If you are not in the *Administrator Perspective*, click the perspective toggle and switch from **Developer** to **Administrator**. 
 
 ![Perspective Toggle](../../assets/introduction/getting-started-44/2perspective.png)
 
-您现在在管理员透视图中，您将在导航中找到操作符、 **工作负载** 、 **网络** 、 **存储** 、 **构建** 和管理菜单。
+You're now in the *Administrator Perspective*, where you'll find **Operators**, **Workloads**, **Networking**, **Storage**, **Builds**, and **Administration** menus in the navigation.
 
-快速浏览一下这些选项，点击一些菜单查看更多选项。
+Take a quick look around these, clicking on a few of the menus to see more options. 
 
-现在，切换到开发人员视角。在本教程中，我们大部分时间将从 _开发人员的角度_ 进行讲解。您将看到的第一件事是拓扑视图。现在它是空的，列出了几种向项目添加内容的不同方法。一旦您部署了应用程序，它将在这里的拓扑视图中可视化。
+Now, toggle to the *Developer Perspective*. We will spend most of our time in this tutorial in the *Developer Perspective*. The first thing you'll see is the *Topology* view. Right now it is empty, and lists several different ways to add content to your project. Once you have an application deployed, it will be visualized here in *Topology* view.
+
