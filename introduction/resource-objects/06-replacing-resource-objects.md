@@ -44,4 +44,4 @@
 
  ``oc patch route/parksmap-fqdn --patch '{"spec":{"tls": {"insecureEdgeTerminationPolicy": "Allow"}}}'``{{execute}}
 
-对于这两种情况，要更新的资源对象必须已经存在，否则命令将失败。如果您不知道资源对象是否已经存在，并且希望更新它，如果不更新就创建它，那么您可以使用 ``oc replace`` 代替 ``oc apply`` ，而不是a1577b。
+对于这两种情况，要更新的资源对象必须已经存在，否则命令将失败。如果您不知道资源对象是否已经存在，并且希望更新它，如果不更新就创建它，那么您可以使用 ``oc apply`` 代替，而不是 ``oc replace``。

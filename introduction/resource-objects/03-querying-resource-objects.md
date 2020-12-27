@@ -5,7 +5,6 @@
  ``oc describe route/parksmap``{{execute}}
 
 它应该产生类似的结果:
-
 ```
 Name:                   parksmap
 Namespace:              myproject
@@ -47,7 +46,6 @@ Endpoints:      10.128.0.220:8080
  ``oc explain route.spec.host``{{execute}}
 
 这将输出:
-
 ```
 KIND:     Route
 VERSION:  route.openshift.io/v1

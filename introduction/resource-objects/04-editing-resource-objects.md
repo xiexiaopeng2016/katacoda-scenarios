@@ -1,6 +1,6 @@
 要更改现有的资源对象，可以使用 ``oc edit`` 命令。
 
-编辑 ``route`` 对象的细节为示例应用程序，你可以运行:
+为示例应用程序编辑 ``route`` 对象的细节，你可以运行:
 
  ``oc edit route/parksmap``{{execute}}
 

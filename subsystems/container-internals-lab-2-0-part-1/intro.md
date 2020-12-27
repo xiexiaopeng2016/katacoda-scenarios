@@ -1,22 +1,27 @@
-## Background
-In this self-paced tutorial, you will gain a basic understanding of the moving parts that make up the typical container architecture.  This will cover container images, registries, hosts, and orchestration.
+## 背景
 
-By the end of this lab you should be able to:
-- Draw a diagram showing how the Linux kernel, services and daemons work together to create and deploy containers
-- Internalize how the architecture of the kernel and supporting services affect security and performance
-- Explain the API interactions of daemons and the host kernel to create isolated processes
-- Understand the basics of why people move on to container orchestration
-- Command the nomenclature necessary to technically discuss the basics of the single and multi-host toolchain
+在本教程中，您将对组成典型容器架构的移动部件有一个基本的了解。这将涵盖容器镜像、注册表、主机和业务流程。
 
-## Outline
-- Container Images: made up of underlying operating system components like libraries and programming languages
-- Container Registries: Fancy file servers that help users share container images
-- Container Hosts: Includes Podman (or Docker) runtime, Systemd, runc, and Libcontainer
-- Container Orchestration: Includes Kubernetes/OpenShift
+在这个实验结束时，你应该能够:
 
-## Other Material
-- [Presentation](http://bit.ly/2V18QCg)
-- [Lab GitHub Repository](https://github.com/openshift-labs/learn-katacoda)
+* 绘制一个图表，显示Linux内核、服务和守护进程如何一起工作来创建和部署容器
+* 内部化内核和支持服务的体系结构如何影响安全性和性能
+* 解释守护进程和宿主内核的API交互，以创建隔离的进程
+* 理解人们转向容器编排的基本原因
+* 使用必要的术语从技术上讨论单个和多主机工具链的基础知识
 
-## Start Scenario
-Once you have watched the background video or went throught the presentation, continue to the exercises
+## 大纲
+
+* 集装箱图片:由底层操作系统组件组成，如库和编程语言
+* 容器注册:帮助用户共享容器镜像的奇特文件服务器
+* 容器主机:包括Podman(或Docker)运行时，Systemd, runc和Libcontainer
+* 容器编排:包括Kubernetes / OpenShift
+
+## 其他材料
+
+* [演讲](http://bit.ly/2V18QCg)
+* [实验室GitHub库](https://github.com/openshift-labs/learn-katacoda)
+
+## 开始的场景
+
+当你看完背景视频或完成演示后，继续练习

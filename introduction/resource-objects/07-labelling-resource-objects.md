@@ -6,7 +6,7 @@
 
  ``oc get all -o name --selector app=parksmap``{{execute}}
 
-这应该收益率:
+这应该显示:
 
 ```
 pod/parksmap-1-dvsqf

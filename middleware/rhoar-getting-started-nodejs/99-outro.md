@@ -1,19 +1,14 @@
-In this scenario you learned a bit more about what Node.js is, and how it can be used to create
-modern Javascript microservice-oriented applications.
+在这个场景中，您进一步了解了什么是Node.js，以及如何使用它来创建现代Javascript面向微服务的应用程序。
 
-You took an existing application and modified it to externalize its configuration and separate
-it from the application itself, and deployed the application to OpenShift and tested it.
+您获得了一个现有的应用程序，并对其进行了修改，使其配置外部化，并将其与应用程序本身分离，并将该应用程序部署到OpenShift并进行测试。
 
-Node.js is one of many components of Red Hat OpenShift Application Runtimes - check out other
-scenarios (for example [the Vert.x scenario](https://learn.openshift.com)) to learn about other
-runtimes you can use.
+Node.js是Red Hat OpenShift应用程序运行时的众多组件之一，请查看其他组件场景(例如 [Vert.x 场景](https://learn.openshift.com) )去了解其他您可以使用的运行时。
 
-## Additional Resources
+## 额外的资源
 
-More background and related information on ConfigMap can be found here:
+更多关于ConfigMap的背景和相关信息可以在这里找到:
 
-* [Red Hat OpenShift Application Runtimes for Developers](https://developers.redhat.com/rhoar)
-* [Blog Post about Red Hat OpenShift Application Runtimes](https://developers.redhat.com/rhoar)
-* [OpenShift ConfigMap Documentation](https://docs.openshift.org/latest/dev_guide/configmaps.html)
-* [Blog Post about ConfigMap in OpenShift](https://blog.openshift.com/configuring-your-application-part-1/)
-
+* [Red Hat OpenShift应用程序运行时开发人员](https://developers.redhat.com/rhoar)
+* [关于Red Hat OpenShift应用程序运行时的博客文章](https://developers.redhat.com/rhoar)
+* [OpenShift ConfigMap文档](https://docs.openshift.org/latest/dev_guide/configmaps.html)
+* [关于OpenShift中ConfigMap的博客文章](https://blog.openshift.com/configuring-your-application-part-1/)

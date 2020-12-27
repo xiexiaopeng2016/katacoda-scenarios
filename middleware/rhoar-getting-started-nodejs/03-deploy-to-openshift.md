@@ -1,39 +1,32 @@
-Now that you've logged into OpenShift, let's deploy the same sample application as before.
+现在您已经登录到OpenShift，让我们部署与前面相同的示例应用程序。
 
-**1. Build and Deploy**
+ **1. 构建和部署**
 
-Build and deploy the project using the following command:
+使用以下命令构建和部署项目:
 
-```npm run openshift```{{execute}}
+``npm run openshift``{{execute}}
 
-This uses NPM and the [Nodeshift](https://github.com/bucharest-gold/nodeshift) project to build and deploy the sample
-application to OpenShift using the containerized Node.js runtime. Nodeshift uses the files in the `.nodeshift`
-directory of the sample project to create the necessary Kubernetes objects to cause the application to be deployed.
+它使用NPM和 [Nodeshift](https://github.com/bucharest-gold/nodeshift) 项目来构建和部署示例应用程序到OpenShift，使用容器化的Node.js运行时。Nodeshift使用示例项目的 ``.nodeshift`` 目录中的文件，以创建必要的Kubernetes对象，以便部署应用程序。
 
-The build and deploy may take a minute or two. Wait for it to complete. You should see `INFO complete` at the end of the build output, and you
-should not see any obvious errors or failures.
+构建和部署可能需要一到两分钟。等待它完成。您应该在构建输出的末尾看到 ``INFO complete`` ，而您不应该看到任何明显的错误或失败。
 
-After the build finishes it will take less than a minute for the application to become available.
-To verify that everything is started, run the following command
+构建完成后，应用程序将在不到一分钟的时间内变得可用。
+要验证一切都已启动，请运行以下命令
 
 ``oc rollout status dc/nodejs-configmap``{{execute}}
 
-You should then see 
-`replication controller "nodejs-configmap-1" successfully rolled out`
+你会看到
+ ``replication controller "nodejs-configmap-1" successfully rolled out``
 
-** 2. Access the application running on OpenShift**
+ **2. 访问在OpenShift上运行的应用程序**
 
-This sample project includes a simple UI that allows you to access the Greeting API. Click the
-[route URL](http://nodejs-configmap-example.[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com) to open up the sample application in a separate browser tab:
+这个示例项目包括一个简单的UI，它允许您访问Greeting API。单击路由URL以在单独的浏览器选项卡中打开示例应用程序:
 
-> You can also access the application through the link on the OpenShift Web Console Overview page. ![Overview link](/openshift/assets/middleware/rhoar-getting-started-nodejs/overview-link.png)
+> 您还可以通过OpenShift Web控制台概述页面上的链接访问该应用程序。![Overview link](/openshift/assets/middleware/rhoar-getting-started-nodejs/overview-link.png)
 
-Enter a name in the 'Name' field and click **Invoke** to test out the service. You should get the same hard-coded
-greeting as in previous steps.
+在'Name'字段，并单击 **调用** 以测试服务。您应该得到相同的硬编码，如前面步骤所示。
 
 ![Hardcoded message](/openshift/assets/middleware/rhoar-getting-started-nodejs/hardcode.png)
 
-While the greeting code is functional, if you wanted to change the message you would need to stop the
-application, make the code change, and re-deploy. As you'll learn in the next section, in a real world
-application this may not be feasible and a mechanism to dynamically change the content is needed.
-You will add this using OpenShift _ConfigMaps_.
+虽然问候代码是可用的，但如果您想更改消息，则需要停止应用程序，更改代码，然后重新部署。在下一节中，您将在现实世界中了解到这一点这可能不可行，需要一种动态更改内容的机制。
+您将使用OpenShift  _ConfigMaps_ 添加这个。

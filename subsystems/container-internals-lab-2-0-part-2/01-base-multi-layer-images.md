@@ -1,24 +1,23 @@
-The goal of this exercise is to understand the difference between base images and multi-layered images (repositories). Also, try to understand the difference between an image layer and a repository.
+本练习的目标是理解基本镜像和多层映像(存储库)之间的区别。另外，尝试理解图像层和存储库之间的区别。
 
+让我们来看看一些基本图像。我们将使用podman history命令检查这些存储库中的所有层。注意，这些容器图像没有父层。这些是基本的图像，它们是被设计来构建的。首先，让我们看看完整的ubi7基图:
 
-Let's take a look at some base images. We will use the podman history command to inspect all of the layers in these repositories. Notice that these container images have no parent layers. These are base images and they are designed to be built upon. First, let's look at the full ubi7 base image:
+``podman history registry.access.redhat.com/ubi7/ubi:latest``{{execute}}
 
-`podman history registry.access.redhat.com/ubi7/ubi:latest`{{execute}}
+现在，让我们来看看最小基像，它是红帽通用基像(UBI)集合的一部分。注意，它要小得多:
 
-Now, let's take a look at the minimal base image which is part of the Red Hat Universal Base Image (UBI) collection. Notice that it's quite a bit smaller:
+``podman history registry.access.redhat.com/ubi7/ubi-minimal:latest``{{execute}}
 
-`podman history registry.access.redhat.com/ubi7/ubi-minimal:latest`{{execute}}
+现在，使用我们为你创建的一个简单的Dockerfile，建立一个多层次的图像:
 
-Now, using a simple Dockerfile we created for you, build a multi-layered image:
+``podman build -t ubi7-change -f ~/labs/lab2-step1/Dockerfile``{{execute}}
 
-`podman build -t ubi7-change -f ~/labs/lab2-step1/Dockerfile`{{execute}}
+您看到新创建的ubi7更改标记了吗?
 
-Do you see the newly created ubi7-change tag?
+``podman images``{{execute}}
 
-`podman images`{{execute}}
+你能看到构成新图像/存储库/标签的所有图层吗?这个命令甚至显示了每个层中运行的命令的简短摘要。这对于探索图像是如何生成的非常方便。
 
-Can you see all of the layers that make up the new image/repository/tag? This command even shows a short summary of the commands run in each layer. This is very convenient for exploring how an image was made.
+``podman history ubi7-change``{{execute}}
 
-`podman history ubi7-change`{{execute}}
-
-Notice that that the first image ID (bottom) listed in the output matches the registry.access.redhat.com/ubi7/ubi image. Remember, it is important to build on a trusted base image from a trusted source (aka have provenance or maintain chain of custody). Container repositories are made up of layers, but we often refer to them simply as "container images" or containers. When architecting systems, we must be precise with our language or we will cause confusion to our end users.
+注意，输出中列出的第一个图像ID(底部)与registry.access.redhat.com/ubi7/ubi图像匹配。请记住，在可信来源(即具有来源或维护保管链)的可信基础镜像上构建非常重要。容器存储库由层组成，但我们通常简单地将它们称为“容器图像”;或容器。当架构系统时，我们必须精确地使用我们的语言，否则我们会给最终用户造成混淆。

@@ -1,20 +1,26 @@
-## Background
-This lab is focused on understanding how container images are built, tagged, organized and leveraged to deliver software in a range of use cases.
+## 背景
 
-By the end of this lab you should be able to:
-- Internalize the difference between base images and multi-layered images
-- Understand the full URL to an image/repository
-- Command a complete understanding of what is inside of a container image
+本实验室的重点在于理解容器镜像是如何构建、标记、组织和利用的，以在一系列用例中交付软件。
 
-## Outline
-- Image Layers and Repositories: inspecting base images, layers and history
-- Image URLs: Mapping business requirements to the URL, Namespace, Repository and Tag
-- Image Internals: Inspecting the libraries, interpreters, and operating system components in a container image
+在这个实验结束时，你应该能够:
 
-## Other Material
-This presentation will give you a background to all of the concepts in this lab.
-- [Presentation](https://goo.gl/wnB7JK)
-- [Lab GitHub Repository](https://github.com/openshift-labs/learn-katacoda)
+* 内化基本图像和多层图像之间的区别
+* 理解图像/存储库的完整URL
+* 命令完全理解容器镜像的内部内容
 
-## Start Scenario
-Once you have watched the background video or went throught the presentation, continue to the exercises
+## 大纲
+
+* 图像层和存储库:检查基础图像，层和历史
+* 图片网址:将业务需求映射到URL、名称空间、存储库和标记
+* 图像内部:检查容器镜像中的库、解释器和操作系统组件
+
+## 其他材料
+
+这个演示将会给你们介绍这个实验室中所有概念的背景。
+
+* [演讲](https://goo.gl/wnB7JK)
+* [实验室GitHub库](https://github.com/openshift-labs/learn-katacoda)
+
+## 开始的场景
+
+当你看完背景视频或完成演示后，继续练习

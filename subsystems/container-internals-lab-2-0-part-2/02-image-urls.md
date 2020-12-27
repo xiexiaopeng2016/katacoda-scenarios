@@ -1,36 +1,35 @@
-Now we are going to inspect the different parts of the URL that you pull. The most common command is something like this, where only the repository name is specified:
+现在我们将检查您拉出的URL的不同部分。最常见的命令是这样的，其中只指定存储库的名称:
 
-`podman inspect ubi7/ubi`{{execute}}
+``podman inspect ubi7/ubi``{{execute}}
 
-But, what's really going on? Well, similar to DNS, the podman command line is resolving the full URL and TAG of the repository on the registry server. The following command will give you the exact same results:
+但是，到底发生了什么?与DNS类似，podman命令行解析注册服务器上存储库的完整URL和标记。下面的命令会给你同样的结果:
 
-`podman inspect registry.access.redhat.com/ubi7/ubi:latest`{{execute}}
+``podman inspect registry.access.redhat.com/ubi7/ubi:latest``{{execute}}
 
-You can run any of the following commands and you will get the exact same results as well:
+你可以运行以下任何命令，你会得到完全相同的结果，以及:
 
-`podman inspect registry.access.redhat.com/ubi7/ubi:latest`{{execute}}
+``podman inspect registry.access.redhat.com/ubi7/ubi:latest``{{execute}}
 
-`podman inspect registry.access.redhat.com/ubi7/ubi`{{execute}}
+``podman inspect registry.access.redhat.com/ubi7/ubi``{{execute}}
 
-`podman inspect ubi7/ubi:latest`{{execute}}
+``podman inspect ubi7/ubi:latest``{{execute}}
 
-`podman inspect ubi7/ubi`{{execute}}
+``podman inspect ubi7/ubi``{{execute}}
 
-Now, let's build another image, but give it a tag other than "latest":
+现在，让我们构建另一个图像，但是给它一个标签，而不是“latest”:
 
-`podman build -t ubi7:test -f ~/labs/lab2-step1/Dockerfile`{{execute}}
+``podman build -t ubi7:test -f ~/labs/lab2-step1/Dockerfile``{{execute}}
 
-Now, notice there is another tag
+现在，注意还有另一个标签
 
-`podman images`{{execute}}
+``podman images``{{execute}}
 
-Now try the resolution trick again. What happened?
+现在再试一次解决问题的技巧。发生了什么事?
 
-`podman inspect ubi7`{{execute}}
+``podman inspect ubi7``{{execute}}
 
-It failed, but why? Try again with a more complete URL:
+它失败了，但为什么呢?请使用更完整的URL重试:
 
-`podman inspect ubi7:test`{{execute}}
+``podman inspect ubi7:test``{{execute}}
 
-Notice that podman resolves container images similar to DNS resolution. Each container engine is different and Docker will actually resolve some things podman doesn't because there is no standard on how image URIs are resolved. If you test long enough, you will find many other caveats to namespace, repository, and tag resolution. Generally, it's best to allways use the full URI, specifying the server, namespace, repository and tag. Remember this when building scripts. Containers seem deceptively easy, but you need to pay attention to details.
-
+注意，podman解析容器图像的方式类似于DNS解析。每个容器引擎都是不同的，Docker实际上会解决一些podman不能解决的问题，因为没有关于图像uri如何解析的标准。如果您测试的时间足够长，您将会发现许多关于名称空间、存储库和标记解析的其他注意事项。通常，最好总是使用完整的URI，指定服务器、名称空间、存储库和标记。在构建脚本时请记住这一点。容器看起来似乎很简单，但您需要注意细节。

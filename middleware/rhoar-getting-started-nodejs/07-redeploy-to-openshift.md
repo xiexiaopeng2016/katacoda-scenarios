@@ -1,31 +1,27 @@
-With our code and ConfigMap in place, lets rebuild and redeploy using the same command as before. Execute the command:
+代码和ConfigMap就绪后，让我们使用与前面相同的命令重新构建和重新部署。执行命令:
 
-```npm run openshift```{{execute}}
+``npm run openshift``{{execute}}
 
-The rebuild and redeploy may take a minute or two. Wait for it to complete.
+重新构建和重新部署可能需要一到两分钟。等待它完成。
 
-After the build finishes it will take less than a minute for the application to become available.
-To verify that everything is started, run the following command again
+构建完成后，应用程序将在不到一分钟的时间内变得可用。
+要验证一切都已启动，再次运行以下命令
 
 ``oc rollout status dc/nodejs-configmap``{{execute}}
 
-and wait for it to report
-`replication controller "nodejs-configmap-2" successfully rolled out`
+然后等待它报告
+ ``replication controller "nodejs-configmap-2" successfully rolled out``
 
-Once the application is re-deployed, re-visit the sample UI by clicking the
-[application link](http://nodejs-configmap-example.[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com)
+重新部署应用程序后，通过单击 [应用程序链接](http://nodejs-configmap-example.[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com) 重新访问示例UI
 
-> You can also access the application through the link on the OpenShift Web Console Overview page. ![Overview link](/openshift/assets/middleware/rhoar-getting-started-nodejs/overview-link.png)
+> 您还可以通过OpenShift Web控制台概述页面上的链接访问该应用程序。![Overview link](/openshift/assets/middleware/rhoar-getting-started-nodejs/overview-link.png)
 
-The application will now read the ConfigMap values and use them in place of the hard-coded default.
+应用程序现在将读取ConfigMap值，并使用它们来代替硬编码的默认值。
 
-**Test the updated app**
+ **测试更新后的应用程序**
 
-Enter a name in the 'Name' field and click **Invoke** to test out the service. You should
-now see the updated message `Hello, [name] from a ConfigMap !` indicating that the application
-successfully accessed the ConfigMap and used its value for the message.
+在'Name'字段，并单击 **调用** 以测试服务。你应该现在看到更新的消息 ``Hello, [name] from a ConfigMap !`` ，它指示应用程序成功访问了ConfigMap并将其值用于消息。
 
 ![New message](/openshift/assets/middleware/rhoar-getting-started-nodejs/new-message.png)
 
-In the final step, we'll modify the ConfigMap and verify that the application successfully
-picks up the changes automatically.
+在最后一步中，我们将修改ConfigMap并验证应用程序是否成功自动获取更改。

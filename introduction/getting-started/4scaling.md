@@ -2,7 +2,7 @@
 
 ![Scaling using arrows](../../assets/introduction/getting-started-44/4scaling-arrows.png)
 
-要验证我们更改了副本的数量，请单击侧面板中的 _资源_ 选项卡。你应该会看到如下图所示的豆荚列表:
+要验证我们更改了副本的数量，请单击侧面板中的 _资源_ 选项卡。你应该会看到如下图所示的Pod列表:
 
 ![List of pods](../../assets/introduction/getting-started-44/4scaling-pods.png)
 

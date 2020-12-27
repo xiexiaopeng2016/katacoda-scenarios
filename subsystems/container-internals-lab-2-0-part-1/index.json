@@ -1,6 +1,6 @@
 {
     "icon": "fa-openshift",
-    "title": "Linux Container Internals 2.0 - Lab 1: Introduction to Containers",
+    "title": "Linux容器内部2.0 - 实验室1:容器介绍",
     "description": "",
     "pathwayTitle": "OpenShift",
     "difficulty": "Easy",
@@ -14,30 +14,42 @@
         "showdashboard": true,
         "dashboard": "Dashboard",
         "uilayout": "terminal-iframe",
-	"terminals": [{"name": "Terminal 2", "target": "host01"}],
+        "terminals": [
+            {
+                "name": "Terminal 2",
+                "target": "host01"
+            }
+        ],
         "hideintro": false,
         "hidefinish": false
     },
     "details": {
-        "steps": [{
-            "title": "Introduction to Containers",
-            "text": "01-introduction.md"
-        }, {
-            "title": "Container Images",
-            "text": "02-images.md"
-        }, {
-            "title": "Container Registries",
-            "text": "03-registries.md"
-        }, {
-            "title": "Container Hosts",
-            "text": "04-hosts.md"
-        }, {
-            "title": "Container Orchestration",
-            "text": "05-orchestration.md"
-        }, {
-            "title": "Closing",
-            "text": "06-closing.md"
-        }],
+        "steps": [
+            {
+                "title": "介绍了容器",
+                "text": "01-introduction.md"
+            },
+            {
+                "title": "容器的图片",
+                "text": "02-images.md"
+            },
+            {
+                "title": "容器注册",
+                "text": "03-registries.md"
+            },
+            {
+                "title": "容器的主机",
+                "text": "04-hosts.md"
+            },
+            {
+                "title": "集装箱编配",
+                "text": "05-orchestration.md"
+            },
+            {
+                "title": "关闭",
+                "text": "06-closing.md"
+            }
+        ],
         "intro": {
             "courseData": "background.sh",
             "code": "foreground.sh",
@@ -47,7 +59,12 @@
             "text": "finish.md"
         },
         "assets": {
-          "host01": [{"file": "route.json", "target": "/root/"}]
+            "host01": [
+                {
+                    "file": "route.json",
+                    "target": "/root/"
+                }
+            ]
         }
     }
 }

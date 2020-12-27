@@ -1,21 +1,21 @@
-If you understand Linux, you probably already have 85% of the knowledge you need to understand containers. If you understand how processes, mounts, networks , shells and daemons work - commands like ps, mount, ip addr, bash, httpd and mysqld - then you just need to understand a few extra primitives to become an expert with containers. Remember that all of the things that you already know today still apply: from security and performance to storage and networking, containers are just a different way of packaging and delivering Linux applications. There are four basic primitives to learn to get you from Linux administrator to feeling comfortable with containers:
+如果您了解Linux，那么您可能已经掌握了理解容器所需的85%的知识。如果您了解进程、挂载、网络、shell和守护进程是如何工作的——像ps、mount、ip addr、bash、httpd和mysqld这样的命令——那么您只需要了解一些额外的原语，就可以成为容器专家。记住，所有你今天已经知道的东西仍然适用:从安全性和性能到存储和网络，容器只是打包和交付Linux应用程序的一种不同方式。有四个基本的基本原理需要学习，以使您从Linux管理员适应容器:
 
-* [Container Images](https://developers.redhat.com/blog/2018/02/22/container-terminology-practical-introduction/#h.dqlu6589ootw)
-* [Container Registries](https://developers.redhat.com/blog/2018/02/22/container-terminology-practical-introduction/#h.4cxnedx7tmvq)
-* [Container Hosts](https://developers.redhat.com/blog/2018/02/22/container-terminology-practical-introduction/#h.8tyd9p17othl)
-* [Container Orchestration](https://developers.redhat.com/blog/2018/02/22/container-terminology-practical-introduction/#h.6yt1ex5wfo66)
+* [容器的图片](https://developers.redhat.com/blog/2018/02/22/container-terminology-practical-introduction/#h.dqlu6589ootw)
+* [容器注册](https://developers.redhat.com/blog/2018/02/22/container-terminology-practical-introduction/#h.4cxnedx7tmvq)
+* [容器的主机](https://developers.redhat.com/blog/2018/02/22/container-terminology-practical-introduction/#h.8tyd9p17othl)
+* [集装箱编配](https://developers.redhat.com/blog/2018/02/22/container-terminology-practical-introduction/#h.6yt1ex5wfo66)
 
-Once, you understand the basic four primitives, there are some advanced concepts that will be covered in future labs including:
+一旦你理解了基本的四个原语，在以后的实验中会涉及到一些高级的概念，包括:
 
-* Container Standards: Understanding OCI, CRI, CNI, and more
-* Container Tools Ecosystem - Podman, Buildah, Skopeo, cloud registries, etc
-* Production Image Builds: Sharing and collaborating between technical specialists (performance, network, security, databases, etc)
-* Intermediate Architecture: Production environments
-* Advanced Architecture: Building in resilience
-* Container History: Context for where we are at today 
+* 容器标准:了解OCI, CRI, CNI等等
+* 容器工具生态系统- Podman, Buildah, Skopeo，云注册等
+* 生产图构建:技术专家之间的共享和协作(性能、网络、安全、数据库等)
+* 中间架构:生产环境
+* 先进的架构:在弹性
+* 容器的历史:我们今天所处的环境
 
-Covering all of this material is beyond the scope of any live training, but we will cover the basics, and students can move on to other labs not covered in the classroom. These labs are available online at http://learn.openshift.com/subsystems. 
+涵盖所有这些材料超出了任何现场培训的范围，但我们将涵盖基本内容，学生可以继续学习课堂上没有涉及的其他实验室。这些实验室可以在 <http://learn.openshift.com/subsystems> 网站上找到。
 
-Now, let's start with the introductory lab, which covers these four basic primitives:
+现在，让我们从介绍实验开始，它涵盖了这四个基本原理:
 
-![New Primitives](../../assets/subsystems/container-internals-lab-2-0-part-1/01-new-primitives.png) 
+![New Primitives](../../assets/subsystems/container-internals-lab-2-0-part-1/01-new-primitives.png)

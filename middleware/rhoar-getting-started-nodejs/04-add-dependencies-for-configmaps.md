@@ -1,53 +1,36 @@
-## What is a ConfigMap?
+## 什么是ConfigMap?
 
-ConfigMap is an object used by OpenShift to inject configuration data as simple key and value pairs into one or
-more Linux containers while keeping the containers agnostic of OpenShift. You can create a ConfigMap object in a
-variety of different ways, including using a YAML file, and inject it into the Linux container. You can find more
-information about ConfigMap in the [OpenShift documentation](https://docs.openshift.org/latest/dev_guide/configmaps.html).
+ConfigMap是OpenShift用来将配置数据作为简单的键和值对注入到一个或更多的Linux容器中的对象，同时保持容器不受OpenShift的影响。您可以通过多种不同的方式创建ConfigMap对象，包括使用YAML文件，并将其注入到Linux容器中。你可以在 [OpenShift文档](https://docs.openshift.org/latest/dev_guide/configmaps.html) 中找到更多关于ConfigMap的信息。
 
-## Why ConfigMap is Important
+## 为什么ConfigMap很重要
 
-It is important for an application’s configuration to be externalized and separate from its code. This allows for
-the application’s configuration to change as it moves through different environments while leaving the code unchanged.
-This also keeps sensitive or internal information out of your codebase and version control. Many languages and
-application servers provide environment variables to support externalizing an application’s configuration.
-Microservices and Linux containers increase the complexity of this by adding pods, or groups of containers representing
-a deployment, and polyglot environments. ConfigMaps enable application configuration to be externalized and used
-in individual Linux containers and pods in a language agnostic way. ConfigMaps also allow sets of configuration
-data to be easily grouped and scaled, which enables you to configure an arbitrarily large number of environments
-beyond the basic Dev, Stage, and Production.
+将应用程序的配置外部化并与代码分离是很重要的。这允许应用程序的配置将随着在不同环境中移动而改变，同时保持代码不变。这也将敏感信息或内部信息排除在代码库和版本控制之外。许多语言和应用程序服务器提供环境变量来支持应用程序配置的外部化。微服务和Linux容器通过添加pods(表示容器的分组)增加了这种复杂性部署和多语言环境。ConfigMaps允许将应用程序配置外部化，并以与语言无关的方式在单个Linux容器和pods中使用。ConfigMaps还允许方便地对配置数据集进行分组和伸缩，这使您能够配置基本的开发、演示和生产之外任意数量的环境。
 
-## Design Tradeoffs
+## 设计权衡
 
-**Pros**
+ **优点**
 
-* Configuration is separate from deployments
-* Can be updated independently
-* Can be shared across services
+* 配置与部署是分开的
+* 可独立更新
+* 可以跨服务共享
 
-**Cons**
+ **缺点**
 
-* Configuration is separate from deployments
-* Has to be maintained separately
-* Requires coordination beyond the scope of a service
+* 配置与部署是分开的
+* 必须分开维护
+* 需要超出服务范围的协调
 
-Notice the first Pro is also the first Con. Separating configuration is generally a good practice for cloud native
-applications, but it does come at some cost. However the pros far outweigh the cons as explained earlier. Let's modify
-the sample app to separate its config using OpenShift ConfigMaps!
+注意，第一个优点也是第一个缺点。对于云原生应用程序来说，分离配置通常是一个很好的实践，但这是有代价的。然而，正如前面所解释的那样，利远大于弊。让我们修改示例应用程序，使用OpenShift ConfigMaps来分离它的配置!
 
-**Add NPM modules for ConfigMap support**
+ **为ConfigMap添加NPM模块**
 
-The [NPM package ecosystem](https://www.npmjs.com/) contains projects that help implement various functionality in Node apps. To enable our
-sample Node app to access OpenShift ConfigMaps, you'll need to declare a dependency on a new package.
+ [NPM包生态系统](https://www.npmjs.com/) 包含了有助于在Node应用中实现各种功能的项目。为了使我们的示例Node应用程序能够访问OpenShift ConfigMaps，您需要声明一个对新包的依赖。
 
-Execute the following command to insert the new dependencies into the `package.json` file:
+执行以下命令将新的依赖项插入到 ``package.json`` 文件中:
 
-```npm install "openshift-rest-client@^2.3.0" --save-prod```{{execute}}
+``npm install "openshift-rest-client@^2.3.0" --save-prod``{{execute}}
 
-This will download and install the needed dependency and update
-the `package.json` file. Close the file (click on the small 'X' near the filename)
-and then re-open the file (click here: `package.json`{{open}}) to see the additional dependency added near the bottom of the file.
+这将下载并安装所需的依赖项和更新 ``package.json`` 文件。关闭文件(点击小的'X'附近的文件名)然后重新打开文件(点击这里:``package.json``{{open}})来查看文件底部附近添加的附加依赖项。
 
-Using this package the application will be able to access its configuration from OpenShift using a ConfigMap.
-But you still need to implement the logic behind that access, which you'll do next.
-
+使用这个包，应用程序将能够使用ConfigMap从OpenShift访问它的配置。
+但是您仍然需要实现访问背后的逻辑，这是您接下来要做的。

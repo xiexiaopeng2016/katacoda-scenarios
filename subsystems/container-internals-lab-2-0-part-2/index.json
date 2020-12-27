@@ -1,13 +1,13 @@
 {
     "icon": "fa-openshift",
-    "title": "Linux Container Internals 2.0 - Lab 2: Container Images",
+    "title": "Linux容器内部2.0 - 实验室2:容器映像",
     "description": "",
     "pathwayTitle": "OpenShift",
     "difficulty": "Intermediate",
     "time": "30-45 minutes",
     "backend": {
-      "trainingid": "openshift-3-11",
-      "imageid": "openshift-3-11",
+        "trainingid": "openshift-3-11",
+        "imageid": "openshift-3-11",
         "port": 8443
     },
     "environment": {
@@ -18,16 +18,20 @@
         "hidefinish": false
     },
     "details": {
-        "steps": [{
-            "title": "Topic 1 - Image Layers and Repositories: inspecting base images, layers and history",
-            "text": "01-base-multi-layer-images.md"
-        }, {
-            "title": "Topic 2 - Image URLs: Mapping business requirements to the URL, Namespace, Repository and Tag",
-            "text": "02-image-urls.md"
-        }, {
-            "title": "Topic 3 - Image Internals: Inspecting the libraries, interpreters, and operating system components in a container image",
-            "text": "03-image-internals.md"
-        }],
+        "steps": [
+            {
+                "title": "主题1 - 图像层和存储库:检查基础图像，层和历史",
+                "text": "01-base-multi-layer-images.md"
+            },
+            {
+                "title": "主题2 - 图像URL:将业务需求映射到URL、名称空间、存储库和标记",
+                "text": "02-image-urls.md"
+            },
+            {
+                "title": "主题3 - 图像内部:检查容器映像中的库、解释器和操作系统组件",
+                "text": "03-image-internals.md"
+            }
+        ],
         "intro": {
             "courseData": "background.sh",
             "code": "foreground.sh",
@@ -37,7 +41,12 @@
             "text": "finish.md"
         },
         "assets": {
-          "host01": [{"file": "route.json", "target": "/root/"}]
+            "host01": [
+                {
+                    "file": "route.json",
+                    "target": "/root/"
+                }
+            ]
         }
     }
 }

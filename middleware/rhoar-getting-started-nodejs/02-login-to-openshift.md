@@ -1,64 +1,51 @@
-**Red Hat OpenShift Container Platform** is the preferred runtime for the **Red Hat OpenShift Application Runtimes**
-like **Node.js**. OpenShift Container Platform is based on **Kubernetes** which is the most used Orchestration
-for containers running in production. **OpenShift** is currently the only container platform based on Kubernetes
-that offers multi-tenancy. This means that developers can have their own personal isolated projects to test and
-verify applications before committing them to a shared code repository.
+Red Hat OpenShift容器平台是 **Red Hat OpenShift应用程序运行时** 的首选运行时
+像 **node.js** 。OpenShift容器平台基于 **Kubernetes** , Kubernetes是生产环境中最常用的容器编排。 **OpenShift** 是目前基于Kubernetes的唯一一个提供多租户的容器平台。这意味着开发人员可以有他们自己独立的项目来测试
+在将应用程序提交到共享代码存储库之前验证它们。
 
-OpenShift also ships with a feature rich web console as well as command line tools to provide users with a nice
-interface to work with applications deployed to the platform.
+OpenShift还附带了功能丰富的web控制台和命令行工具，为用户提供了一个很好的
+接口，以使用部署到平台上的应用程序。
 
-**1. Login to OpenShift Container Platform**
+ **1. 登录到OpenShift容器平台**
 
-In order to login, we will use the **oc** command and then specify the server that we
-want to authenticate to:
+为了登录，我们将使用 **oc** 命令，然后指定我们的服务器
+想要认证到:
 
-`oc login [[HOST_SUBDOMAIN]]-8443-[[KATACODA_HOST]].environments.katacoda.com --insecure-skip-tls-verify=true`{{execute}}
+``oc login [[HOST_SUBDOMAIN]]-8443-[[KATACODA_HOST]].environments.katacoda.com --insecure-skip-tls-verify=true``{{execute}}
 
-Enter your username and password:
-* Username: **developer**
-* Password: **developer**
+输入您的用户名和密码:
 
-Congratulations, you are now authenticated to the OpenShift server.
+* 用户名: **developer**
+* 密码: **developer**
 
-> If the above `oc login` command doesn't seem to do anything, you may have forgotten to stop the application from the previous
-step. Click in the terminal and press CTRL-C to stop the application and try to `oc login` again!
+祝贺您，您现在已经通过OpenShift服务器的身份验证。
 
-**2. Create project**
+> 如果上面的 ``oc login`` 命令似乎没有做任何事情，那么您可能忘记从前面的命令停止应用程序了的一步。点击终端并按CTRL-C停止应用程序，然后重试 ``oc login`` !
 
-[Projects](https://docs.openshift.com/container-platform/3.6/architecture/core_concepts/projects_and_users.html#projects)
-are a top level concept to help you organize your deployments. An
-OpenShift project allows a community of users (or a user) to organize and manage
-their content in isolation from other communities. Each project has its own
-resources, policies (who can or cannot perform actions), and constraints (quotas
-and limits on resources, etc). Projects act as a wrapper around all the
-application services and endpoints you (or your teams) are using for your work.
+ **2. 创建项目**
 
-For this scenario, let's create a project that you will use to house your applications.
+ [项目](https://docs.openshift.com/container-platform/3.6/architecture/core_concepts/projects_and_users.html#projects) 是帮助您组织部署的顶级概念。一个OpenShift项目允许一个用户群体(或一个用户)来组织和管理其内容与其他群体隔离。每个项目都有自己的项目资源、策略(谁能或不能执行操作)和约束(配额, 资源限制等)。项目就像一个包装器, 围绕着您(或您的团队)在工作中使用的应用程序服务和端点。
 
-```oc new-project example --display-name="Sample Node.js External Config App"```{{execute}}
+对于这个场景，让我们创建一个用于存放应用程序的项目。
 
-**3. Open the OpenShift Web Console**
+``oc new-project example --display-name="Sample Node.js External Config App"``{{execute}}
 
-OpenShift ships with a web-based console that will allow users to
-perform various tasks via a browser. To get a feel for how the web console
-works, click on the "OpenShift Console" tab next to the "Local Web Browser" tab.
+ **3. 打开OpenShift Web控制台**
+
+OpenShift附带一个基于web的控制台，允许用户通过浏览器执行各种任务。要感受一下web控制台
+如何工作，点击"本地网络浏览器"选项卡旁边的"OpenShift控制台"选项卡。
 
 ![OpenShift Console Tab](/openshift/assets/middleware/rhoar-getting-started-nodejs/openshift-console-tab.png)
 
-The first screen you will see is the authentication screen. Enter your username and password and
-then log in:
+您将看到的第一个屏幕是身份验证屏幕。输入您的用户名和密码，然后登录:
 
 ![Web Console Login](/openshift/assets/middleware/rhoar-getting-started-nodejs/login.png)
 
-After you have authenticated to the web console, you will be presented with a
-list of projects that your user has permission to work with.
+在对web控制台进行身份验证之后，您将看到一个用户有权使用的项目列表。
 
 ![Web Console Projects](/openshift/assets/middleware/rhoar-getting-started-nodejs/projects.png)
 
-Click on your new project name to be taken to the project overview page
-which will list all of the routes, services, deployments, and pods that you have
-running as part of your project:
+单击您的新项目名称，将带到项目概述页面它会列出你们所有作为项目的一部分正在运行的路由、服务、部署和pod:
 
 ![Web Console Overview](/openshift/assets/middleware/rhoar-getting-started-nodejs/overview.png)
 
-There's nothing there now, but that's about to change.
+现在那里什么都没有，但即将改变。
