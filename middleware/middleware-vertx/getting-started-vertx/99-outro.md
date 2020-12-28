@@ -1,17 +1,16 @@
-In this scenario, you learned a bit more about what Eclipse Vert.x is, and how it can be used to create reactive microservice-oriented applications. We will add additional scenarios explain more how to build resilient reactive microservices shortly, so check back to [learn.openshift.com](http://learn.openshift.com)
+在这个场景中，您学习了更多关于Eclipse Vert.x的知识，以及如何使用它来创建响应式的面向微服务的应用程序。我们很快会添加更多的场景来解释如何构建弹性响应式微服务，请回到 [learn.openshift.com](http://learn.openshift.com) 
 
-To summarize, you developed a web application that both returned static content as well as server-side generated content using Eclipse Vert.x. After testing them locally (in your terminal window) you also deployed your application to the OpenShift Container Platform, using a single maven command.
+总之，您开发了一个web应用程序，它既返回静态内容，又使用Eclipse Vert.x生成服务器端内容。在本地(在终端窗口中)测试它们之后，您还使用一个maven命令将应用程序部署到OpenShift容器平台。
 
->**NOTE:** If you don't like building and deploying from the command line, everything we have done in this scenario is possible in a reasonable modern IDE that supports using maven. For example Eclipse IDE, IntelliJ, or NetBeans. JBoss Developer Studio also provides more advanced tooling.
+>  **注意:** 如果您不喜欢从命令行构建和部署，那么在支持使用maven的现代IDE中，我们在这个场景中所做的一切都是可能的。例如Eclipse IDE、IntelliJ或NetBeans。JBoss Developer Studio还提供了更高级的工具。
 
-Eclipse Vert.x is implemented using reactive concepts and also support using reactive programming like JavaRx,
+Eclipse Vert.x是使用响应式概念实现的，也支持使用响应式编程，如JavaRx，
 
-Eclipse Vert.x is one of many components of Red Hat OpenShift Application Runtimes - check out other scenarios (for example the Eclipse Vert.x scenario) to learn about other runtimes you can use.
+Eclipse Vert.x是Red Hat OpenShift应用程序运行时的众多组件之一——查看其他场景(例如Eclipse Vert.x场景)，以了解您可以使用的其他运行时。
 
-## Additional Resources
+## 额外的资源
 
-More background and related information on Red Hat OpenShift Application Runtimes and Eclipse Vert.x can be found here:
+更多关于Red Hat OpenShift应用程序运行时和Eclipse Vert.x的背景和相关信息可以在这里找到:
 
-* [Red Hat OpenShift Application Runtimes for Developers](https://developers.redhat.com/rhoar)
-* [Eclipse Vert.x homepage](https://www.vertx.io/)
-
+* [Red Hat OpenShift应用程序运行时开发人员](https://developers.redhat.com/rhoar)
+* [Eclipse Vert.x主页](https://www.vertx.io/)

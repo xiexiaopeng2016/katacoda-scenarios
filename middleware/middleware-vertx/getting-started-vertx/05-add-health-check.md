@@ -1,56 +1,57 @@
-# Add health check
-One limitation of our current application is that we do not provide an away for OpenShift to correctly monitoring it. Optimally we should probably add a specific health check route so please check out the [health check mission](https://access.redhat.com/documentation/en-us/red_hat_openshift_application_runtimes/1/html/eclipse_vert.x_runtime_guide/missions-intro#mission-health-check-vertx) , but for the moment we will add a simple call to '/', just to check that the Vert.x instance is alive and responding.
+# 添加健康检查
 
-## Health check warning
+我们当前应用程序的一个限制是，我们没有为OpenShift提供正确监视它的方法。最理想的情况是，我们应该添加一个特定的健康检查路径，所以请检查 [健康检查任务](https://access.redhat.com/documentation/en-us/red_hat_openshift_application_runtimes/1/html/eclipse_vert.x_runtime_guide/missions-intro#mission-health-check-vertx) ，但目前我们将添加一个对'/'的简单调用，以检查Vert.x实例是活的并且正在响应。
 
-Open the [OpenShift webconsole Deployment config page](https://[[HOST_SUBDOMAIN]]-8443-[[KATACODA_HOST]].environments.katacoda.com/console/project/dev/browse/dc/http-vertx?tab=configuration)
+## 健康检查的警告
 
-You will then see the following warning
+打开 [OpenShift webconsole部署配置页面](https://[[HOST_SUBDOMAIN]]-8443-[[KATACODA_HOST]].environments.katacoda.com/console/project/dev/browse/dc/http-vertx?tab=configuration) 
+
+然后您将看到以下警告
 
 ![Health Check Warning](/openshift/assets/middleware/rhoar-getting-started-vertx/health-check-warning.png)
 
-This is just a warning, and your container might be working 100% correctly, but without a proper health-check configured there is no way for OpenShift to tell if the application is responding correctly or not.  
+这只是一个警告，您的容器可能100%正确地工作，但如果没有配置适当的健康检查，OpenShift就无法判断应用程序是否正确地响应。
 
-# Monitor if applications are responding correctly
+# 监视应用程序是否正确响应
 
-**1. Add a health check**
+**1. 添加健康检查**
 
-Open the `pom.xml`{{open}} file and add the following lines at the `<!-- ADD HEALTH CHECK HERE -->` comment.
+打开``pom.xml``{{Open}}文件，在 ``<!-- ADD HEALTH CHECK HERE -->`` 注释处添加以下行。
 
 <pre class="file" data-filename="pom.xml" data-target="insert" data-marker="<!-- ADD HEALTH CHECK HERE -->">
-  &lt;config&gt;
-    &lt;vertx-health-check&gt;
-      &lt;path&gt;/&lt;/path&gt;
-    &lt;/vertx-health-check&gt;
-  &lt;/config&gt;
+  <config>
+    <vertx-health-check>
+      <path>/</path>
+    </vertx-health-check>
+  </config>
 </pre>
 
-After making this change, the fabric8:plugin has enough details to create the health-checks for us, and we can now redeploy our application with health checks active
+在做了这个更改之后，fabric8:plugin有足够的细节来为我们创建健康检查，现在我们可以使用激活的健康检查重新部署我们的应用程序
 
-**2. Re-deploy the application**
+**2. 重新部署应用程序**
 
-Redeploy the application by running the fabric8:deploy goal again.
+再次运行fabric8:deploy目标，重新部署应用程序。
 
 ``mvn fabric8:undeploy fabric8:deploy -Popenshift``{{execute}}
 
-Wait for the rollout to finish.
+等待展示完成。
 
 ``oc rollout status dc/http-vertx``{{execute}}
 
-Check that the warning is now gone from the [OpenShift webconsole Deployment config page](https://[[HOST_SUBDOMAIN]]-8443-[[KATACODA_HOST]].environments.katacoda.com/console/project/dev/browse/dc/http-vertx?tab=configuration)
+检查 [OpenShift webconsole部署配置页面](https://[[HOST_SUBDOMAIN]]-8443-[[KATACODA_HOST]].environments.katacoda.com/console/project/dev/browse/dc/http-vertx?tab=configuration) 上的警告是否已经消失
 
-**3. Test**
+**3.测试**
 
-Below is a rather complex command that does several steps in one. After the command, the different steps are explained in more detail.
+下面是一个相当复杂的命令，它同时执行多个步骤。在命令之后，将更详细地解释不同的步骤。
 
 ``oc --server https://$(hostname):8443 --insecure-skip-tls-verify=true rsh $(oc get pods -l app=http-vertx -o name) pkill java && oc get pods -w``{{execute}}
 
-`oc get pods -l app=http-vertx -o name` will return the name of the running pod, which is different each time.
+ ``oc get pods -l app=http-vertx -o name`` 将返回运行pod的名称，每次都是不同的。
 
-`oc rsh <pod> pkill java` stops the application.
+ ``oc rsh <pod> pkill java`` 停止应用程序。
 
-`oc get pods -w` will watch the pods over time and report any status changes to the pods, e.g., if they have crashed and needs to be restarted, etc.
+ ``oc get pods -w`` 将在一段时间内监视豆荚，并向豆荚报告任何状态变化，例如，如果它们崩溃了，需要重新启动，等等。
 
-Type **CTRL+c** after a new pod is up and running to stop the watching the status of the pods.
+在一个新的pod启动并运行后，键入 **CTRL+c** 以停止对pod状态的监视。
 
-Now verify that the application has recovered and is responding again [here](http://http-vertx-dev.[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com).
+现在，验证应用程序已经恢复并再次响应。

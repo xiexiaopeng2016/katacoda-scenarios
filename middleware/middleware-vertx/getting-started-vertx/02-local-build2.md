@@ -1,16 +1,16 @@
-# Expand your application with server side logic
+# 使用服务器端逻辑扩展应用程序
 
-In Step 1 you learned how to start an HTTP Server and use a static handler to server static files like HTML, CSS, etc. In this step, we will create a new handler that uses server-side code.
+在第1步中，您学习了如何启动HTTP服务器，并使用静态处理程序来服务器静态文件，如HTML、CSS等。在这一步中，我们将创建一个使用服务器端代码的新处理程序。
 
-Looking closer at ``src/main/resources/webroot/index.html``{{open}} we can see that there is a JavaScript function at the end that should react if someone clicks the `Invoke` button. From this line `$.getJSON("/api/greeting?name="` we can see that the webpage expects an API call that will act as a greetings function. The idea is that the API function should take the value of the input field and turn it into a greeting string. 
+仔细看看``src/main/resources/webroot/index.html``{{open}}，我们可以看到在末尾有一个JavaScript函数，当有人点击 ``Invoke`` 按钮时，它应该做出反应。从 ``$.getJSON("/api/greeting?name="`` 行我们可以看到，网页期待一个API调用，它将充当问候函数。其思想是，API函数应该获取输入字段的值，并将其转换为问候字符串。
 
-**1. Add a method for handle greetings call**
+**1. 添加处理问候电话的方法**
 
-First, we are going to implement a route handler called greeting. You will implement it as a private method in the `HttpApplication` class that takes a `RoutingContext` as a parameter. 
+首先，我们将实现一个称为greeting的路由处理程序。您将实现它作为 ``HttpApplication`` 类中的一个私有方法，该方法以 ``RoutingContext`` 作为参数。
 
-First open ``src/main/java/com/example/HttpApplication.java``{{open}} again.
+首先再次打开``src/main/java/com/example/HttpApplication.java``{{open}}。
 
-First copy and paste the code below on the line stating `// TODO: Add method for greeting here`.
+首先复制并粘贴下面 ``// TODO: Add method for greeting here`` 行的代码。
 
 <pre class="file" data-filename="src/main/java/com/example/HttpApplication.java" data-target="insert" data-marker="// TODO: Add method for greeting here">private void greeting(RoutingContext rc) {
     String name = rc.request().getParam("name");
@@ -27,28 +27,28 @@ First copy and paste the code below on the line stating `// TODO: Add method for
     }
 </pre>
 
-The method uses a member variable called `template` that currently is defined as ``static final String template = "Hello, %s!";``.
+该方法使用名为 ``template`` 的成员变量，目前定义为 ``static final String template = "Hello, %s!";`` 。
 
-NOTE: Since we want our handler to return the response to the browser immediately we will use the `rc.response().end()`. It is however possible to chain several handlers by using `rc.response().write()` and `rc.next()`.  
+注意:因为我们希望处理程序立即向浏览器返回响应，所以我们将使用 ``rc.response().end()`` 。但是，可以使用a399b和 ``rc.next()`` 来链接几个处理程序。
 
- **2.Add a route**
+**2.添加一个路线**
 
-After implementing the handler we now need to add a route matching `/api/greeting` like this:
+在实现了这个处理程序之后，我们现在需要像这样添加一个匹配 ``/api/greeting`` 的路由:
 
 <pre class="file" data-filename="src/main/java/com/example/HttpApplication.java" data-target="insert" data-marker="// TODO: Add router for /api/greeting here">router.get("/api/greeting").handler(this::greeting);</pre>
 
-NOTE: It's best practice to add more specific routes before wildcard routes since Vert.x will go through the routers in the same order they were added and if a matching route is found and it calls `rc.end()` any subsequent routes will not be executed.
+注意:最好的做法是在通配符路由之前添加更多特定的路由。x将按照添加时的顺序遍历路由器，如果找到匹配的路由并调用 ``rc.end()`` ，则不会执行后续的路由。
 
-**3. Test the application**
+**3.测试应用程序**
 
-Now you should be able to use the **Invoke** Button [here](https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com/). Test by adding different values in the input and also test by changing the `template` String in `HttpApplication.java`, to use another language. 
+现在您应该能够 [在这里](https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com/) 使用 **调用** 按钮了。通过在输入中添加不同的值进行测试，也可以通过更改 ``HttpApplication.java`` 中的 ``template`` 字符串进行测试，以使用另一种语言。
 
-**4. Stop the application**
+**4. 停止应用程序**
 
-Before moving on, click in the terminal window and then press **CTRL-C** to stop the running application!
+在继续之前，单击终端窗口，然后按 **ctrl-c** 停止运行的应用程序!
 
-## Congratulations
+## 祝贺你
 
-You have now learned how to use multiple **Routes** and how to implement an HTTP Service call that returns JSON. 
+现在，您已经学习了如何使用多个路由以及如何实现返回JSON的HTTP服务调用。
 
-In next step of this scenario we will deploy our application to the OpenShift Container Platform.
+在这个场景的下一步中，我们将把我们的应用程序部署到OpenShift容器平台。

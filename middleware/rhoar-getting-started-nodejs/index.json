@@ -2,7 +2,7 @@
     "pathwayTitle": "Intro to Red Hat OpenShift Application Runtimes",
     "icon": "fa-node",
     "title": "开始使用OpenShift上的Node.js",
-    "description": "In this scenario you will learn more about Node.js, one of the runtimes included in Red Hat OpenShift Application Runtimes.",
+    "description": "在这个场景中，您将了解更多关于Node的信息。Red Hat OpenShift应用程序运行时中包含的一个运行时。",
     "difficulty": "intermediate",
     "time": "20-30 minutes",
     "details": {

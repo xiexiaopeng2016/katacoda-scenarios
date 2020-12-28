@@ -1,9 +1,6 @@
-Red Hat OpenShift容器平台是 **Red Hat OpenShift应用程序运行时** 的首选运行时
-像 **node.js** 。OpenShift容器平台基于 **Kubernetes** , Kubernetes是生产环境中最常用的容器编排。 **OpenShift** 是目前基于Kubernetes的唯一一个提供多租户的容器平台。这意味着开发人员可以有他们自己独立的项目来测试
-在将应用程序提交到共享代码存储库之前验证它们。
+Red Hat OpenShift容器平台是 像 **node.js** 这样的 **Red Hat OpenShift应用程序运行时** 的首选运行时。OpenShift容器平台基于 **Kubernetes** , Kubernetes是生产环境中最常用的容器编排。 **OpenShift** 是目前基于Kubernetes的唯一一个提供多租户的容器平台。这意味着，在将应用程序提交到共享代码存储库之前，开发人员可以有自己的独立项目来测试和验证应用程序。
 
-OpenShift还附带了功能丰富的web控制台和命令行工具，为用户提供了一个很好的
-接口，以使用部署到平台上的应用程序。
+OpenShift还附带了功能丰富的web控制台和命令行工具，为用户提供了一个很好的接口，以使用部署到平台上的应用程序。
 
  **1. 登录到OpenShift容器平台**
 
@@ -31,8 +28,7 @@ OpenShift还附带了功能丰富的web控制台和命令行工具，为用户�
 
  **3. 打开OpenShift Web控制台**
 
-OpenShift附带一个基于web的控制台，允许用户通过浏览器执行各种任务。要感受一下web控制台
-如何工作，点击"本地网络浏览器"选项卡旁边的"OpenShift控制台"选项卡。
+OpenShift附带一个基于web的控制台，允许用户通过浏览器执行各种任务。要感受一下web控制台如何工作，点击"本地网络浏览器"选项卡旁边的"OpenShift控制台"选项卡。
 
 ![OpenShift Console Tab](/openshift/assets/middleware/rhoar-getting-started-nodejs/openshift-console-tab.png)
 
