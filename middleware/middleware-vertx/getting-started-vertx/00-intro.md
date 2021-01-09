@@ -22,8 +22,8 @@ Vert.x不是一个限制框架或容器，我们也不会告诉你如何正确�
 
 Vert.x很有趣——再次享受成为开发者的乐趣吧。与受限的传统应用程序容器不同，Vert.x为您提供了令人难以置信的能力和敏捷性，以您想要的方式，以您想要的语言创建引人注目的、可伸缩的21世纪应用程序，而且不需要太多麻烦。
 
-* Vert.x是轻量级-Vert.x内核的大小约为650kB。
-* Vert.x是快。这里有一些独立的[数字](https://www.techempower.com/benchmarks/#section=data-r8&amp;hw=i7&amp;test=plaintext)。
+* Vert.x是轻量级的 - Vert.x内核的大小约为650kB。
+* Vert.x是快速的。这里有一些独立的[数字](https://www.techempower.com/benchmarks/#section=data-r8&amp;hw=i7&amp;test=plaintext)。
 * Vert.x不是应用服务器。没有单一的Vert.x实例，您可以将应用程序部署到其中。你可以在任何你想要的地方运行你的应用。
 * Vert.x是模块化的——当你需要更多的bits时，只需要添加你需要的bits就可以了。
 * Vert.x简单但不过分简单化。Vert.x允许你简单地创建强大的应用程序。
