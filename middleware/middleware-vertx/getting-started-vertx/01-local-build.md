@@ -75,7 +75,16 @@ Vert.x在如何塑造应用程序和代码方面给了您很大的自由。但�
 
 现在我们已经准备好启动HTTP服务器，
 
-<pre class="file" data-filename="src/main/java/com/example/HttpApplication.java" data-target="insert" data-marker="// TODO: Create the HTTP server listening on port 8080">vertx.createHttpServer().requestHandler(router).listen(8080);</pre>
+<pre class="file" data-filename="src/main/java/com/example/HttpApplication.java" data-target="insert" data-marker="// TODO: Create the HTTP server listening on port 8080">
+import io.vertx.core.Handler;
+import io.vertx.core.http.HttpServerRequest;
+
+vertx.createHttpServer().requestHandler(new Handler<HttpServerRequest>() {
+	@Override
+	public void handle(HttpServerRequest event) {
+		router.accept(event);
+	}
+}).listen(8080);</pre>
 
 注意:你可能已经注意到Vert.x将自动检测您的更改并立即重新部署更改。自动重新部署对于开发用途来说非常方便，但是对于生产用途可以关闭。
 
