@@ -1,7 +1,7 @@
 {
     "pathwayTitle": "Vert.x on RHOAR",
     "icon": "fa-openshift",
-    "title": "微交易者第1部分:报价生成器",
+    "title": "微交易者第1部分: 报价生成器",
     "description": "In this scenario you will build a component for the MicroTrader example application for Vert.x.",
     "difficulty": "beginner",
     "time": "15 minutes",
