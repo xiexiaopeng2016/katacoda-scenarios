@@ -1,48 +1,44 @@
-## Deploy to OpenShift
+## 部署到OpenShift
 
-Now that you've logged into OpenShift, let's deploy our new micro-trader Vert.x microservice:
+现在你已经登录了OpenShift，让我们来部署我们新的微型交易员Vert.x微服务:
 
-**1. Build and Deploy**
+**1. 构建和部署**
 
-We have already deployed our `quote-generator` and `micro-trader-dashboard` microservices on OpenShift. In this step we will deploy our new portfolio microservice. We will continue with the same OpenShift project to house this service and other microservices.
+我们已经在OpenShift上部署了我们的 ``quote-generator`` 和 ``micro-trader-dashboard`` 微服务。在这一步中，我们将部署我们的新投资组合微服务。我们将继续使用相同的OpenShift项目来容纳这个服务和其他微服务。
 
-`oc project vertx-kubernetes-workshop`{{execute}}
+``oc project vertx-kubernetes-workshop``{{execute}}
 
-As you know, Red Hat OpenShift Application Runtimes include a powerful maven plugin that can take an
-existing Eclipse Vert.x application and generate the necessary Kubernetes configuration.
+如你所知，Red Hat OpenShift应用程序运行时包括一个强大的maven插件，它可以使用现有的Eclipse Vert.x应用程序，并生成必要的Kubernetes配置。
 
-Build and deploy the project using the following command, which will use the maven plugin to deploy:
+使用以下命令构建和部署项目，这将使用maven插件来部署:
 
-`cd /root/code/portfolio-service`{{execute}}
+``cd /root/code/portfolio-service``{{execute}}
 
-`mvn fabric8:deploy`{{execute}}
+``mvn fabric8:deploy``{{execute}}
 
-The build and deploy may take a minute or two. Wait for it to complete. You should see a **BUILD SUCCESS** at the
-end of the build output.
+构建和部署可能需要一到两分钟。等待它完成。您应该看到构建结束时输出的一个**BUILD SUCCESS**。
 
-After the maven build finishes it will take less than a minute for the application to become available.
-To verify that everything is started, run the following command and wait for it complete successfully:
+maven构建完成后，应用程序将在不到一分钟的时间内变得可用。
+要验证一切都已启动，运行以下命令，并等待它成功完成:
 
-`oc rollout status -w dc/portfolio-service`{{execute}}
+``oc rollout status -w dc/portfolio-service``{{execute}}
 
-There you go, the portfolio service is started. It discovers the ``quotes`` service and is ready to be used.
+这样，portfolio服务就启动了。它发现 ``quotes`` 服务并准备好使用。
 
-**2. Access the Micro-trader dashboard**
+**2. 访问微型交易仪表板**
 
-Click on the "OpenShift Console" tab next to the "Local Web Browser" tab.
+点击"本地网络浏览器"选项卡旁边的"OpenShift控制台"选项卡。
 
 ![OpenShift Console Tab](/openshift/assets/middleware/rhoar-getting-started-vertx/openshift-console-tab.png)
 
-Log in using `developer/developer` for username and password. You should see the newly created project called `“vertx-kubernetes-workshop"`. Click on it. You should see four pods running, one each for the quote-generator and micro-trader-dashboard microservices that you created in previous scenarios and a new one for portfolio-service that you created just now.
+用户名和密码使用 ``developer/developer`` 登录。您应该看到新创建的名为 ``"vertx-kubernetes-workshop"`` 的项目。点击它。您应该看到四个正在运行的pod，一个用于前面场景中创建的quote-generator和micro-trader-dashboard微服务，另一个用于刚刚创建的portfolio-service。
 
-Click on the route for the `micro-trader-dashboard`. Append `“/admin”` at the end of the route and you should see the dashboard. You should see some new services and if you click on the “Trader” tab on the left, cash should have been set in the top left corner.
+点击 ``micro-trader-dashboard`` 的路由。在路由的末尾添加 ``“/admin”`` ，您应该会看到仪表板。你应该会看到一些新的服务，如果你点击左侧的“Trader”标签，现金应该已经设置在左上角。
 
-Alternatively, you can click on the
-[route URL](http://micro-trader-dashboard-vertx-kubernetes-workshop.[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/admin)
-to access the dashboard.
+或者，您可以单击 [路由的URL](http://micro-trader-dashboard-vertx-kubernetes-workshop.[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/admin) 访问仪表板。
 
-The dashboard is consuming the portfolio service using the async RPC mechanism. A client for JavaScript is generated at compile time, and use SockJS to communicate. Behind the hood there is a bridge between the event bus and SockJS.
+指示板使用异步RPC机制消费组合服务。JavaScript的客户机是在编译时生成的，并使用SockJS进行通信。在引擎盖背后，在事件总线和SockJS之间有一座桥。
 
-## Congratulations!
+## 恭喜你!
 
-You have deployed the portfolio microservice running on OpenShift. In the next component, we are going to implement the trader service and use that to buy and sell shares. 
+您已经部署了运行在OpenShift上的投资组合微服务。在下一个组件中，我们将实现trader服务并使用它来买卖股票。

@@ -1,11 +1,12 @@
-## Summary
+## 总结
 
-In this scenario, you covered
+在这个场景中，您已经介绍了
 
-* how we can use the event bus to implement asynchronous RPC (RPC done right)
+* 我们如何使用事件总线来实现异步RPC (RPC正确完成)
 
-* how to implement a service proxy using callbacks
+* 如何使用回调实现服务代理
 
-* how to publish messages on the event bus
+* 如何在事件总线上发布消息
 
-* how to use the Vert.x Web Client
+* 如何使用帘布。x Web客户端
+

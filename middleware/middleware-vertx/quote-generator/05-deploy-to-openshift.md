@@ -1,26 +1,26 @@
-## Deploy to OpenShift
+## 部署到OpenShift
 
-Now that you've logged into OpenShift, let's deploy our new micro-trader Vert.x microservice:
+现在你已经登录了OpenShift，让我们来部署我们新的微型交易Vert.x微服务:
 
-**1. Create a ConfigMap**
+**1. 创建一个ConfigMap**
 
-A config map is a Kubernetes entity storing the configuration of an application. The application configuration is in src/kubernetes/config.json. We are going to create a config map from this file. In a terminal, execute:
+配置映射是存储应用程序配置的Kubernetes实体。应用程序配置在src/kubernetes/config.json中。我们将从这个文件创建一个配置映射。在终端中，执行:
 
-`oc create configmap app-config --from-file=src/kubernetes/config.json`{{execute}}
+``oc create configmap app-config --from-file=src/kubernetes/config.json``{{execute}}
 
-To check that the config map has been created correctly, execute:
+要检查配置映射是否已经正确创建，请执行:
 
-`oc get configmap -o yaml`{{execute}}
+``oc get configmap -o yaml``{{execute}}
 
-It should display the Kubernetes entity and in the data entry our json content.
+它应该显示Kubernetes实体，并在数据输入中显示json内容。
 
-Now that the config map is created, let’s read it from our application. There are several ways to consume a config map:
+现在已经创建了配置映射，让我们从应用程序中读取它。有几种使用配置映射的方法:
 
-* ENV variables
-* Config mounted as a file
-* Vert.x Config
+* ENV变量
+* Config作为文件挂载
+* Vert.x配置
 
-We are going to use the second approach and mount the configuration as a file in the application container. Indeed, our application has been configured to read its configuration from a src/kubernetes/config.json file:
+我们将使用第二种方法，并将配置作为文件挂载到应用程序容器中。实际上，我们的应用程序已经配置为从src/kubernetes/config.json文件中读取配置:
 
 ```java
 private ConfigRetrieverOptions getConfigurationOptions() {
@@ -29,38 +29,36 @@ private ConfigRetrieverOptions getConfigurationOptions() {
 }
 ```
 
-For that, we have defined additional config in ``quote-generator/src/main/fabric8/deployment.yml``{{open}} that contains the right configuration to:
-1. define a volume with the config map content
-2. mount this volume in the right directory
+为此，我们在``quote-generator/src/main/fabric8/deployment.yml``{{open}}中定义了额外的配置，其中包含了正确的配置:
 
-You can also see that this file contains the JAVA options we pass to the process.
+1. 使用配置映射内容定义卷
+2. 将这个卷挂载到正确的目录中
 
-**2. Start the quote generator**
+您还可以看到，该文件包含我们传递给进程的JAVA选项。
 
-Red Hat OpenShift Application Runtimes includes a powerful maven plugin that can take an
-existing Eclipse Vert.x application and generate the necessary Kubernetes configuration.
+**2. 启动报价生成器**
 
-Build and deploy the project using the following command, which will use the maven plugin to deploy:
+Red Hat OpenShift应用程序运行时包括一个强大的maven插件，可以使用现有的Eclipse Vert.x应用程序，并生成必要的Kubernetes配置。
 
-`mvn fabric8:deploy`{{execute}}
+使用以下命令构建和部署项目，这将使用maven插件来部署:
 
-The build and deploy may take a minute or two. Wait for it to complete. You should see a **BUILD SUCCESS** at the
-end of the build output.
+``mvn fabric8:deploy``{{execute}}
 
-After the maven build finishes it will take less than a minute for the application to become available.
-To verify that everything is started, run the following command and wait for it complete successfully:
+构建和部署可能需要一到两分钟。等待它完成。您应该看到构建结束时输出的一个**BUILD SUCCESS**。
 
-`oc rollout status -w dc/quote-generator`{{execute}}
+maven构建完成后，应用程序将在不到一分钟的时间内变得可用。
+要验证一切都已启动，运行以下命令，并等待它成功完成:
 
-**3. Access the application running on OpenShift**
+``oc rollout status -w dc/quote-generator``{{execute}}
 
-Click on the
-[route URL](http://quote-generator-vertx-kubernetes-workshop.[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com)
-to access the sample UI.
+**3.访问在OpenShift上运行的应用程序**
 
-> You can also access the application through the link for the quote-generator route on the OpenShift Web Console Overview page.
+点击 [路由的URL](http://quote-generator-vertx-kubernetes-workshop.[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com) 
+访问示例UI。
 
-You should now see an HTML page that looks like this:
+> 还可以通过OpenShift Web控制台概述页面上的quote-generator路由链接访问应用程序。
+
+你现在应该会看到这样一个HTML页面:
 
 ```json
 
@@ -95,35 +93,36 @@ You should now see an HTML page that looks like this:
 }
 ```
 
-**4. Build and Deploy the micro-trader-dashboard**
+**4. 构建和部署微型交易仪表板**
 
-`cd /root/code/micro-trader-dashboard`{{execute}}
+``cd /root/code/micro-trader-dashboard``{{execute}}
 
-`mvn fabric8:deploy`{{execute}}
+``mvn fabric8:deploy``{{execute}}
 
-In the OpenShift web console, wait until the pod is ready and click on the associated route. Append "/admin" at the end of the URL and you should see the dashboard. If you go into the trader tab, the graph should display the evolution of the market.
+在OpenShift web控制台中，等待pod就绪，然后单击关联的路由。在URL的末尾添加"/admin"，您应该看到仪表板。如果你进入交易者选项卡，图表应该显示市场的演变。
 
-Alternatively, you can click on the
-[route URL](http://micro-trader-dashboard-vertx-kubernetes-workshop.[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/admin)
-to access the sample UI.
+或者，您可以单击
+ [路由的URL](http://micro-trader-dashboard-vertx-kubernetes-workshop.[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/admin) 
+访问示例UI。
 
-**5. You are not a financial expert ?**
-So maybe you are not used to the financial world and words…​ Neither am I, and this is a overly simplified version. Let’s define the important fields:
+**5. 你不是金融专家?**
+也许你不习惯金融世界和词汇，我也不习惯，这是一个过于简化的版本。让我们定义重要的字段:
 
-* `name` : the company name
+*  ``name`` :公司名称
 
-* `symbol` : short name
+*  ``symbol`` :短名称
 
-* `shares` : the number of stock that can be bought
+*  ``shares`` :可以购买的股票数量
 
-* `open` : the stock price when the session opened
+*  ``open`` :交易日开盘时的股价
 
-* `ask` : the price of the stock when you buy them (seller price)
+*  ``ask`` :你买股票时的价格(卖价)
 
-* `bid` : the price of the stock when you sell them (buyer price)
+*  ``bid`` :你卖出股票时的价格(买入价)
 
-You can check Wikipedia for more details.
 
-## Congratulations!
+你可以查看维基百科了解更多细节。
 
-You have deployed the quote-generator as a microservice. In the next component, we are going to implement an event bus service (the portfolio microservice). 
+## 恭喜你!
+
+您已经将报价生成器部署为一个微服务。在下一个组件中，我们将实现一个事件总线服务(portfolio微服务)。

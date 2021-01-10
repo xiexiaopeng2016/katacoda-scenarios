@@ -1,15 +1,16 @@
-## Summary
+## 总结
 
-In this scenario, you learned a bit more about what Reactive Systems and Reactive programming are and why it's useful when building Microservices. 
+在这个场景中，您进一步了解了什么是响应式系统和响应式编程，以及它在构建微服务时为什么有用。
 
-* how projects are structured, built, and deployed
+* 项目是如何结构化、构建和部署的
 
-* how to use the event bus to receive messages
+* 如何使用事件总线来接收消息
 
-* how to expose a HTTP endpoint
+* 如何公开HTTP端点
 
-* how to use RX Java 2 to avoid callbacks
+* 如何使用RX Java 2避免回调
 
-* using config maps to configure the application
+* 使用配置映射来配置应用程序
 
-In the next scenario, , we are going to implement a Portfolio service. A Portfolio stores the owned shares and the available cash.
+
+在下一个场景中，我们将实现一个Portfolio服务。Portfolio储存拥有的股票和可用的现金。

@@ -1,62 +1,63 @@
-## Implementing the service
+## 实施服务
 
-It’s time to implement our async service interface. We are going to implement three methods in this service:
+现在是实现异步服务接口的时候了。我们将在这个服务中实现三个方法:
 
-* `getPortfolio` to understand how to create AsyncResult objects
+* ``getPortfolio`` 了解如何创建AsyncResult对象
 
-* `sendActionOnTheEventBus` to see how to send messages on the event bus
+* ``sendActionOnTheEventBus`` 查看如何在事件总线上发送消息
 
-* `evaluate` computing the current value of the portfolio
+* ``evaluate`` 计算投资组合的当前价值
 
-**1. Creating AsyncResult instances**
+**1. 创建AsyncResult实例**
 
-As we have seen above, our async service has a `Handler<AsyncResult<Portfolio>>` parameter. So when we implement this service, we would need to call the `Handler` with an instance of `AsyncResult`. To see how this works, let’s implement the `getPortfolio` method:
+正如我们在上面看到的，我们的异步服务有一个 ``Handler<AsyncResult<Portfolio>>`` 参数。因此，当我们实现这个服务时，我们需要使用 ``AsyncResult`` 的实例调用 ``Handler`` 。为了了解它是如何工作的，让我们实现 ``getPortfolio`` 方法:
 
-In `io.vertx.workshop.portfolio.impl.PortfolioServiceImpl`, fill the `getPortfolio` method. It should call the `handle` method of the `resultHandler` with a successful async result. This object can be created from the (Vert.x) `Future` method.
+在 ``io.vertx.workshop.portfolio.impl.PortfolioServiceImpl`` 中，填写 ``getPortfolio`` 方法。它应该调用 ``resultHandler`` 的 ``handle`` 方法，并获得成功的异步结果。这个对象可以通过(Vert.x) ``Future`` 方法创建。
 
-Open the file in the editor: 
+在编辑器中打开文件:
 
-`portfolio-service/src/main/java/io/vertx/workshop/portfolio/impl/PortfolioServiceImpl.java`{{open}}
+``portfolio-service/src/main/java/io/vertx/workshop/portfolio/impl/PortfolioServiceImpl.java``{{open}}
 
-Then, copy the below content to the matching `// TODO: getPortfolio` statement (or use the `Copy to Editor` button):
+然后，将下面的内容复制到匹配的 ``// TODO: getPortfolio`` 语句中(或使用 ``Copy to Editor`` 按钮):
 
 <pre class="file" data-filename="portfolio-service/src/main/java/io/vertx/workshop/portfolio/impl/PortfolioServiceImpl.java" data-target="insert" data-marker="// TODO: getPortfolio">
 resultHandler.handle(Future.succeededFuture(portfolio));
 </pre>
 
-Let’s dissect it:
+让我们仔细分析它:
 
-* resultHandler.handle : this invokes the Handler. Handler<X> has a single method (handle(X)).
-* Future.succeededFuture : this is how we create an instance of AsyncResult denoting a success. The passed value is the result (portfolio)
+* resultHandler.handle : 这将调用处理程序。Handler<X>只有一个方法(handle(X))。
+* Future.succeededFuture : 这就是我们如何创建一个表示成功的AsyncResult实例。传递的值是结果(投资组合)
 
-What is the relationship between `AsyncResult` and `Future`? A `Future` represents the result of an action that may, or may not, have occurred yet. The result may be null if the `Future` is used to detect the completion of an operation. The operation behind a `Future` object may succeed or fail. `AsyncResult` is a structure describing the success of the failure of an operation. So, `Future` are `AsyncResult`. In Vert.x `AsyncResult` instances are created from the `Future` class.
+ ``AsyncResult`` 和 ``Future`` 是什么关系? 一个 ``Future`` 表示一个可能发生，也可能没有发生的行为的结果。如果使用 ``Future`` 来检测操作是否完成，则结果可能为null。 ``Future`` 对象背后的操作可能成功，也可能失败。``AsyncResult`` 是一个描述操作失败成功的结构。所以 ``Future`` 就是 ``AsyncResult`` 。在Vert.x中 ``AsyncResult`` 实例是从 ``Future`` 类创建的。
 
-`AsyncResult` describes:
+``AsyncResult`` 描述:
 
-* a success as shown before, it encapsulates the result
-* a failure, it encapsulates a `Throwable` instance
+* 一个成功，如前所示的，它封装了结果
+* 一个失败，它封装了一个``Throwable``实例
 
-So, how does this work with our async RPC service, let’s look at this sequence diagram:
+那么，这是如何与我们的异步RPC服务一起工作的，让我们看看这个序列图:
 
 ![Architecture](/openshift/assets/middleware/rhoar-getting-started-vertx/portfolio-sequence.png)
 
-**2. Sending an event on the event bus**
-It’s time to see how to send messages on the event bus. You access the event bus using vertx.eventBus(). From this object you can:
+**2. 在事件总线上发送事件**
+现在该看看如何在事件总线上发送消息了。您可以使用vertx.eventBus()访问事件总线。从这个对象你可以:
 
-* `send` : send a message in point to point mode
-* `publish` : broadcast a message to all consumers registered on the address
-* `send` with a `Handler<AsyncResult<Message>>>`: send a message in point to point mode and expect a reply. If you use RX Java, this method is called `rxSend` and returns a `Single<Message>`. If the receiver does not reply to the message, it is considered a failure (timeout)
+* ``send`` : 以点对点模式发送一个消息
+* ``publish`` : 向在该地址上注册的所有消费者广播一条消息
+* ``send``与一个``Handler<AsyncResult<Message>>>`` : 以点对点模式发送消息并期待回复。如果使用RX Java，则调用此方法``rxSend``并返回一个``Single<Message>``。如果接收方没有回复消息，则视为失败(超时)
 
-In our code, We have provided the `buy` and `sell` methods, that are just doing some checks before buying or selling shares. Once the action is emitted, we send a message on the event bus that will be consumed by the `Audit Service` and the `Dashboard`. So, we are going to use the `publish` method.
+在我们的代码中，我们提供了 ``buy`` 和 ``sell`` 方法，它们只是在买卖股票之前做一些检查。动作发出后，我们在事件总线上发送一条消息，该消息将被 ``Audit Service`` 和 ``Dashboard`` 使用。所以, 我们会用 ``publish`` 方法。
 
-Write the body of the `sendActionOnTheEventBus` method in order to publish a message on the `EVENT_ADDRESS` address containing a `JsonObject` as body. This object must contains the following entries:
-* action → the action (buy or sell)
-* quote → the quote as Json
-* date → a date (long in milliseconds)
-* amount → the amount
-* owned → the updated (owned) amount
+编写 ``sendActionOnTheEventBus`` 方法的主体，以便在包含 ``JsonObject`` 主体的 ``EVENT_ADDRESS`` 地址上发布消息。该节点必须包含以下条目:
 
-Copy the following to the matching `// TODO: sendActionOnTheEventBus` statement
+* action → 动作(买或卖)
+* quote → 报价为Json
+* date → 一个日期(单位为毫秒)
+* amount → 金额
+* owned → 已更新的(现有)金额
+
+将下面的代码复制到匹配的 ``// TODO: sendActionOnTheEventBus`` 语句中
 
 <pre class="file" data-filename="portfolio-service/src/main/java/io/vertx/workshop/portfolio/impl/PortfolioServiceImpl.java" data-target="insert" data-marker="// TODO: sendActionOnTheEventBus">
 vertx.eventBus().publish(EVENT_ADDRESS, new JsonObject()
@@ -67,24 +68,24 @@ vertx.eventBus().publish(EVENT_ADDRESS, new JsonObject()
     .put("owned", newAmount));
 </pre>
 
-Let’s have a deeper look:
+让我们来深入了解一下:
 
-* It gets the `EventBus` instance and call `publish` on it. The first parameter is the address on which the message is sent
-* The body is a `JsonObject` containing the different information on the action (buy or sell, the quote (another json object), the date…​
+* 它得到了``EventBus``实例, 并在上面调用``publish``。第一个参数是发送消息的地址
+* 主体是一个``JsonObject``包含不同的操作信息(买或卖，报价(另一个json对象)，日期…
 
-**3. Coordinating async methods and consuming HTTP endpoints - Portfolio value evaluation**
+**3.协调异步方法和消费HTTP端点 - 组合价值评估**
 
-The last method to implement is the `evaluate` method. This method computes the current value of the portfolio. However, for this it needs to access the "current" value of the stock (so the last quote). It is going to consume the HTTP endpoint we have implemented in the quote generator. For this, we are going to:
+最后实现的方法是 ``evaluate`` 方法。这种方法计算投资组合的当前价值。然而，为此它需要访问"current"股票的价值(最后的报价)。它将使用我们在报价生成器中实现的HTTP端点。为此，我们要:
 
-* Discover the service
-* Call the service for each company we own some shares
-* When all calls are done, compute the value and send it back to the caller
+* 发现服务
+* 为每个我们拥有一些股份的公司调用服务
+* 当所有调用都完成后，计算值并将其发送回调用者
 
-Let’s do it step by step. First, in the evaluate, we need to retrieve the HTTP endpoint (service) provided by the quote generator. This service is named quotes. We published in in the previous section. So, let’s start to get this service.
+让我们一步一步来做。首先，在评估中，我们需要检索报价生成器提供的HTTP端点(服务)。该服务名为quotes。我们在上一节中发表过。所以，让我们开始得到这个服务。
 
-Fill the evaluate method to retrieve the quotes service. You can retrieve Http services using HttpEndpoint.getClient. The name of the service is quotes. If you can’t retrieve the service, just passed a failed async result to the handler. Otherwise, call computeEvaluation.
+填写evaluate方法以检索quotes服务。您可以使用HttpEndpoint.getClient检索Http服务。服务的名称是quotes。如果无法检索服务，只需将一个失败的异步结果传递给处理程序。否则, computeEvaluation打电话。
 
-Copy the following to the matching `// TODO: evaluate` statement in the evaluate method
+将以下内容复制到evaluate方法中匹配的 ``// TODO: evaluate`` 语句中
 
 <pre class="file" data-filename="portfolio-service/src/main/java/io/vertx/workshop/portfolio/impl/PortfolioServiceImpl.java" data-target="insert" data-marker="// TODO: evaluate">
 quotes.subscribe((client, err) -> {
@@ -96,11 +97,11 @@ quotes.subscribe((client, err) -> {
 });
 </pre>
 
-* Get the HTTP Client for the requested service.
-* The client cannot be retrieved (service not found), report the failure
-* We have the client, let’s continue…​
+* 获取请求的服务的HTTP客户机。
+* 无法检索客户端(未找到服务)，报告失败
+* 我们有了客户端，我们继续…
 
-Here is how the `computeEvaluation` method is implemented:
+下面是如何实现 ``computeEvaluation`` 方法:
 
 ```java
 private void computeEvaluation(HttpClient httpClient, Handler<AsyncResult<Double>> resultHandler) {
@@ -120,18 +121,18 @@ private void computeEvaluation(HttpClient httpClient, Handler<AsyncResult<Double
 }
 ```
 
-Now, we just need the `getValueForCompany` method that call the service. Write the content of this method. 
+现在，我们只需要调用该服务的 ``getValueForCompany`` 方法。编写此方法的内容。
 
-This method returns a Single<Double> emitting the numberOfShares * bid result. Write the content of this method following these steps:
+这个方法返回一个Single<Double>，发出 numberOfShares * bid 结果。按照以下步骤编写该方法的内容:
 
-1. use the client.get("/?name=" + encode(company)) to create a HTTP request
-2. we expect a JSON object as response payload, so use .as(BodyCodec.jsonObject())
-3. use the rxSend method to create a Single containing the result
-4. we now need to extract the "bid" from the returned JSON. Extract the response body and then extract the "bid" entry (json.getDouble("bid")). Both extraction are orchestrated using map.
-5. compute the amount (bid * numberOfShared)
-6. Done!
+1. 使用 client.get("/?name=" + encode(company)) 创建HTTP请求
+2. 我们期望一个JSON对象作为响应负载，所以使用 .as(BodyCodec.jsonObject())
+3. 使用rxSend方法创建一个包含结果的单个对象
+4. 我们现在需要从返回的JSON中提取"bid"。提取响应主体，然后提取"bid"条目(json.getDouble("bid"))。这两种提取都使用map进行编排。
+5. 计算金额 (bid * numberOfShared)
+6. 完成!
 
-Copy the following to the matching `// TODO: getValueForCompany` statement in the getValueForCompany method 
+将以下内容复制到getValueForCompany方法中匹配的 ``// TODO: getValueForCompany`` 语句中
 
 <pre class="file" data-filename="portfolio-service/src/main/java/io/vertx/workshop/portfolio/impl/PortfolioServiceImpl.java" data-target="insert" data-marker="// TODO: getValueForCompany">
  return client.get("/?name=" + encode(company))

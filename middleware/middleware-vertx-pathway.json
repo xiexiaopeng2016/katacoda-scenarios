@@ -1,37 +1,37 @@
 {
-  "title": "Eclipse Vert.x on Red Hat OpenShift Application Runtimes",
+  "title": "Red Hat OpenShift应用程序运行时上的Eclipse Vert.x",
   "description": "",
   "paid": false,
   "courses": [
     {
       "external_link": "https://learn.openshift.com/middleware/courses/middleware-vertx/getting-started-vertx",
       "course_id": "getting-started-vertx",
-      "title": "Getting Started with Vert.x",
-      "description": "Basic Introduction to Vert.x on Red Hat OpenShift"
+      "title": "Vert.x入门",
+      "description": "简单介绍Red Hat OpenShift上的Vert.x"
     },
     {
       "external_link": "https://learn.openshift.com/middleware/courses/middleware-vertx/quote-generator",
       "course_id": "quote-generator",
-      "title": "MicroTrader App Part 1: Quote Generator",
-      "description": "Vert.x Asynchronous APIs, RESTful endpoints, Publishing to Event Bus"
+      "title": "MicroTrader应用程序第1部分: 报价生成器",
+      "description": "Vert.x异步api、RESTful端点、发布到事件总线"
     },
     {
       "external_link": "https://learn.openshift.com/middleware/courses/middleware-vertx/portfolio-service",
       "course_id": "portfolio-service",
-      "title": "MicroTrader App Part 2: Portfolio Service",
-      "description": "Event Bus Extras, Publishing Services"
+      "title": "MicroTrader应用程序第2部分: 客户服务",
+      "description": "事件总线额外部分，发布服务"
     },
     {
       "external_link": "https://learn.openshift.com/middleware/courses/middleware-vertx/compulsive-traders",
       "course_id": "compulsive-traders",
-      "title": "MicroTrader App Part 3: Compulsive Traders",
-      "description": "Polyglot Services with RX Java 2"
+      "title": "MicroTrader应用程序第3部分: 强制的交易员",
+      "description": "使用RX Java 2的多语言服务"
     },
     {
       "external_link": "https://learn.openshift.com/middleware/courses/middleware-vertx/audit-service",
       "course_id": "audit-service",
-      "title": "MicroTrader App Part 4: Audit Service",
-      "description": "Async JDBC, Vert.x Web Async API, Kubernetes Secrets"
+      "title": "MicroTrader应用程序第4部分: 审计服务",
+      "description": "异步JDBC、Vert.x Web异步API, Kubernetes Secrets"
     }
    ]
 }

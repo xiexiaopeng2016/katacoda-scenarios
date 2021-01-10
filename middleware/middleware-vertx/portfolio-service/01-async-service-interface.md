@@ -1,25 +1,24 @@
-## Async service interface
+## 异步服务接口
 
-To create an async RPC service, or event bus service, or service proxies, you first need a Java interface declaring the async methods. 
+要创建一个异步RPC服务或事件总线服务或服务代理，您首先需要一个Java接口来声明异步方法。
 
-Open the ``io.vertx.workshop.portfolio.PortfolioService`` class by clicking the link:
+点击链接打开 ``io.vertx.workshop.portfolio.PortfolioService`` 类:
 
 ``portfolio-service/src/main/java/io/vertx/workshop/portfolio/PortfolioService.java``{{open}}
 
-The class is annotated with:
+这个类被注释为:
 
-* ``ProxyGen`` - enables the event bus service proxy and server generation
+* ``ProxyGen`` - 启用事件总线服务代理和服务器生成
 
-* ``VertxGen`` - enables the creation of the proxy in the different language supported by Vert.x
+* ``VertxGen`` - 启用用Vert.x支持的不同语言创建代理
 
-Let’s have a look at the first method:
+让我们来看看第一种方法:
 
 ```java
 void getPortfolio(Handler<AsyncResult<Portfolio>> resultHandler);
 ```
 
-This method lets you retrieve a Portfolio object. This method is asynchronous and so has a Handler parameter receiving an AsyncResult<Portfolio>. The other methods follows the same pattern.
+这个方法允许您检索一个Portfolio对象。该方法是异步的，因此有一个接收AsyncResult<Portfolio>的处理程序参数。其他方法遵循同样的模式。
 
-***NOTE***
-You may have also noticed that the package has a package-info.java file. This file is required to enable the service proxy generation.
-
+**请注意**
+您可能还注意到包有一个package-info.java文件。此文件是启用服务代理生成所需的文件。

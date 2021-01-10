@@ -75,22 +75,22 @@ Vert.x在如何塑造应用程序和代码方面给了您很大的自由。但�
 
 现在我们已经准备好启动HTTP服务器，
 
-<pre class="file" data-filename="src/main/java/com/example/HttpApplication.java" data-target="insert" data-marker="// TODO: Create the HTTP server listening on port 8080">
-import io.vertx.core.Handler;
-import io.vertx.core.http.HttpServerRequest;
+<pre class="file" data-filename="src/main/java/com/example/HttpApplication.java" data-target="insert" data-marker="// TODO: Create the HTTP server listening on port 8080">import io.vertx.core.Handler;
+	import io.vertx.core.http.HttpServerRequest;
 
-vertx.createHttpServer().requestHandler(new Handler<HttpServerRequest>() {
-	@Override
-	public void handle(HttpServerRequest event) {
-		router.accept(event);
-	}
-}).listen(8080);</pre>
+	vertx.createHttpServer().requestHandler(new Handler<HttpServerRequest>() {
+		@Override
+		public void handle(HttpServerRequest event) {
+			router.accept(event);
+		}
+	}).listen(8080);
+</pre>
 
 注意:你可能已经注意到Vert.x将自动检测您的更改并立即重新部署更改。自动重新部署对于开发用途来说非常方便，但是对于生产用途可以关闭。
 
  **3.测试应用程序**
 
-首先，单击该浏览器窗口的控制台框架中的 **当地的网络浏览器** 选项卡，这将打开浏览器的另一个选项卡或窗口，指向客户机上的端口8080。
+首先，单击该浏览器窗口的控制台框架中的 **本地网络浏览器** 选项卡，这将打开浏览器的另一个选项卡或窗口，指向客户机上的端口8080。
 
 ![Local Web Browser Tab](/openshift/assets/middleware/rhoar-getting-started-vertx/web-browser-tab.png)
 
@@ -98,7 +98,7 @@ vertx.createHttpServer().requestHandler(new Handler<HttpServerRequest>() {
 
 ![Local Web Browser Tab](/openshift/assets/middleware/rhoar-getting-started-vertx/web-page.png)
 
-或使用此链接。
+或使用 [此](https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com/) 链接。
 
 >  **注意:** Invoke按钮还不能工作，但是我们将在下一步中修复这个问题。
 

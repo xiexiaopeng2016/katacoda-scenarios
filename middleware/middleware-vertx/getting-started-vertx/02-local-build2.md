@@ -29,7 +29,7 @@
 
 该方法使用名为 ``template`` 的成员变量，目前定义为 ``static final String template = "Hello, %s!";`` 。
 
-注意:因为我们希望处理程序立即向浏览器返回响应，所以我们将使用 ``rc.response().end()`` 。但是，可以使用a399b和 ``rc.next()`` 来链接几个处理程序。
+注意:因为我们希望处理程序立即向浏览器返回响应，所以我们将使用 ``rc.response().end()`` 。但是，可以使用 `rc.response().write()` 和 ``rc.next()`` 来链接几个处理程序。
 
 **2.添加一个路线**
 
@@ -37,7 +37,7 @@
 
 <pre class="file" data-filename="src/main/java/com/example/HttpApplication.java" data-target="insert" data-marker="// TODO: Add router for /api/greeting here">router.get("/api/greeting").handler(this::greeting);</pre>
 
-注意:最好的做法是在通配符路由之前添加更多特定的路由。x将按照添加时的顺序遍历路由器，如果找到匹配的路由并调用 ``rc.end()`` ，则不会执行后续的路由。
+注意:最好的做法是在通配符路由之前添加更多特定的路由。Vert.x将按照添加时的顺序遍历路由器，如果找到匹配的路由并调用 ``rc.end()`` ，则不会执行后续的路由。
 
 **3.测试应用程序**
 

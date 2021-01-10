@@ -1,54 +1,54 @@
-## Verticle
+## 垂直
 
-As you may have noticed, the code is structured in 3 `verticles`, but what are these? Verticles is a way to structure Vert.x application code. It’s not mandatory, but it is quite convenient. A verticle is a chunk of code that is deployed on top of a Vert.x instance. A verticle has access to the instance of `vertx` on which it’s deployed, and can deploy other verticles.
+正如你可能已经注意到的，代码的结构是3 ``verticles`` ，但这些是什么?立交是一种构造立交的方式。x应用程序代码。这不是强制性的，但是很方便。垂直是部署在垂直顶点上的一段代码。x实例。一个垂直对象可以访问它所部署的 ``vertx`` 的实例，并且可以部署其他垂直对象。
 
-**Understanding the Application**
+**理解应用程序**
 
-Let's open the `GeneratorConfigVerticle` class by clicking on the link below and look at the `start` method
+让我们通过点击下面的链接打开 ``GeneratorConfigVerticle`` 类，并查看 ``start`` 方法
 
-`quote-generator/src/main/java/io/vertx/workshop/quote/GeneratorConfigVerticle.java`{{open}}
+``quote-generator/src/main/java/io/vertx/workshop/quote/GeneratorConfigVerticle.java``{{开放}}
 
-This method retrieves the configuration, instantiates the verticles and publishes the services in the service discovery.
+此方法检索配置、实例化顶点并在服务发现中发布服务。
 
-First, notice the method signature. It receives a Future object indicating that the start is asynchronous. Indeed, all the actions made in this method are asynchronous. So, when the caller thread reaches the end of the method, the actions may have not completed. We use this given Future to indicate when the process has completed (or failed).
+首先，请注意方法签名。它接收一个Future对象，该对象指示启动是异步的。实际上，在这个方法中进行的所有操作都是异步的。因此，当调用方线程到达方法的末尾时，操作可能还没有完成。我们使用给定的Future来指示流程何时完成(或失败)。
 
-The start method:
+启动方法:
 
-1. retrieves the configuration (giving the "fake" company settings)
-2. deploys one verticle per defined company
-3. deploys the RestQuoteAPIVerticle
-4. exposes the market-data message source
-5. notifies the given Future of the successful completion or failure
+1. 获取配置(给出“伪造”);公司设置)
+2. 每个定义的连部署一个垂直
+3. 部署RestQuoteAPIVerticle
+4. 公开市场数据信息来源
+5. 通知给定的Future成功完成或失败
 
-As you review the content, you will notice that there are 2 TODO comments. Do not remove them! These comments are used as a marker and without them, you will not be able to finish this scenario.
+当您回顾内容时，您会注意到有2个TODO注释。不要移除它们!这些注释被用作标记，没有它们，您将无法完成这个场景。
 
-To retrieve the configuration the verticle needs a `ConfigRetriever`. This object allows retrieving configuration chunks from different stores (such as git, files, http, etc.). Here we just load the contents of the ``config.json`` file located in the src/kubernetes directory. The configuration is a JsonObject. Vert.x uses JSON heavily, so you are going to see a lot of JSON in this lab.
+要检索配置，垂直需要 ``ConfigRetriever`` 。这个对象允许从不同的存储(如git、文件、http等)检索配置块。这里我们只加载位于src/kubernetes目录中的 ``config.json`` 文件的内容。配置是一个JsonObject。绿色。x大量使用JSON，所以在这个实验中你会看到很多JSON。
 
-Once we have the retriever, we can retrieve the configuration. This is an asynchronous method (``rxGetConfig``) returning a Single (a stream containing one item). After the configuration is retrieved, we extract the companies array from it and deploy one verticle per defined company. The deployment is also asynchronous and done with ``rxDeployVerticle``. These company verticles simulate the value of the stocks. The quotes are sent on the event bus on the market address.
+一旦我们有了检索器，我们就可以检索配置。这是一个异步方法( ``rxGetConfig`` )，返回一个单独的(包含一个项目的流)。在获取配置之后，我们从其中提取companies数组，并为每个定义的公司部署一个垂直。该部署也是异步的，使用 ``rxDeployVerticle`` 完成。这些公司立柱模拟股票的价值。报价在市场地址的事件总线上发送。
 
-Add the below content to the matching `// TODO: MarketDataVerticle` statement (or use the `Copy to Editor` button):
-      
+将以下内容添加到匹配的 ``// TODO: MarketDataVerticle`` 语句中(或使用 ``Copy to Editor`` 按钮):
+
 <pre class="file" data-filename="src/main/java/io/vertx/workshop/quote/GeneratorConfigVerticle.java" data-target="insert" data-marker="// TODO: MarketDataVerticle">
 .flatMapSingle(company -> vertx.rxDeployVerticle(MarketDataVerticle.class.getName(),
     new DeploymentOptions().setConfig(company)))
 </pre>
 
-When the company verticles are deployed, we deploy another verticle providing an HTTP API to access market data. 
+在部署了公司的垂直节点之后，我们将部署另一个提供HTTP API来访问市场数据的垂直节点。
 
-Add the below content to the matching `// TODO: RestQuoteAPIVerticle` statement (or use the `Copy to Editor` button):
+将以下内容添加到匹配的 ``// TODO: RestQuoteAPIVerticle`` 语句(或使用 ``Copy to Editor`` 按钮):
 
 <pre class="file" data-filename="quote-generator/src/main/java/io/vertx/workshop/quote/GeneratorConfigVerticle.java" data-target="insert" data-marker="// TODO: RestQuoteAPIVerticle">
 .flatMap(l -> vertx.rxDeployVerticle(RestQuoteAPIVerticle.class.getName()))
 </pre>
 
-The last part of the method is about the service discovery mentioned in the microservice section. This component generates quotes sent on the event bus. But to let other components discover where the messages are sent (where means on which address), it registers it. ``market-data`` is the name of the service, ``ADDRESS`` (a static final variable defined as market) is the event bus address on which the messages are sent.
+方法的最后一部分是关于微服务一节中提到的服务发现。该组件生成在事件总线上发送的报价。但是为了让其他组件发现消息被发送到哪里(哪里意味着在哪个地址上)，它注册了它。 ``market-data`` 是服务的名称， ``ADDRESS`` (定义为market的静态最终变量)是发送消息的事件总线地址。
 
 ```java
 .flatMap(x -> discovery.rxPublish(MessageSource.createRecord("market-data", ADDRESS)))
 ```
 
-Finally, when everything is done, we report the status on the given Future object. The failure management can be made at any stage, but generally, it’s done in the subscribe method:
-                                                                                   
+最后，当一切都完成后，我们报告给定Future对象的状态。故障管理可以在任何阶段进行，但通常是在subscribe方法中完成的:
+
 ```java
 object.rxAsync(param1, param2)
  // ....
@@ -61,4 +61,4 @@ object.rxAsync(param1, param2)
  });
 ```
 
-If you remember the architecture, the quote generator also provides an HTTP endpoint returning the last values of the quotes. Note that this service is not explicitly published in the service discovery. That’s because Kubernetes is taking care of this part. The Vert.x service discovery interacts with Kubernetes services, so all Kubernetes services can be retrieved by Vert.x
+如果您还记得这个体系结构，报价生成器还提供一个HTTP端点，返回报价的最后值。注意，该服务在服务发现中没有显式发布。这是因为Kubernetes负责这部分。绿色。x服务发现与Kubernetes服务交互，所以所有Kubernetes服务都可以通过Vert.x检索
