@@ -6,7 +6,7 @@
 
 让我们通过点击下面的链接打开 ``GeneratorConfigVerticle`` 类，并查看 ``start`` 方法
 
-``quote-generator/src/main/java/io/vertx/workshop/quote/GeneratorConfigVerticle.java``{{开放}}
+``quote-generator/src/main/java/io/vertx/workshop/quote/GeneratorConfigVerticle.java``{{open}}
 
 此方法检索配置、实例化verticle并在服务发现中发布服务。
 
