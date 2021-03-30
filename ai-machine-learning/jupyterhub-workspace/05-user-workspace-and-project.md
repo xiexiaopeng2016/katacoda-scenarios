@@ -1,45 +1,45 @@
-For each user session, a separate pod is created in the same project as JupyterHub is running. It is in this pod that the Jupyter notebook application runs. You can see a list of the pods for the active user sessions by running:
+对于每个用户会话，在运行JupyterHub的同一个项目中创建一个单独的pod。Jupyter笔记本应用程序就是在这个pod中运行的。您可以通过运行以下命令来查看活动用户会话的pod列表:
 
 ``oc get pod -l component=singleuser-server``{{execute}}
 
-How much memory each user is allowed to use for their Jupyter notebook instance is defined by the ``NOTEBOOK_MEMORY`` template parameter.
+每个用户允许为其jupiter notebook实例使用多少内存是由``NOTEBOOK_MEMORY``模板参数定义的。
 
-Because the ``VOLUME_SIZE`` template parameter was specified, each user will be assigned their own persistent volume. The first time that they start up a Jupyter notebook, files from the Jupyter notebook image will be copied from the image into the persistent volume. Any subsequent changes made to the files will then be written back to the persistent volume. If the Jupyter notebook instance is stopped and then started again, the changes will be preserved.
+因为已经指定了``VOLUME_SIZE``模板参数，所以将为每个用户分配他们自己的持久卷。他们第一次启动一个Jupyter笔记本，文件从Jupyter笔记本的镜像将复制到持久卷的镜像。随后对文件所做的任何更改都将被写回持久卷。如果停止了jupiter notebook实例，然后重新启动，则更改将被保留。
 
-You can see a list of the persistent volumes claimed for each user session by running:
+运行以下命令，可以看到每个用户会话声明的持久卷列表:
 
 ``oc get pvc -l component=singleuser-storage``{{execute}}
 
-If a user manages to delete all their files, or they want to revert back to the original files from the Jupyter notebook image, they should create the file ``/opt/app-root/.delete-volume`` by running:
+如果用户删除了他们所有的文件，或者他们想要恢复到原来的Jupyter笔记本镜像文件，他们应该通过运行以下命令创建文件``/opt/app-root/.delete-volume``:
 
 ``touch /opt/app-root/.delete-volume``
 
-This can be done from a terminal created from the Jupyter notebook web interface. Having created the file, they can visit the JupyterHub _Control Panel_, stop their server instance, and start it again. When it starts again, the file above will trigger the deletion of the contents of the persistent volume and it will be restored to the original contents from the Jupyter notebook image.
+这可以通过从jupiter notebook web界面创建的终端完成。创建文件后，可以访问JupyterHub控制面板，停止服务器实例，并重新启动它。当它再次启动时，上面的文件将触发删除持久卷的内容，它将恢复到jupiter笔记本镜像中的原始内容。
 
-If for some reason changes made to the persistent volume prevent the Jupyter notebook instance starting and the file cannot be created, it would be necessary to stop the Jupyter notebook instance as a JupyterHub admin from the JupyterHub admin control panel, and delete the persistent volume claim using the ``oc delete pvc`` command.
+如果由于某种原因更改持久卷防止Jupyter笔记本不能创建实例启动和文件,将有必要阻止Jupyter笔记本实例作为JupyterHub admin JupyterHub管理控制面板,和删除持久卷使用``oc delete pvc``命令。
 
-When the pod is created for a users Jupyter notebook instance, access from that pod is given to the OpenShift cluster with access rights governed by what user they logged in as.
+当为用户的jupiter notebook实例创建pod时，将从该pod向OpenShift集群授予访问权限，访问权限由登录时的用户管理。
 
-The user would not have any access to the project the pod is running in, unless they would normally have access to that project.
+用户不会有任何访问pod运行的项目的权限，除非他们通常可以访问该项目。
 
-In this example deployment, because the ``OPENSHIFT_PROJECT`` template parameter was defined as ``{username}-workspace``, a project will be automatically created using that name, where ``{username}`` is replace with the users own name. In this case that would be ``user1-workspace``. You can check this was the case by running:
+在这个部署示例中，因为``OPENSHIFT_PROJECT``模板参数定义为``{username}-workspace``，所以将使用该名称自动创建项目，其中``{username}``将被用户自己的名称替换。在这种情况下是``user1-workspace``。你可以通过运行来检查是否正确:
 
 ``oc get project/user1-workspace``{{execute}}
 
-This relied on the user having the ability to create new projects. What workloads they can deploy to the project will be dictated by whatever global resource quotas and limits would be applied to the project for the user.
+这依赖于用户有能力创建新项目。他们可以部署到项目中的工作负载将取决于将为用户应用到项目中的全局资源配额和限制。
 
-If a user cannot normally create projects, you can instead pre-create required projects as a cluster admin, setting a per project resource quota, limit ranges, and granting access to the project by the user, or a group of users, as necessary. In this case, as the project will not need to be created, it will just be made the active project for the user.
+如果用户无法正常创建业务群组，可以通过集群管理员预创建所需的业务群组，设置每个业务群组的资源配额，限制范围，并根据需要授予该用户(或用户组)对业务群组的访问权限。在这种情况下，由于项目将不需要被创建，它将被作为用户的活动项目。
 
-A user can deploy workloads to the project using the cluster REST API using code running in their notebooks. The Jupyter notebook image also supplies the ``oc`` and ``kustomize`` command line tools, which can be used from a terminal created from the Jupyter notebook interface.
+用户可以使用在他们的笔记本上运行的代码，使用集群REST API将工作负载部署到项目中。jupiter notebook image还提供了``oc``和``kustomize``命令行工具，它们可以从jupiter notebook界面创建的终端使用。
 
-To test access to the cluster, from the Jupyter notebook web interface, create a terminal instance. At the login prompt of the terminal running in the Jupyter notebook, run:
+要测试对集群的访问，请从jupiter notebook web界面创建一个终端实例。在运行在Jupyter笔记本上的终端的登录提示符下，运行:
 
 ``oc projects``{{copy}}
 
-You will see what projects you can access.
+您将看到可以访问哪些项目。
 
 ![Terminal Session](../../assets/jupyternotebooks/jupyterhub-workspace-42/05-jupyter-notebook-terminal-session.png)
 
-Where the JupyterHub environment was created and a custom Jupyter notebook image was used containing a set of Jupyter notebook files, it could also include an OpenShift template, or set of resources for ``kustomize`` which can then be used to deploy any workloads required for the Jupyter notebook. For example, you might deploy a Dask or Spark cluster within the project right from the Jupyter notebook terminal interface.
+在创建了JupyterHub环境并使用了包含一组jupiter notebook文件的定制jupiter notebook镜像的地方，还可以包含OpenShift模板或``kustomize``的一组资源，然后可以使用该资源部署jupiter notebook所需的任何工作负载。例如，您可以从jupiter笔记本终端界面在项目中部署一个Dask或Spark集群。
 
-If you need to know the name of any associated project, you can work out the name from the ``PROJECT_NAMESPACE`` environment variable. This will be available in both the Jupyter notebook and terminal.
+如果您需要知道任何关联项目的名称，您可以从``PROJECT_NAMESPACE``环境变量计算出名称。这将在Jupyter笔记本电脑和终端。

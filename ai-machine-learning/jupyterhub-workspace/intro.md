@@ -1,9 +1,9 @@
-The [Project Jupyter](https://jupyter.org/) web site describes Jupyter notebooks as:
+[Project Jupyter](https://jupyter.org/) 网站将Jupyter笔记本描述为:
 
-> an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
+> 一个开放源代码的网络应用程序，允许你创建和共享包含实时代码、方程式、可视化和叙述文本的文档。用途包括:数据清洗和转换，数值模拟，统计建模，数据可视化，机器学习，等等。
 
-Jupyter notebooks can be deployed direct to Linux, macOS or Windows environments, or in containerized environments such as Docker, Kubernetes and OpenShift.
+jupiter笔记本可以直接部署到Linux、macOS或Windows环境中，或者部署到Docker、Kubernetes和OpenShift等容器环境中。
 
-In this workshop you will learn how you can provide persistent workspaces for multiple users, for working on Jupyter notebooks, using JupyterHub. Access to the Jupyter notebooks will be gated using OpenShift cluster authentication. The Jupyter notebook instance will be attached to the OpenShift cluster so that users can interact with and deploy workloads to the cluster required by the Jupyter notebooks.
+在本研讨会中，您将学习如何为多个用户提供持久的工作空间，以便使用JupyterHub在jupiter笔记本上工作。访问Jupyter笔记本将使用OpenShift集群身份验证。jupiter notebook实例将附加到OpenShift集群，这样用户就可以与jupiter notebook所需的集群进行交互，并将工作负载部署到该集群。
 
-The examples shown will make use of sample Jupyter notebook images, JupyterHub images, and templates, from the [Jupyter on OpenShift](https://github.com/jupyter-on-openshift) project, a community project for demonstrating how Jupyter notebooks and JupyterHub can be deployed to OpenShift.
+所示的示例将使用来自[Jupyter on OpenShift](https://github.com/jupyter-on-openshift) 项目的示例jupiter notebook镜像、JupyterHub镜像和模板。[Jupyter on OpenShift](https://github.com/jupyter-on-openshift)项目是一个社区项目，用于演示如何将jupiter notebook和JupyterHub部署到OpenShift。

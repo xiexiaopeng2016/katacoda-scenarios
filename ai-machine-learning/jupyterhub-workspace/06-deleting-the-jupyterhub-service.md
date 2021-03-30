@@ -1,25 +1,25 @@
-When you are done with the JupyterHub service you can delete it from the command line.
+使用完JupyterHub服务后，可以从命令行删除它。
 
-To validate that you are deleting the correct resources, first run:
+要验证您正在删除正确的资源，首先运行:
 
 ``oc get all,configmap,pvc,serviceaccount,rolebinding --selector app=jupyterhub -o name``{{execute}}
 
-This uses a label selector to reference only the resources for this deployment.
+这使用一个标签选择器来仅引用此部署的资源。
 
-When happy that you will be deleting the correct resources, run:
+当你很高兴你将删除正确的资源时，运行:
 
 ``oc delete all,configmap,pvc,serviceaccount,rolebinding --selector app=jupyterhub``{{execute}}
 
-This will only delete resources from the project JupyterHub is deployed to.
+这只会从JupyterHub部署到的项目中删除资源。
 
-You will also need to delete the global ``oauthclient`` resource. Do this as a separate step so you can double check you are deleting the correct resource.
+您还需要删除全局``oauthclient``资源。这是一个单独的步骤，这样您就可以再次检查是否删除了正确的资源。
 
-To list the ``oauthclient`` resources run:
+列出``oauthclient``资源运行:
 
 ``oc get oauthclient --selector app=jupyterhub``{{execute}}
 
-Delete by name the one entry corresponding to the JupyterHub deployment in this project. In this case the project name was ``myproject``, so you would run:
+按名称删除与此项目中的JupyterHub部署相对应的条目。在这种情况下，项目名称是``myproject``，所以你会运行:
 
 ``oc delete oauthclient/jupyterhub-myproject-users``{{execute}}
 
-Note that this will not delete any projects which have been created for or by users. If users had not deleted the projects themselves, you as a cluster admin will need to identify them and delete them.
+请注意，这不会删除为用户或由用户创建的任何项目。如果用户没有删除项目本身，作为集群管理员的您将需要识别它们并删除它们。
