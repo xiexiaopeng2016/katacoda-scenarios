@@ -3,13 +3,13 @@
 * 使用``helm`` CLI
 * 安装``helm repository``
 * 搜索，安装和卸载``Helm Charts``
-* 检查``OpenShift Console``的舵面图
+* 检查``OpenShift Console``的Helm图表
 
 ## Helm命令行界面(CLI)
 
 在这个场景中，你会发现Helm CLI已经为你安装，它也可以从OpenShift控制台，右上角，点击 ? -> 命令行工具。
 
-CLI是任何与Helm 3子系统交互的入口点。除此之外，OpenShift开发者目录是所有开发者内容的中心枢纽，除了支持运营商服务、模板等，还支持Helm图表。
+CLI是任何与Helm 3子系统交互的入口点。除此之外，OpenShift开发者目录是所有开发者内容的中心枢纽，除了支持Operator服务、模板等，还支持Helm图表。
 
 当用户指示Helm CLI安装Helm Chart时，将从存储库中获取有关Helm Chart的信息，在客户机上呈现，然后应用到Kubernetes，同时在名称空间(称为发布)中创建该安装的记录。
 
@@ -58,7 +58,7 @@ CLI是任何与Helm 3子系统交互的入口点。除此之外，OpenShift开�
 
 ``helm repo list``{{execute}}
 
-你可以搜索Helm图表也在回购，就像在一个你刚刚安装:
+你也可以在repos里搜索Helm图表，比如你刚安装的那个:
 
 ``helm search repo bitnami/nginx``{{execute}}
 
@@ -100,21 +100,21 @@ CLI是任何与Helm 3子系统交互的入口点。除此之外，OpenShift开�
 
 确保web控制台左上角的下拉菜单中的Developer透视图被选中，如下所示:
 
-<img src="../../assets/middleware/ pipes /developer-view.png" width="800" />
+<img src="../../assets/middleware/pipelines/developer-view.png" width="800" />
 
 接下来，选择如下所示的Project下拉菜单，并选择您一直在使用的``helm``项目。
 
 接下来，如果您没有看到下面镜像中的内容，请单击web控制台左侧的Topology选项卡。一旦进入拓扑图，就可以看到``my-nginx``应用程序的部署，点击OpenShift路由生成的URL即可访问:
 
-<img src="../../assets/ developer.com -on-openshift/helm/nginx-helm-chart-route.png" width="800" />
+<img src="../../assets/developing-on-openshift/helm/nginx-helm-chart-route.png" width="800" />
 
 你会注意到下面的HR标签和Helm图标，这意味着这个应用程序是由Helm管理的，你可以在这个应用程序的左侧菜单，Helm部分概述Helm ``Releases``:
 
-<img src="../../assets/ developer.com -on-openshift/helm/nginx-helm-releases.png" width="800" />
+<img src="../../assets/developing-on-openshift/helm/nginx-helm-releases.png" width="800" />
 
 探索所有与特定Helm``Release``相关的``Resources``，点击``my-nginx``Helm发布，然后点击``Resouces``标签:
 
-<img src="../../assets/ development -on-openshift/helm/nginx-helm-resources-view.png" width="800" />
+<img src="../../assets/developing-on-openshift/helm/nginx-helm-resources-view.png" width="800" />
 
 # 卸载和清理
 

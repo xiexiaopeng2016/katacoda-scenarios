@@ -45,9 +45,9 @@ spec:
 
 从控制台验证新的``Route``和新的``Revision``:
 
-<img src="../../assets/ developer.com -on-openshift/helm/my-chart-helm-chart-route.png" width="800" />
+<img src="../../assets/developing-on-openshift/helm/my-chart-helm-chart-route.png" width="800" />
 
-<img src="../../assets/ developer.com -on-openshift/helm/my-chart-new- revision.net .png" width="800" />
+<img src="../../assets/developing-on-openshift/helm/my-chart-new-revision.png" width="800" />
 
 ## 升级和回滚
 

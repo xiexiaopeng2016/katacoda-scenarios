@@ -65,7 +65,7 @@ Helm使用一种称为图表的包装格式。图表是描述相关Kubernetes资
 
 ``oc get pods``{{execute}}
 
-<img src="../../assets/ developer.com -on-openshift/helm/my-chart-helm-chart.png" width="800" />
+<img src="../../assets/developing-on-openshift/helm/my-chart-helm-chart.png" width="800" />
 
 审查安装修订:
 
