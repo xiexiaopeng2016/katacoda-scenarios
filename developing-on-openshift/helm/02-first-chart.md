@@ -1,80 +1,74 @@
-At the end of this chapter you will be able to:
-- Create your own `Helm Chart`
-- Understand `Helm Templates`
-- Understand Helm integrations with `Kubernetes`
+在本章结束时，你将能够:
 
+* 创建您自己的``Helm Chart``
+* 理解``Helm Templates``
+* 了解Helm与``Kubernetes``的集成
 
-After having discovered `helm` CLI to install and manage Helm Charts, we can now create our first one from scratch. Before doing that, let's review the core concepts from [official documentation](https://helm.sh/docs/topics/charts/):
+在发现了``helm`` CLI来安装和管理Helm Charts之后，我们现在可以从头创建我们的第一个。在此之前，让我们回顾一下[official documentation](https://helm.sh/docs/topics/charts/) 的核心概念:
 
-- A `Chart` is a Helm package. It contains all of the resource definitions necessary to run an application, tool, or service inside of a Kubernetes cluster.
-- A `Repository` is the place where charts can be collected and shared.
-- A `Release` is an instance of a chart running in a Kubernetes cluster- 
+* ``Chart``是一个Helm包。它包含在Kubernetes集群中运行应用程序、工具或服务所需的所有资源定义。
+* ``Repository``是可以收集和分享图表的地方。
+* ``Release``是Kubernetes集群中运行的一个图表实例
 
+Helm使用一种称为图表的包装格式。图表是描述相关Kubernetes资源集的文件集合，它被组织为目录中的文件集合。目录名称是图表的名称。
 
-Helm uses a packaging format called charts. A chart is a collection of files that describe a related set of Kubernetes resources, and it organized as a collection of files inside of a directory. The directory name is the name of the chart.
+## 创建一个新的Helm图
 
-## Creating a new Helm Chart
+使用``helm create``命令，您可以创建一个图表目录以及图表中使用的常见文件和目录。
 
-With `helm create` command you can create a chart directory along with the common files and directories used in a chart.
+我们的代码已经用这个命令生成了:
 
+``helm create my-chart``
 
-Our code has been already generated with this command:
+在``my-chart/``文件夹中，你会发现这些文件:
 
-`helm create my-chart`
+``tree my-chart``{{execute}}
 
+* ``Chart.yaml``{{open}}: 一个YAML文件包含多个描述图表的字段吗
+* ``values.yaml``{{open}}:: 是一个包含图表默认值的YAML文件，这些值可能在helm安装或升级期间被用户覆盖。
+* ``templates/NOTES.txt``{{open}}: 文本显示给您的用户时，他们运行Helm安装。
+* ``templates/deployment.yaml``{{open}}: 创建Kubernetes部署的基本清单
+* ``templates/service.yaml``{{open}}: 为部署创建服务端点的基本清单
+* ``templates/_helpers.tpl``{{open}}: 放置可以在整个图表中重用的模板助手的位置
 
-Inside `my-chart/` folder you will find these files:
+这个命令会生成你的Helm图的骨架，默认情况下有一个NGINX镜像为例:
 
-`tree my-chart`{{execute}}
+1. 图表描述
 
-* `Chart.yaml`{{open}}: is a YAML file containing multiple fields describing the chart
-* `values.yaml`{{open}}:: is a YAML file containing default values for a chart, those may be overridden by users during helm install or helm upgrade.
-* `templates/NOTES.txt`{{open}}: text to be displayed to your users when they run helm install.
-* `templates/deployment.yaml`{{open}}: a basic manifest for creating a Kubernetes deployment
-* `templates/service.yaml`{{open}}: a basic manifest for creating a service endpoint for your deployment
-* `templates/_helpers.tpl`{{open}}: a place to put template helpers that you can re-use throughout the chart
+让我们回顾一下我们的``Chart.yaml``{{open}}。这包含了包的``version``和我们正在管理的``appVersion``，通常这可以引用到容器镜像标记。
 
-This command generates a skeleton of your Helm Chart, and by default there is an NGINX image as example:
+2. 用自定义值填充图表
 
+在我们的例子中，我们正在做一个Helm模板``templates/deployment.yaml``{{open}}，它描述了我们应用程序的Kubernetes部署，其中包含了``spec.containers.image``的结构:
 
-**1. Chart description**
+``image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"``
 
-Let's review our `Chart.yaml`{{open}}. This contains `version` of the package and `appVersion` that we are managing, typically this can be refered to a container image tag.
+> 注意:默认情况下，使用a3682b中的a137b作为镜像标签
 
-
-**2. Fill chart with custom values**
-
-In our example, we are working on a Helm Template `templates/deployment.yaml`{{open}} describing a Kubernetes Deployment for our app, containing this structure for `spec.containers.image`:
-
-`image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"`
-
-> **Note:** *By default `appVersion` from `Chart.yaml` is used as image tag*
-
-
-In `values.yaml`{{open}} add `image.repository` variable to define the container image for our chart. Click the **Copy to Editor** button below to place this code in `values.yaml`{{open}}:
+在``values.yaml``{{open}}中添加``image.repository``变量来定义图表的容器镜像。点击下面的**Copy to Editor**按钮，将这段代码放在``values.yaml``{{open}}中:
 
 <pre class="file" data-filename="values.yaml" data-target="insert" data-marker="# TODO: image repository">repository: bitnami/nginx</pre>
 
 
-Now let's define which tag to use for this container image. Click the **Copy to Editor** button below to place this code in `values.yaml`{{open}}:
+现在让我们定义这个容器镜像使用哪个标记。点击下面的**Copy to Editor**按钮，将这段代码放在``values.yaml``{{open}}中:
 
 <pre class="file" data-filename="values.yaml" data-target="insert" data-marker="# TODO: image tag">tag: latest</pre>
 
 
-**3. Install**
+3.安装
 
-Install our custom Helm Chart from local folder.
+从本地文件夹安装我们的定制Helm图表。
 
-`helm install my-chart ./my-chart`{{execute}}
+``helm install my-chart ./my-chart``{{execute}}
 
-This will install NGINX like in previous chapter, and we can follow installation like in previous chapter, either from Terminal or OpenShift Console:
+这将像上一章一样安装NGINX，我们也可以像上一章一样从终端或OpenShift控制台安装NGINX:
 
-`oc get pods`{{execute}}
+``oc get pods``{{execute}}
 
-<img src="../../assets/developing-on-openshift/helm/my-chart-helm-chart.png" width="800" />
+<img src="../../assets/ developer.com -on-openshift/helm/my-chart-helm-chart.png" width="800" />
 
-Review installed revision:
+审查安装修订:
 
-`helm ls`{{execute}}
+``helm ls``{{execute}}
 
-In next chapter we will add an OpenShift Route as a Helm Template, like for `Service`, to be published in a new revision.
+在下一章中，我们将添加一个OpenShift路径作为Helm模板，就像``Service``一样，将在新版本中发布。

@@ -1,17 +1,19 @@
-At the end of this chapter you will be able to:
-- Manage multiple `Helm Revisions` for your Helm Chart
-- `Upgrade` revisions for new changes
-- Revert changes with `Rollback` of revisions
+在本章结束时，你将能够:
 
-## Upgrade revisions
+* 为你的Helm图表管理多个``Helm Revisions``
+* ``Upgrade``修订新变化
+* 用``Rollback``版本恢复更改
 
-When we install a Helm Chart on OpenShift, we publish a release into the cluster that we can control in terms of upgrades and rollbacks.
+## 升级版本
 
-To change something in any already published chart, we can use `helm upgrade` command with new parameters or code from our chart.
+当我们在OpenShift上安装Helm Chart时，我们会在集群中发布一个版本，我们可以在升级和回滚方面进行控制。
 
-## Add OpenShift Route as Template
+要更改任何已经发布的图表中的内容，我们可以使用``helm upgrade``命令，并从我们的图表中添加新的参数或代码。
 
-Create a new template for OpenShift Route in `templates` directory, click on `templates/routes.yaml`{{open}} to create one. Click the **Copy to Editor** button below to place this code in `templates/routes.yaml`{{open}}
+## 添加OpenShift路由作为模板
+
+在``templates``目录下为OpenShift路由创建一个新模板，单击``templates/routes.yaml``{{open}}创建一个模板。单击下面的复制到编辑器按钮，将这段代码放在``templates/routes.yaml``{{open}}中
+
 <pre class="file" data-filename="templates/routes.yaml" data-target="replace">
 apiVersion: route.openshift.io/v1
 kind: Route
@@ -29,60 +31,58 @@ spec:
   wildcardPolicy: None
 </pre>
 
-Run `helm upgrade` to publish a new revision containing a `my-charm` Route:
+运行``helm upgrade``来发布包含``my-charm``路由的新版本:
 
-`helm upgrade my-chart ./my-chart`{{execute}}
+``helm upgrade my-chart ./my-chart``{{execute}}
 
-Verify new `Route` from Terminal:
+从终端验证新的``Route``:
 
-`oc get routes`{{execute}}
+``oc get routes``{{execute}}
 
-Verify new `Revision`:
+验证新``Revision``:
 
-`helm ls`{{execute}}
+``helm ls``{{execute}}
 
-Verify new `Route` and new `Revision` from Console:
+从控制台验证新的``Route``和新的``Revision``:
 
-<img src="../../assets/developing-on-openshift/helm/my-chart-helm-chart-route.png" width="800" />
+<img src="../../assets/ developer.com -on-openshift/helm/my-chart-helm-chart-route.png" width="800" />
 
-<img src="../../assets/developing-on-openshift/helm/my-chart-new-revision.png" width="800" />
+<img src="../../assets/ developer.com -on-openshift/helm/my-chart-new- revision.net .png" width="800" />
 
+## 升级和回滚
 
-## Upgrade and Rollback
+让我们再次更新我们现有的版本重写了``values.yaml``中的值，将``image.pullPolicy``的默认值``IfNotPresent``更改为``Always``，使用与我们之前使用选项``--set``更改``service.type``相同的方法:
 
-Let's update again our existing release overriding values in `values.yaml` changing `image.pullPolicy` from chart's default value `IfNotPresent` to `Always`, using same method we adopted previously for changing `service.type` with option `--set`:
+``helm upgrade my-chart ./my-chart --set image.pullPolicy=Always``{{execute}}
 
-`helm upgrade my-chart ./my-chart --set image.pullPolicy=Always`{{execute}}
+让我们来验证一下我们的改变是否反映到了结果``Deployment``中:
 
-Let's verify that our changes is reflected into resulting `Deployment`:
+``oc get deployment my-chart -o yaml | grep imagePullPolicy``{{execute}}
 
-`oc get deployment my-chart -o yaml | grep imagePullPolicy`{{execute}}
+得到当前``Revision``:
 
-Get current `Revision`:
+``helm ls``{{execute}}
 
-`helm ls`{{execute}}
+现在我们的新版本已经发布并验证了，如果需要，我们可以决定回滚到以前的版本，这是可以通过``helm rollback``命令实现的。
 
-Now that our new release is published and verified, we can decide to rollback to previous version if we need to, and this is possible with `helm rollback` command.
+也可以用``--dry-run``选项进行回滚:
 
-It is also possible to dry-run the rollback with `--dry-run` option:
+``helm rollback my-chart 2 --dry-run``{{execute}}
 
-`helm rollback my-chart 2 --dry-run`{{execute}}
+回滚到开始修订:
 
-Rollback to starting revision:
+``helm rollback my-chart 2``{{execute}}
 
-`helm rollback my-chart 2`{{execute}}
+检查舱:
 
-Check pods:
+``oc get pods``{{execute}}
 
-`oc get pods`{{execute}}
+验证``imagePullPolicy``回滚到``Revision`` 2，包含``IfNotPresent``策略:
 
-Verify `imagePullPolicy` is rolled back to `Revision` 2 containing `IfNotPresent` Policy:
+``oc get deployment my-chart -o yaml | grep imagePullPolicy``{{execute}}
 
-`oc get deployment my-chart -o yaml | grep imagePullPolicy`{{execute}}
+## 卸载
 
+卸载将清理一切现在，没有进一步的需要手动删除的``Route``像在第一章，因为Helm图表现在管理的资源:
 
-## Uninstall
-
-Uninstall will clean everything now, there's no further need to delete manually the `Route` like in first chapter, since the Helm Chart is now managing that resource:
-
-`helm uninstall my-chart`{{execute}}
+``helm uninstall my-chart``{{execute}}
